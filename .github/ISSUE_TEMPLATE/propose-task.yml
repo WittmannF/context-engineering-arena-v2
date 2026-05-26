@@ -1,0 +1,86 @@
+name: Propose a New Task
+description: Suggest a new benchmark task for the Context Engineering Arena
+title: "[Task Proposal] "
+labels: ["task-proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for proposing a task! Good tasks have a large or complex corpus, a high-level synthesis question, and publicly accessible data. Read [docs/task-authoring-guide.md](../docs/task-authoring-guide.md) before submitting.
+
+  - type: input
+    id: task_title
+    attributes:
+      label: Task Title
+      placeholder: "e.g., WikiLeaks Diplomatic Cables Investigation"
+    validations:
+      required: true
+
+  - type: textarea
+    id: benchmark_question
+    attributes:
+      label: Benchmark Question
+      description: The central question a submission must answer. Should require synthesis, not just a single search query.
+      placeholder: "e.g., What patterns of diplomatic behavior are visible across the cables, and what evidence supports those conclusions?"
+    validations:
+      required: true
+
+  - type: input
+    id: dataset_source
+    attributes:
+      label: Dataset Source / URL
+      placeholder: "https://..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: why_context_engineering
+    attributes:
+      label: Why is this a context engineering challenge?
+      description: Explain why this task cannot be solved by a single search query or simple lookup.
+    validations:
+      required: true
+
+  - type: input
+    id: corpus_size
+    attributes:
+      label: Expected Corpus Size
+      placeholder: "e.g., 250,000 documents, ~2 GB"
+
+  - type: dropdown
+    id: data_access
+    attributes:
+      label: Data Access Method
+      options:
+        - public_api
+        - direct_download
+        - web_scraping
+        - academic_dataset
+        - other
+    validations:
+      required: true
+
+  - type: textarea
+    id: output_sections
+    attributes:
+      label: Required Output Page Sections
+      description: List the sections that a high-quality answer page should include.
+
+  - type: textarea
+    id: scoring_ideas
+    attributes:
+      label: Scoring Ideas
+      description: How would you evaluate whether a submission is good or bad?
+
+  - type: textarea
+    id: safety_risks
+    attributes:
+      label: Safety / Privacy Risks
+      description: Any privacy, legal, or ethical concerns with this dataset?
+
+  - type: checkboxes
+    id: can_maintain
+    attributes:
+      label: Maintenance
+      options:
+        - label: I can help maintain this task (respond to issues, update scripts if data sources change)

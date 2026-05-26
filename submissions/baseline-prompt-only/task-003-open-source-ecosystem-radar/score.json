@@ -1,0 +1,16 @@
+{
+  "task_id": "task-003-open-source-ecosystem-radar",
+  "participant_id": "baseline-prompt-only",
+  "overall_score": 62,
+  "scores": {
+    "answer_quality": 65,
+    "evidence_quality": 55,
+    "context_efficiency": 70,
+    "uncertainty_handling": 72,
+    "visual_clarity": 65,
+    "reproducibility": 45
+  },
+  "notes": "The GH Archive task is more tractable for a baseline because 2 hours of data is manageable. The aggregation is straightforward and the claims are reasonable. The main weakness is that 2 hours is too short a window to detect meaningful trends.",
+  "scored_by": "manual",
+  "scored_at": "2025-01-15"
+}

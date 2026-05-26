@@ -1,0 +1,72 @@
+{
+  "task_id": "task-001-enron-investigation",
+  "participant_id": "baseline-hybrid-rag",
+  "strategy_name": "Hybrid BM25 + Dense Retrieval",
+  "strategy_summary": "Indexed all processed emails with BM25. Created dense embeddings for a 10K email sample. Used 15 targeted queries to retrieve relevant emails. Combined results, deduplicated, reranked by relevance. Fed top 150 emails to LLM for synthesis.",
+  "methods": {
+    "prompt_only": false,
+    "long_context": false,
+    "rag": true,
+    "hybrid_retrieval": true,
+    "bm25": true,
+    "dense_embeddings": true,
+    "reranking": true,
+    "contextual_retrieval": false,
+    "memory": false,
+    "llm_generated_wiki": false,
+    "multi_agent": false,
+    "summarization": true,
+    "compression": false,
+    "graph_extraction": false,
+    "human_in_the_loop": false
+  },
+  "models": [
+    {
+      "provider": "anthropic",
+      "model": "claude-3-sonnet-20240229",
+      "purpose": "generation"
+    },
+    {
+      "provider": "openai",
+      "model": "text-embedding-3-small",
+      "purpose": "embedding"
+    }
+  ],
+  "context_stats": {
+    "documents_available": 517401,
+    "documents_opened": 10000,
+    "documents_retrieved": 850,
+    "documents_used_in_final": 150,
+    "chunks_created": 10000,
+    "chunks_retrieved": 850,
+    "chunks_used_in_final": 150,
+    "input_tokens_estimated": 95000,
+    "output_tokens_estimated": 5800,
+    "total_tokens_estimated": 100800,
+    "estimated_cost_usd": 0.31,
+    "latency_seconds": 145
+  },
+  "retrieval_trace": [
+    {"step": 1, "query": "financial irregularities accounting fraud", "method": "hybrid", "top_k": 50, "selected_evidence_ids": []},
+    {"step": 2, "query": "special purpose entities SPE LJM Raptor", "method": "hybrid", "top_k": 50, "selected_evidence_ids": []},
+    {"step": 3, "query": "mark to market accounting energy trading", "method": "hybrid", "top_k": 50, "selected_evidence_ids": []},
+    {"step": 4, "query": "executive warning concerned exit resign", "method": "bm25", "top_k": 50, "selected_evidence_ids": []},
+    {"step": 5, "query": "stock options sold insider trading", "method": "hybrid", "top_k": 50, "selected_evidence_ids": []},
+    {"step": 6, "query": "California energy crisis manipulation", "method": "hybrid", "top_k": 50, "selected_evidence_ids": []},
+    {"step": 7, "query": "whistleblower Sherron Watkins memo", "method": "bm25", "top_k": 30, "selected_evidence_ids": []},
+    {"step": 8, "query": "Andy Fastow LJM partnership off balance sheet", "method": "hybrid", "top_k": 50, "selected_evidence_ids": []}
+  ],
+  "compression_trace": [],
+  "what_was_ignored": [
+    {"description": "507,401 emails not indexed (only 10K sample used for embeddings)", "reason": "Embedding cost and latency constraints"},
+    {"description": "Calendar and meeting invites", "reason": "Low information density"},
+    {"description": "Automated system notifications", "reason": "Not relevant to investigation"}
+  ],
+  "known_failure_modes": [
+    "10K email sample may miss important documents",
+    "BM25 queries require pre-knowledge of relevant terms",
+    "Dense embeddings may cluster too narrowly around query terms",
+    "No temporal-aware retrieval — recent emails before collapse may be underrepresented",
+    "Entity disambiguation not implemented — 'Jeff' may match multiple people"
+  ]
+}

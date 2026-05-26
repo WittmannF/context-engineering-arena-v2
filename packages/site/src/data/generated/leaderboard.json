@@ -1,0 +1,54 @@
+[
+  {
+    "task_id": "task-001-enron-investigation",
+    "task_title": "The Enron Investigation Brief",
+    "domain": "corporate-investigation",
+    "difficulty": "hard",
+    "rankings": [
+      {
+        "rank": null,
+        "participant_id": "baseline-hybrid-rag",
+        "participant_display_name": "Baseline — Hybrid RAG",
+        "overall_score": null,
+        "scored_by": "manual"
+      },
+      {
+        "rank": null,
+        "participant_id": "baseline-prompt-only",
+        "participant_display_name": "Baseline — Prompt Only",
+        "overall_score": null,
+        "scored_by": "manual"
+      }
+    ]
+  },
+  {
+    "task_id": "task-002-brazil-public-money-trail",
+    "task_title": "Brazil Public Money Trail",
+    "domain": "public-accountability",
+    "difficulty": "expert",
+    "rankings": [
+      {
+        "rank": null,
+        "participant_id": "baseline-prompt-only",
+        "participant_display_name": "Baseline — Prompt Only",
+        "overall_score": null,
+        "scored_by": "manual"
+      }
+    ]
+  },
+  {
+    "task_id": "task-003-open-source-ecosystem-radar",
+    "task_title": "Open Source Ecosystem Radar",
+    "domain": "open-source",
+    "difficulty": "medium",
+    "rankings": [
+      {
+        "rank": null,
+        "participant_id": "baseline-prompt-only",
+        "participant_display_name": "Baseline — Prompt Only",
+        "overall_score": null,
+        "scored_by": "manual"
+      }
+    ]
+  }
+]

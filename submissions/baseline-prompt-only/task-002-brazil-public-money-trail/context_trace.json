@@ -1,0 +1,100 @@
+{
+  "task_id": "task-002-brazil-public-money-trail",
+  "participant_id": "baseline-prompt-only",
+  "strategy_name": "Câmara API Sample + Single LLM Prompt (No Transparência Token)",
+  "strategy_summary": "Fetched 2 pages of health propositions from Câmara dos Deputados API. Skipped Portal da Transparência (no API token). Formatted API results as a single prompt to claude-3-haiku-20240307. No cross-dataset joining was performed.",
+  "methods": {
+    "prompt_only": true,
+    "long_context": false,
+    "rag": false,
+    "hybrid_retrieval": false,
+    "bm25": false,
+    "dense_embeddings": false,
+    "reranking": false,
+    "contextual_retrieval": false,
+    "memory": false,
+    "llm_generated_wiki": false,
+    "multi_agent": false,
+    "summarization": false,
+    "compression": false,
+    "graph_extraction": false,
+    "entity_resolution": false,
+    "emenda_matching": false,
+    "human_in_the_loop": false
+  },
+  "models": [
+    {
+      "provider": "anthropic",
+      "model": "claude-3-haiku-20240307",
+      "purpose": "generation"
+    }
+  ],
+  "api_calls": [
+    {
+      "step": 1,
+      "source": "camara",
+      "endpoint": "GET /api/v2/proposicoes",
+      "params": {"keywords": "saude", "dataApresentacaoInicio": "2022-01-01", "dataApresentacaoFim": "2024-12-31", "pagina": 1, "itens": 100},
+      "records_returned": 100,
+      "latency_ms": 820
+    },
+    {
+      "step": 2,
+      "source": "camara",
+      "endpoint": "GET /api/v2/proposicoes",
+      "params": {"keywords": "saude", "dataApresentacaoInicio": "2022-01-01", "dataApresentacaoFim": "2024-12-31", "pagina": 2, "itens": 100},
+      "records_returned": 100,
+      "latency_ms": 750
+    },
+    {
+      "step": 3,
+      "source": "transparencia",
+      "endpoint": "SKIPPED",
+      "reason": "TRANSPARENCIA_API_TOKEN not set in environment",
+      "action": "Synthetic sample created instead",
+      "synthetic_sample_used": true
+    }
+  ],
+  "context_stats": {
+    "camara_propositions_available": "Unknown (full dataset)",
+    "camara_propositions_retrieved": 200,
+    "camara_propositions_used_in_prompt": 200,
+    "transparencia_records_available": "Unknown",
+    "transparencia_records_retrieved": 0,
+    "transparencia_records_used": 0,
+    "input_tokens_estimated": 14200,
+    "output_tokens_estimated": 4100,
+    "total_tokens_estimated": 18300,
+    "estimated_cost_usd": 0.003,
+    "latency_seconds": 18
+  },
+  "what_was_ignored": [
+    {
+      "description": "Portal da Transparência spending data — entire spending side of the analysis",
+      "reason": "API token not available"
+    },
+    {
+      "description": "Emenda parlamentar records",
+      "reason": "Requires Portal da Transparência token and specific endpoint"
+    },
+    {
+      "description": "Deputy vote records",
+      "reason": "Not fetched in sample mode"
+    },
+    {
+      "description": "TCU audit data",
+      "reason": "Not included in baseline"
+    },
+    {
+      "description": "Remaining 200+ pages of health propositions",
+      "reason": "Sample limited to 2 pages"
+    }
+  ],
+  "known_failure_modes": [
+    "Data joining score will be near-zero: only one data source used",
+    "All spending claims are uncertainty type — the money trail cannot be traced",
+    "No emenda parlamentar matching possible without Transparência data",
+    "Proposition sample (200 records) may miss important propositions",
+    "No entity resolution across sources — same ministry may appear under different names"
+  ]
+}

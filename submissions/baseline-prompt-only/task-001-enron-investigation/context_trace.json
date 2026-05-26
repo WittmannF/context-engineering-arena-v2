@@ -1,0 +1,72 @@
+{
+  "task_id": "task-001-enron-investigation",
+  "participant_id": "baseline-prompt-only",
+  "strategy_name": "Simple Random Sample + Single LLM Prompt",
+  "strategy_summary": "Selected 50 random emails from the dataset, concatenated them into a single prompt, and asked an LLM to produce the structured answer. No retrieval, no indexing, no iterative refinement.",
+  "methods": {
+    "prompt_only": true,
+    "long_context": false,
+    "rag": false,
+    "hybrid_retrieval": false,
+    "bm25": false,
+    "dense_embeddings": false,
+    "reranking": false,
+    "contextual_retrieval": false,
+    "memory": false,
+    "llm_generated_wiki": false,
+    "multi_agent": false,
+    "summarization": false,
+    "compression": false,
+    "graph_extraction": false,
+    "human_in_the_loop": false
+  },
+  "models": [
+    {
+      "provider": "anthropic",
+      "model": "claude-3-haiku-20240307",
+      "purpose": "generation"
+    }
+  ],
+  "context_stats": {
+    "documents_available": 517401,
+    "documents_opened": 50,
+    "documents_retrieved": 50,
+    "documents_used_in_final": 50,
+    "chunks_created": 0,
+    "chunks_retrieved": 0,
+    "chunks_used_in_final": 0,
+    "input_tokens_estimated": 18500,
+    "output_tokens_estimated": 3200,
+    "total_tokens_estimated": 21700,
+    "estimated_cost_usd": 0.004,
+    "latency_seconds": 12
+  },
+  "retrieval_trace": [
+    {
+      "step": 1,
+      "query": "random sample",
+      "method": "manual",
+      "top_k": 50,
+      "selected_evidence_ids": []
+    }
+  ],
+  "compression_trace": [],
+  "what_was_ignored": [
+    {
+      "description": "517,351 of 517,401 emails were not read",
+      "reason": "Context window constraints combined with no retrieval strategy"
+    },
+    {
+      "description": "Financial documents, SEC filings, analyst reports",
+      "reason": "Not included in the email dataset sample"
+    }
+  ],
+  "known_failure_modes": [
+    "Random sampling heavily biases the analysis toward whichever employees happened to be sampled",
+    "No systematic search for key events or people",
+    "Evidence is not meaningfully selected — 50 random emails cannot represent 517K",
+    "Claims may reflect the LLM's prior knowledge about Enron rather than the actual dataset",
+    "No cross-referencing between documents",
+    "Timeline is based on LLM prior knowledge, not parsed email dates"
+  ]
+}

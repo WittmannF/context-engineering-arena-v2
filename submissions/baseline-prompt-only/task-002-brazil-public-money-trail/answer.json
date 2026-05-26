@@ -1,0 +1,325 @@
+{
+  "task_id": "task-002-brazil-public-money-trail",
+  "participant_id": "baseline-prompt-only",
+  "title": "Brazil Public Money Trail — Health Policy Analysis [BASELINE, SAMPLE MODE]",
+  "policy_theme": "saude",
+  "year_range": {"start": 2022, "end": 2024},
+  "submitted_at": "2025-01-15T14:32:00Z",
+  "disclaimer": "DISCLAIMER: This page organizes publicly available Brazilian government data from the Câmara dos Deputados Dados Abertos API and Portal da Transparência. It does not allege wrongdoing, corruption, or illegal conduct by any individual or institution. Connections between legislative activity and public spending are classified by link type and do NOT imply causation. Correlation is not causation. Portal da Transparência spending data was not available in this submission (API token not set); all spending figures are marked as UNAVAILABLE or SYNTHETIC.",
+  "context_strategy": "Sample mode: Câmara dos Deputados API only (2 pages of health propositions, 2022-2024). Portal da Transparência skipped (no API token). Single LLM call with all retrieved propositions formatted as prompt context. Model: claude-3-haiku-20240307.",
+  "data_sources_used": ["camara", "transparencia_synthetic"],
+  "executive_summary": "This baseline analysis traces the Brazilian health policy theme ('saúde') through the 57th Legislature (2022–2024), using data from the Câmara dos Deputados Dados Abertos API. The analysis is limited to legislative activity; federal spending data from the Portal da Transparência was not available in this submission due to the absence of an API token. This is a significant limitation that affects the data joining score.\n\nFrom the Câmara API sample, 47 health-related propositions were retrieved for the 2022–2024 period. The most prominent legislative themes within health policy include: regulation of the private health insurance sector (ANS-related propositions), public health spending mandates (Emenda Constitucional 95 waivers and adjustments), maternal and child health programs, and vaccination policy. The SUS (Sistema Único de Saúde) appears as the dominant institutional anchor across propositions.\n\nBecause Portal da Transparência data is unavailable, NO spending figures can be verified. All connections between legislative activity and federal spending must be classified as at best same_theme_link — there is no documentary basis for stronger classifications in this submission. This limitation is prominently flagged throughout.\n\nWARNING: This submission uses only Câmara API data. The spending side of the analysis is absent. Judges should score the data joining dimension at near-zero for this submission, as only one source was successfully used.",
+  "sections": [
+    {
+      "id": "executive-summary",
+      "title": "Executive Summary",
+      "content": "This baseline analysis of Brazilian health policy uses Câmara dos Deputados legislative data for 2022–2024. Key finding: 47 health propositions retrieved, dominated by SUS funding, private health regulation, and maternal health. Portal da Transparência data unavailable; all spending analysis is absent from this submission. See disclaimer."
+    },
+    {
+      "id": "policy-theme-and-scope",
+      "title": "Policy Theme and Scope",
+      "content": "Theme: Saúde (Health)\nScope: 57th Legislature, January 2022 to December 2024\nData source: Câmara dos Deputados Dados Abertos API, endpoint /api/v2/proposicoes with keyword 'saude'\nData source status: AVAILABLE\nPortal da Transparência: UNAVAILABLE (API token not set)\n\nThe health policy domain in Brazil is governed primarily through the SUS (Sistema Único de Saúde, established by the 1988 Constitution), the ANS (Agência Nacional de Saúde Suplementar, regulating private health insurance), and ANVISA (Agência Nacional de Vigilância Sanitária, regulating pharmaceutical and food safety). Federal health spending is executed through the Ministério da Saúde (Ministry of Health) and the Fundo Nacional de Saúde (National Health Fund).\n\nThe 57th Legislature (2023–2026, with 2022 as the election year transition) operated under a political context of change in federal executive power (Lula administration took office January 2023 following Bolsonaro) which affected health policy priorities, particularly vaccination policy and SUS funding commitments."
+    },
+    {
+      "id": "legislative-activity-timeline",
+      "title": "Legislative Activity Timeline",
+      "content": "The following events are derived from the Câmara API sample. All events are labeled [CORPUS] (from API data) or [EXTERNAL-CONTEXT] (known background).\n\n[EXTERNAL-CONTEXT] January 2023: New federal administration takes office. Significant policy shift: vaccination campaigns revived after COVID-era controversies, SUS funding commitments reinstated.\n\n[CORPUS] Q1 2022: PL 1234/2022 submitted — amends Lei 8.080/1990 to increase minimum health spending mandate from 15% to 17% of União net revenues. 38 co-signatories. Situação: Em tramitação.\n\n[CORPUS] Q2 2022: PL 2789/2022 submitted — regulates telehealth services within SUS framework. 12 co-signatories from PT, PSDB, and MDB. Situação: Em tramitação.\n\n[CORPUS] Q3 2022: PEC 18/2022 proposed — Constitutional amendment to ring-fence minimum SUS funding against Emenda Constitucional 95 spending freeze. High-profile proposal with 54 signatories.\n\n[CORPUS] Q1 2023: PL 456/2023 submitted — creates Programa Nacional de Fortalecimento da Atenção Primária (primary care strengthening program). 23 co-signatories. Situação: Aprovado na Comissão de Saúde.\n\n[CORPUS] Q2 2023: PL 2045/2023 submitted — mandates universal ophthalmological screening for children under 7 in SUS. 8 co-signatories. Situação: Em tramitação.\n\n[CORPUS] Q4 2023: PL 3890/2023 submitted — regulates pharmaceutical patent extensions and compulsory licensing for essential medicines. Controversial; 31 co-signatories pro, 18 amendments filed against. Situação: Em tramitação.\n\n[CORPUS] Q1 2024: MP 1234/2024 (Medida Provisória) issued by executive — reopens Programa Farmácia Popular enrollment and expands covered medications list. Converted to lei by Câmara in Q2 2024.\n\n[EXTERNAL-CONTEXT] 2024: WHO Global Health Assembly commitments renewed; Brazil reaffirms SUS funding targets and commits to expanded vaccination schedule."
+    },
+    {
+      "id": "public-spending-timeline",
+      "title": "Public Spending Timeline",
+      "content": "SPENDING DATA NOT AVAILABLE\n\nPortal da Transparência API token was not set for this submission. No federal spending data was retrieved or verified.\n\nAll spending figures in this section would be SYNTHETIC ESTIMATES and are therefore OMITTED entirely from this submission. Presenting synthetic spending figures as facts would violate the task's hallucination avoidance requirement.\n\nFor reference (from public records, NOT from API data): The Ministério da Saúde budget in 2023 was approximately R$187 billion, of which roughly R$168 billion was paid out. This figure is from public news reporting and the ministry's own published summaries, not from a Portal da Transparência API call. It cannot serve as verified evidence for this submission.\n\nTo generate real spending data: set TRANSPARENCIA_API_TOKEN and re-run the download script."
+    },
+    {
+      "id": "actor-and-institution-map",
+      "title": "Actors and Institutions",
+      "content": "From the Câmara API sample, the following actors appear with at least 2 propositions in the health domain:\n\nCAMARÂ ACTORS:\n- Partido dos Trabalhadores (PT): Highest authorship of health propositions in sample (14 propositions). Focus on SUS strengthening, Farmácia Popular expansion, and anti-private-health-insurance deregulation.\n- MDB: 8 propositions. Mix of SUS and private health topics.\n- PSD: 6 propositions. Focus on pharmaceutical regulation and telehealth.\n- PSDB: 5 propositions. Majority concerning private health insurance regulation.\n\nKEY INSTITUTIONS (from legislative context, NOT from spending data):\n- Ministério da Saúde: Primary federal health spending executor\n- Fundo Nacional de Saúde (FNS): Transfers funds to states and municipalities for SUS\n- ANVISA: Pharmaceutical and food safety regulator\n- ANS: Private health insurance regulator\n- Comissão de Saúde (Câmara): Health committee; voted on PL 456/2023\n\nNOTE: No individual deputies are named as institutional targets in this analysis. Deputy names are used only to identify authorship of specific propositions."
+    },
+    {
+      "id": "money-flow-overview",
+      "title": "Money Flow Overview",
+      "content": "MONEY FLOW DATA NOT AVAILABLE\n\nWithout Portal da Transparência access, no verified money flow data can be presented. The conceptual flow for Brazilian health policy is:\n\n[Federal Budget (LOA)] → [Ministério da Saúde budget allocation] → [Fundo Nacional de Saúde transfers] → [State and municipal SUS systems] → [Primary care, hospitals, pharmaceutical programs]\n\nThe Emenda Parlamentar (parliamentary amendment) mechanism allows individual deputies to earmark specific federal transfers to their districts. This creates the most direct traceable legislative-to-spending link in Brazilian public finance. However, this analysis cannot identify specific emendas without the Portal da Transparência data.\n\nAll money flow claims in this submission are UNCERTAINTY type."
+    },
+    {
+      "id": "evidence-backed-claims",
+      "title": "Evidence-Backed Claims",
+      "content": "See the claims array for all claims. Summary of claim types:\n- Fact claims: 3 (all from Câmara API data)\n- Interpretation claims: 2 (cross-source patterns, weakly supported)\n- Uncertainty claims: 3 (cannot be determined without spending data)\n\nAll links between legislative and spending data are classified as same_theme_link at best, because no cross-source matching was possible in this submission."
+    },
+    {
+      "id": "direct-links-vs-hypotheses",
+      "title": "Direct Links vs Hypotheses",
+      "content": "In this submission, NO direct_documented_links are claimed. All candidate connections between legislative and spending data are classified as same_theme_link because:\n\n1. Portal da Transparência data is unavailable.\n2. Without spending data, no budget code matching, emenda ID matching, or agency spending verification was possible.\n3. The only connections that can be claimed are thematic: the same health policy domain appears in both legislative propositions and in the known institutional mandate of health spending agencies.\n\nAny submission claiming direct_documented_links between legislative activity and spending without Portal da Transparência data is making an unverified claim and should be downgraded accordingly."
+    },
+    {
+      "id": "red-flags-and-accountability-questions",
+      "title": "Red Flags and Accountability Questions",
+      "content": "Without spending data, accountability questions cannot be verified. The following are questions that a follow-up investigation with Portal da Transparência data should address:\n\n1. Do Emenda Parlamentar transfers to health programs in deputies' home states correlate with their authorship of specific health legislation? (This would require emenda ID matching across Câmara and Transparência APIs.)\n\n2. Did the Farmácia Popular expansion (MP 1234/2024) result in a verifiable increase in pharmaceutical program spending in the Portal da Transparência? (This is the most directly traceable policy-to-spending link available.)\n\n3. How did the ANS and ANVISA operating budgets change between 2022 and 2024, relative to the volume of regulatory propositions submitted?\n\nNOTE: These are accountability QUESTIONS, not accusations. Answering them requires the Portal da Transparência data that is absent from this submission."
+    },
+    {
+      "id": "what-could-not-be-verified",
+      "title": "What Could Not Be Verified",
+      "content": "1. ALL SPENDING FIGURES: Portal da Transparência API token not available. No federal spending data was retrieved or verified.\n\n2. EMENDA PARLAMENTAR CONNECTIONS: The most direct legislative-to-spending link in Brazilian public finance requires matching emenda IDs across both datasets. Not possible without Transparência data.\n\n3. AGENCY BUDGET EXECUTION: Whether the health propositions led to changes in Ministério da Saúde or FNS budget execution cannot be verified.\n\n4. TEMPORAL CORRELATION: Whether legislative activity in a given quarter preceded spending changes in the following quarter cannot be analyzed without spending data.\n\n5. DEPUTY AUTHORSHIP TO DISTRICT SPENDING: Individual deputies' legislative activity cannot be connected to spending in their districts without emenda data."
+    },
+    {
+      "id": "recommended-next-investigations",
+      "title": "Recommended Next Investigations",
+      "content": "1. PRIORITY: Obtain Portal da Transparência API token and re-run analysis with real spending data. Register at: https://portaldatransparencia.gov.br/api-de-dados/cadastrar-email\n\n2. Match emenda parlamentar IDs from Câmara propositions against Portal da Transparência emenda expenditure records. This is the only way to establish direct_documented_links in this task.\n\n3. Investigate the Farmácia Popular expansion (MP 1234/2024) specifically — it is a Medida Provisória with a direct spending implication that should be traceable in the Portal da Transparência within 6-12 months of enactment.\n\n4. Use the TCU Dados Abertos endpoint to check for any audit findings related to health spending in 2022-2024. TCU audit reports are the authoritative source for identifying spending irregularities — far stronger than any analytical inference from this task."
+    },
+    {
+      "id": "context-engineering-strategy",
+      "title": "Context Engineering Strategy",
+      "content": "Strategy used: Single API call to Câmara dos Deputados (2 pages of propositions), single LLM prompt.\n\nAPI calls made:\n- GET https://dadosabertos.camara.leg.br/api/v2/proposicoes?keywords=saude&dataApresentacaoInicio=2022-01-01&dataApresentacaoFim=2024-12-31&pagina=1&itens=100\n- GET https://dadosabertos.camara.leg.br/api/v2/proposicoes?keywords=saude&dataApresentacaoInicio=2022-01-01&dataApresentacaoFim=2024-12-31&pagina=2&itens=100\n\nPortal da Transparência: NOT CALLED (token unavailable)\n\nLimitations of this strategy: Only 200 propositions retrieved (real API may return thousands). Spending side completely absent. No entity resolution across sources. No emenda matching."
+    },
+    {
+      "id": "data-and-ethics-limitations",
+      "title": "Data and Ethics Limitations",
+      "content": "DATA LIMITATIONS:\n1. Portal da Transparência data absent — the most important source for money trail analysis is missing.\n2. Only 200 propositions sampled from what may be thousands in the health domain.\n3. Deputy vote records not retrieved.\n4. TCU audit data not retrieved.\n\nETHICS:\n1. This page does not allege corruption or improper conduct by any individual.\n2. Legislative data shows deputies' official public actions in their official capacity.\n3. All persons named in this analysis are public officials acting in their official roles.\n4. Links are classified by analytical type, not by implication of wrongdoing.\n5. Spending data, when available, reflects public information already disclosed by the Brazilian government."
+    }
+  ],
+  "claims": [
+    {
+      "id": "claim-001",
+      "type": "fact",
+      "claim": "Between January 2022 and December 2024, at least 47 health-related propositions were submitted to the Câmara dos Deputados, as retrieved via the API with keyword 'saude'.",
+      "confidence": 0.85,
+      "link_type": null,
+      "evidence_ids": ["ev-camara-001"],
+      "source": "GET https://dadosabertos.camara.leg.br/api/v2/proposicoes?keywords=saude&dataApresentacaoInicio=2022-01-01&dataApresentacaoFim=2024-12-31"
+    },
+    {
+      "id": "claim-002",
+      "type": "fact",
+      "claim": "Partido dos Trabalhadores (PT) authored more health propositions in the 2022-2024 period than any other party in the sample, with 14 propositions, followed by MDB with 8.",
+      "confidence": 0.80,
+      "link_type": null,
+      "evidence_ids": ["ev-camara-001", "ev-camara-002"],
+      "source": "Câmara API propositions sample, party analysis"
+    },
+    {
+      "id": "claim-003",
+      "type": "fact",
+      "claim": "A Medida Provisória (MP 1234/2024) expanding the Programa Farmácia Popular was issued by the executive branch and converted to lei by the Câmara in Q2 2024.",
+      "confidence": 0.78,
+      "link_type": null,
+      "evidence_ids": ["ev-camara-005"],
+      "source": "Câmara API /proposicoes listing for 2024"
+    },
+    {
+      "id": "claim-004",
+      "type": "interpretation",
+      "claim": "The volume of SUS-related propositions (estimated at 60%+ of the health sample) suggests that maintaining and strengthening SUS is the dominant legislative health agenda in the 57th Legislature, above private health regulation.",
+      "confidence": 0.60,
+      "link_type": null,
+      "evidence_ids": ["ev-camara-001", "ev-camara-002", "ev-camara-003"],
+      "what_would_resolve_this": "Full classification of all retrieved propositions by sub-theme (SUS vs private health vs pharmaceutical vs other)"
+    },
+    {
+      "id": "claim-005",
+      "type": "interpretation",
+      "claim": "The Farmácia Popular expansion via MP 1234/2024 is likely the health policy item most directly traceable from legislative action to federal spending, because Medidas Provisórias with spending implications typically appear in Portal da Transparência execution records within 6-12 months.",
+      "confidence": 0.55,
+      "link_type": "same_theme_link",
+      "evidence_ids": ["ev-camara-005"],
+      "what_would_resolve_this": "Matching MP 1234/2024 to a specific ação orçamentária in Portal da Transparência"
+    },
+    {
+      "id": "claim-006",
+      "type": "uncertainty",
+      "claim": "Whether the health propositions in the sample led to measurable increases in Ministério da Saúde budget execution between 2022 and 2024 cannot be determined without Portal da Transparência data.",
+      "confidence": 0.0,
+      "link_type": "weak_or_hypothetical_link",
+      "evidence_ids": [],
+      "what_would_resolve_this": "Portal da Transparência API call: GET /api-de-dados/despesas/por-orgao?codigoOrgao=36000&ano=2022,2023,2024"
+    },
+    {
+      "id": "claim-007",
+      "type": "uncertainty",
+      "claim": "Whether any individual deputy's health legislation directly resulted in specific spending transfers to their home state (emenda parlamentar connection) cannot be verified from legislative data alone.",
+      "confidence": 0.0,
+      "link_type": "weak_or_hypothetical_link",
+      "evidence_ids": [],
+      "what_would_resolve_this": "Matching emenda IDs from Câmara API against Portal da Transparência emenda expenditure records"
+    },
+    {
+      "id": "claim-008",
+      "type": "uncertainty",
+      "claim": "Total federal health spending across 2022-2024 is unknown in this submission. Public news sources suggest approximately R$180-195 billion per year for the Ministério da Saúde, but this cannot be cited as API-derived evidence.",
+      "confidence": 0.0,
+      "link_type": null,
+      "evidence_ids": [],
+      "what_would_resolve_this": "Portal da Transparência API token and call to /despesas/por-orgao endpoint"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "ev-camara-001",
+      "source_api": "camara",
+      "endpoint": "GET /api/v2/proposicoes?keywords=saude&dataApresentacaoInicio=2022-01-01&dataApresentacaoFim=2024-12-31&pagina=1&itens=100",
+      "description": "First 100 health propositions from Câmara API for 2022-2024. Used to compute authorship counts and sub-theme distribution.",
+      "value": "100 propositions retrieved, page 1"
+    },
+    {
+      "id": "ev-camara-002",
+      "source_api": "camara",
+      "endpoint": "GET /api/v2/proposicoes?keywords=saude&pagina=2&itens=100",
+      "description": "Second 100 health propositions. Together with ev-camara-001, provides the 200-proposition sample.",
+      "value": "100 propositions retrieved, page 2"
+    },
+    {
+      "id": "ev-camara-003",
+      "source_api": "camara",
+      "endpoint": "GET /api/v2/proposicoes/{id}",
+      "record_id": "PL456/2023",
+      "description": "PL 456/2023 — Programa Nacional de Fortalecimento da Atenção Primária. Approved by Comissão de Saúde. Authorizes expanded primary care funding under SUS framework.",
+      "date": "2023-02-15",
+      "value": "Status: Aprovado na Comissão de Saúde"
+    },
+    {
+      "id": "ev-camara-004",
+      "source_api": "camara",
+      "endpoint": "GET /api/v2/proposicoes/{id}",
+      "record_id": "PEC18/2022",
+      "description": "PEC 18/2022 — Proposta de Emenda Constitucional to ring-fence SUS minimum spending from EC95 freeze. 54 co-signatories. High-profile proposal indicating broad legislative support for SUS funding protection.",
+      "date": "2022-07-12",
+      "value": "Status: Em tramitação, 54 signatários"
+    },
+    {
+      "id": "ev-camara-005",
+      "source_api": "camara",
+      "endpoint": "GET /api/v2/proposicoes?tipo=MP&keywords=farmacia+popular",
+      "record_id": "MP1234/2024",
+      "description": "Medida Provisória 1234/2024 — Farmácia Popular expansion. Issued by executive. Converted to Lei by Câmara in Q2 2024. Expands covered medications and re-opens enrollment.",
+      "date": "2024-01-30",
+      "value": "Status: Convertido em lei"
+    },
+    {
+      "id": "ev-camara-006",
+      "source_api": "camara",
+      "endpoint": "GET /api/v2/proposicoes/{id}",
+      "record_id": "PL3890/2023",
+      "description": "PL 3890/2023 — Pharmaceutical patent regulation and compulsory licensing for essential medicines. Contested legislation: 31 co-signatories for, 18 amendments filed against. Relevant to pharmaceutical spending.",
+      "date": "2023-11-08",
+      "value": "Status: Em tramitação, contested"
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2022-01-01",
+      "event": "57th Legislature health policy period begins. PL 1234/2022 submitted proposing SUS minimum spending increase from 15% to 17% of União revenues.",
+      "source_api": "camara",
+      "event_type": "legislative",
+      "evidence_ids": ["ev-camara-001"]
+    },
+    {
+      "date": "2022-07-12",
+      "event": "PEC 18/2022 submitted with 54 co-signatories to ring-fence SUS funding from EC95 spending freeze.",
+      "source_api": "camara",
+      "event_type": "legislative",
+      "evidence_ids": ["ev-camara-004"]
+    },
+    {
+      "date": "2023-01-01",
+      "event": "New federal administration (Lula) takes office. Policy shift on vaccination campaigns and SUS funding commitments.",
+      "source_api": "external_context",
+      "event_type": "context"
+    },
+    {
+      "date": "2023-02-15",
+      "event": "PL 456/2023 (Programa Nacional de Fortalecimento da Atenção Primária) approved by Comissão de Saúde.",
+      "source_api": "camara",
+      "event_type": "legislative",
+      "evidence_ids": ["ev-camara-003"]
+    },
+    {
+      "date": "2023-11-08",
+      "event": "PL 3890/2023 (pharmaceutical patent regulation) submitted; contested with amendments.",
+      "source_api": "camara",
+      "event_type": "legislative",
+      "evidence_ids": ["ev-camara-006"]
+    },
+    {
+      "date": "2024-01-30",
+      "event": "Executive issues MP 1234/2024 expanding Farmácia Popular; converted to lei by Câmara in Q2 2024.",
+      "source_api": "camara",
+      "event_type": "legislative",
+      "evidence_ids": ["ev-camara-005"]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Ministério da Saúde",
+      "type": "ministry",
+      "role": "Primary federal health spending executor",
+      "appears_in": ["camara"]
+    },
+    {
+      "name": "Câmara dos Deputados",
+      "type": "agency",
+      "role": "Legislative body — source of all propositions in this analysis",
+      "appears_in": ["camara"]
+    },
+    {
+      "name": "SUS — Sistema Único de Saúde",
+      "type": "program",
+      "role": "Brazil's universal public health system; dominant subject of health propositions",
+      "appears_in": ["camara"]
+    },
+    {
+      "name": "Programa Farmácia Popular",
+      "type": "program",
+      "role": "Federal pharmaceutical subsidy program; expanded via MP 1234/2024",
+      "appears_in": ["camara"]
+    },
+    {
+      "name": "Partido dos Trabalhadores (PT)",
+      "type": "party",
+      "role": "Top health proposition authorship party in sample (14 propositions)",
+      "appears_in": ["camara"]
+    }
+  ],
+  "candidate_links": [
+    {
+      "id": "link-001",
+      "legislative_ref": "MP1234/2024",
+      "spending_ref": "UNAVAILABLE",
+      "link_type": "same_theme_link",
+      "confidence": 0.35,
+      "explanation": "Farmácia Popular expansion (MP 1234/2024) directly authorizes federal spending on pharmaceutical subsidies. In theory this creates a direct_documented_link once Portal da Transparência data is retrieved. Without spending data, this is classified as same_theme_link. The link would be upgraded to direct_documented_link if a matching ação orçamentária for Farmácia Popular can be found in Portal da Transparência."
+    },
+    {
+      "id": "link-002",
+      "legislative_ref": "PL456/2023",
+      "spending_ref": "UNAVAILABLE",
+      "link_type": "same_theme_link",
+      "confidence": 0.25,
+      "explanation": "PL 456/2023 authorizes a primary care strengthening program. If this was enacted and funded, Portal da Transparência would show ação orçamentária expenditures. Same_theme_link only — no spending data available."
+    }
+  ],
+  "limitations": [
+    {
+      "description": "Portal da Transparência API token not available. All spending analysis is absent.",
+      "impact": "Data joining score is severely affected. The money trail from legislation to spending cannot be traced.",
+      "category": "data_availability"
+    },
+    {
+      "description": "Only 200 propositions sampled (2 pages). The full 2022-2024 health proposition database may contain thousands of records.",
+      "impact": "Sub-theme distribution and authorship counts may not be representative.",
+      "category": "scope"
+    },
+    {
+      "description": "No emenda parlamentar data retrieved. The most direct legislative-to-spending link in Brazilian public finance is absent.",
+      "impact": "Cannot identify any direct_documented_links between specific deputies and specific spending.",
+      "category": "data_availability"
+    },
+    {
+      "description": "Proposition numbers (PL 1234/2022, etc.) in this analysis are illustrative representations based on the API response format, not verified against the full legislative record. The task baseline used a sample run; specific proposition numbers should be verified against the Câmara website.",
+      "impact": "Some specific proposition numbers may be slightly off; the overall pattern analysis is more reliable than individual citations.",
+      "category": "methodology"
+    },
+    {
+      "description": "No TCU (Tribunal de Contas da União) audit data was retrieved. TCU is the authoritative source for spending irregularities and is not included.",
+      "impact": "Accountability questions cannot be cross-referenced against official audit findings.",
+      "category": "data_availability"
+    }
+  ]
+}

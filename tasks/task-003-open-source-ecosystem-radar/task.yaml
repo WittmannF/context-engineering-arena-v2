@@ -1,0 +1,77 @@
+id: task-003-open-source-ecosystem-radar
+title: "Open Source Ecosystem Radar"
+short_description: "Using GH Archive public GitHub event data, identify which repositories or ecosystems show unusual growth, decline, or concentration risk."
+long_description: |
+  GH Archive records millions of GitHub events every hour: pushes, pull requests, issues, stars, forks, releases, and more. This task challenges participants to process this large event stream and build a developer-focused page that identifies trends, anomalies, and concentration risks in the open-source ecosystem.
+
+  The task tests large-scale event processing, filtering, aggregation, trend detection, signal vs noise discrimination, repository and entity extraction, temporal summarization, and visual storytelling for a technical audience.
+
+benchmark_question: "Which open-source repositories or ecosystems show unusual growth, decline, concentration risk, or emerging momentum in the selected time window?"
+
+domain: open-source
+difficulty: medium
+tags:
+  - github
+  - event-data
+  - trend-detection
+  - aggregation
+  - developer-tools
+  - data-engineering
+
+dataset:
+  name: "GH Archive"
+  source_url: "https://www.gharchive.org/"
+  license: "CC BY 4.0"
+  access_method: direct_download
+  expected_size: "~100-500 MB per day depending on volume"
+  sample_available: true
+
+outputs:
+  required_sections:
+    - executive-summary
+    - dataset-scope
+    - ecosystem-trends
+    - repositories-heating-up
+    - repositories-cooling-down
+    - maintainer-contributor-concentration-risk
+    - event-timeline
+    - evidence-backed-claims
+    - caveats-and-data-limitations
+    - context-engineering-strategy
+  required_visualizations:
+    - trend-cards
+    - repository-leaderboard
+    - event-type-distribution
+    - anomaly-cards
+    - claim-evidence-table
+    - ecosystem-radar-chart-placeholder
+    - why-this-matters-section
+  required_claim_types:
+    - fact
+    - interpretation
+    - uncertainty
+
+scoring:
+  dimensions:
+    - correct_aggregation
+    - ability_to_distinguish_noise_from_signal
+    - useful_trend_explanations
+    - evidence_quality
+    - context_efficiency
+    - clarity_for_developers
+  automatic_metrics:
+    - evidence_id_coverage_rate
+    - claim_backed_percentage
+  human_metrics:
+    - trend_insight_quality
+    - developer_usefulness
+
+safety:
+  privacy_risks:
+    - "GH Archive records public GitHub usernames — these are already public."
+    - "Do not expose private repo content, which should not appear in the dataset."
+  legal_risks:
+    - "CC BY 4.0 license — attribution required."
+  recommended_mitigations:
+    - "Focus on repository and ecosystem trends, not individual developer surveillance."
+    - "Aggregate data where possible rather than profiling individuals."

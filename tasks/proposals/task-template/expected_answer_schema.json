@@ -1,0 +1,99 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Task XXX Answer Schema",
+  "description": "JSON Schema for valid submissions to task-XXX-your-task-id. Replace with real schema.",
+  "type": "object",
+  "required": [
+    "task_id",
+    "participant_id",
+    "title",
+    "executive_summary",
+    "sections",
+    "claims",
+    "evidence",
+    "limitations"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "const": "task-XXX-your-task-id",
+      "description": "Must match the task ID exactly"
+    },
+    "participant_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 10
+    },
+    "executive_summary": {
+      "type": "string",
+      "minLength": 100,
+      "description": "Non-empty executive summary"
+    },
+    "sections": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Required sections. Add specific section ID requirements using allOf contains.",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "content"],
+        "properties": {
+          "id": {"type": "string"},
+          "title": {"type": "string"},
+          "content": {"type": "string", "minLength": 50}
+        }
+      }
+    },
+    "claims": {
+      "type": "array",
+      "minItems": 3,
+      "description": "Replace with task-appropriate minimum",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "claim", "confidence"],
+        "properties": {
+          "id": {"type": "string"},
+          "type": {
+            "type": "string",
+            "enum": ["fact", "interpretation", "uncertainty"]
+          },
+          "claim": {"type": "string", "minLength": 20},
+          "confidence": {"type": "number", "minimum": 0.0, "maximum": 1.0},
+          "evidence_ids": {
+            "type": "array",
+            "items": {"type": "string"}
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 2,
+      "description": "Replace with task-appropriate minimum and fields",
+      "items": {
+        "type": "object",
+        "required": ["id", "description"],
+        "properties": {
+          "id": {"type": "string"},
+          "description": {"type": "string", "minLength": 20}
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["description"],
+        "properties": {
+          "description": {"type": "string"},
+          "impact": {"type": "string"}
+        }
+      }
+    },
+    "submitted_at": {"type": "string"},
+    "context_strategy": {"type": "string"}
+  }
+}

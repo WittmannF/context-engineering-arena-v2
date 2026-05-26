@@ -1,0 +1,247 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Task 002 Answer Schema",
+  "description": "JSON Schema for valid submissions to task-002-brazil-public-money-trail",
+  "type": "object",
+  "required": [
+    "task_id",
+    "participant_id",
+    "title",
+    "executive_summary",
+    "policy_theme",
+    "year_range",
+    "sections",
+    "claims",
+    "evidence",
+    "timeline",
+    "entities",
+    "limitations"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "const": "task-002-brazil-public-money-trail",
+      "description": "Must be exactly 'task-002-brazil-public-money-trail'"
+    },
+    "participant_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 10
+    },
+    "executive_summary": {
+      "type": "string",
+      "minLength": 200
+    },
+    "policy_theme": {
+      "type": "string",
+      "minLength": 2,
+      "description": "The policy theme analyzed (e.g., 'saude', 'educacao', 'infraestrutura')"
+    },
+    "year_range": {
+      "type": "object",
+      "required": ["start", "end"],
+      "properties": {
+        "start": {"type": "integer", "minimum": 2000},
+        "end": {"type": "integer", "maximum": 2030}
+      }
+    },
+    "disclaimer": {
+      "type": "string",
+      "minLength": 50,
+      "description": "Prominent disclaimer that this page organizes public data and does not allege wrongdoing"
+    },
+    "sections": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "content"],
+        "properties": {
+          "id": {"type": "string"},
+          "title": {"type": "string"},
+          "content": {"type": "string", "minLength": 50}
+        }
+      }
+    },
+    "claims": {
+      "type": "array",
+      "minItems": 4,
+      "description": "At least 4 claims. Must include at least one each of fact, interpretation, and uncertainty.",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "claim", "confidence"],
+        "properties": {
+          "id": {"type": "string"},
+          "type": {
+            "type": "string",
+            "enum": ["fact", "interpretation", "uncertainty"]
+          },
+          "claim": {"type": "string", "minLength": 20},
+          "confidence": {"type": "number", "minimum": 0.0, "maximum": 1.0},
+          "link_type": {
+            "type": "string",
+            "enum": [
+              "direct_documented_link",
+              "same_theme_link",
+              "same_actor_link",
+              "same_agency_link",
+              "same_time_window_link",
+              "weak_or_hypothetical_link",
+              null
+            ],
+            "description": "Required when the claim connects legislative and spending data"
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "source": {
+            "type": "string",
+            "description": "API endpoint or dataset citation"
+          },
+          "what_would_resolve_this": {
+            "type": "string",
+            "description": "For interpretation/uncertainty claims: what data would confirm or deny this"
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["id", "source_api", "description"],
+        "properties": {
+          "id": {"type": "string"},
+          "source_api": {
+            "type": "string",
+            "enum": ["camara", "transparencia", "tcu", "external"],
+            "description": "Which API or source this evidence comes from"
+          },
+          "endpoint": {
+            "type": "string",
+            "description": "API endpoint used (for reproducibility)"
+          },
+          "record_id": {
+            "type": ["string", "integer"],
+            "description": "Proposition ID, emenda ID, or other identifier"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 20
+          },
+          "value": {
+            "type": "string",
+            "description": "Key value from this evidence item (e.g., spending amount, vote count)"
+          },
+          "date": {"type": "string"},
+          "url": {"type": "string"}
+        }
+      }
+    },
+    "timeline": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "required": ["date", "event", "source_api"],
+        "properties": {
+          "date": {"type": "string"},
+          "event": {"type": "string", "minLength": 10},
+          "source_api": {
+            "type": "string",
+            "enum": ["camara", "transparencia", "tcu", "external_context"]
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "event_type": {
+            "type": "string",
+            "enum": ["legislative", "spending", "oversight", "context"],
+            "description": "Type of timeline event"
+          }
+        }
+      }
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "type"],
+        "properties": {
+          "name": {"type": "string"},
+          "type": {
+            "type": "string",
+            "enum": ["person", "ministry", "agency", "program", "state", "party"]
+          },
+          "role": {"type": "string"},
+          "appears_in": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["camara", "transparencia", "tcu", "both"]
+            }
+          }
+        }
+      }
+    },
+    "candidate_links": {
+      "type": "array",
+      "description": "Candidate connections between legislative and spending data with explicit link type classification",
+      "items": {
+        "type": "object",
+        "required": ["id", "legislative_ref", "spending_ref", "link_type", "confidence"],
+        "properties": {
+          "id": {"type": "string"},
+          "legislative_ref": {"type": "string"},
+          "spending_ref": {"type": "string"},
+          "link_type": {
+            "type": "string",
+            "enum": [
+              "direct_documented_link",
+              "same_theme_link",
+              "same_actor_link",
+              "same_agency_link",
+              "same_time_window_link",
+              "weak_or_hypothetical_link"
+            ]
+          },
+          "confidence": {"type": "number", "minimum": 0.0, "maximum": 1.0},
+          "explanation": {"type": "string"}
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "minItems": 2,
+      "description": "At least 2 limitations of the analysis.",
+      "items": {
+        "type": "object",
+        "required": ["description"],
+        "properties": {
+          "description": {"type": "string"},
+          "impact": {"type": "string"},
+          "category": {
+            "type": "string",
+            "enum": ["data_availability", "methodology", "scope", "ethics"]
+          }
+        }
+      }
+    },
+    "data_sources_used": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["camara", "transparencia", "tcu"]
+      },
+      "description": "Which data sources were actually used (not just downloaded)"
+    },
+    "submitted_at": {"type": "string"},
+    "context_strategy": {"type": "string"}
+  }
+}

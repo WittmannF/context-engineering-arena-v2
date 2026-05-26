@@ -1,0 +1,70 @@
+# Node
+node_modules/
+dist/
+.cache/
+.parcel-cache/
+*.tsbuildinfo
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+*.egg-info/
+build/
+.ruff_cache/
+.pytest_cache/
+*.egg
+
+# Data (CRITICAL — never commit raw or processed data)
+data/raw/*
+data/processed/*
+*.parquet
+*.duckdb
+*.sqlite
+*.db
+*.tar.gz
+*.jsonl.gz
+*.xml.bz2
+*.csv.gz
+*.feather
+*.arrow
+
+# Keep gitkeep placeholders
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/samples/.gitkeep
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.history/
+
+# Logs
+*.log
+logs/
+
+# Coverage
+.coverage
+coverage/
+htmlcov/
+.nyc_output/
+
+# Temporary
+tmp/
+temp/

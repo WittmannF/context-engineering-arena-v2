@@ -1,0 +1,30 @@
+id: "task-XXX-your-task-id"
+title: "Your Task Title"
+short_description: "One sentence."
+long_description: |
+  Full description of the task, its corpus, and why it requires context engineering rather than simple search.
+benchmark_question: "The central question the submission must answer."
+domain: "corporate-investigation | public-accountability | open-source | finance | science | legal | web-archaeology"
+difficulty: "easy | medium | hard | expert"
+tags: []
+dataset:
+  name: ""
+  source_url: ""
+  license: ""
+  access_method: "direct_download | public_api | academic_dataset | web_scraping"
+  expected_size: ""
+  sample_available: false
+outputs:
+  required_sections: []
+  required_visualizations: []
+  required_claim_types:
+    - fact
+    - uncertainty
+scoring:
+  dimensions: []
+  automatic_metrics: []
+  human_metrics: []
+safety:
+  privacy_risks: []
+  legal_risks: []
+  recommended_mitigations: []

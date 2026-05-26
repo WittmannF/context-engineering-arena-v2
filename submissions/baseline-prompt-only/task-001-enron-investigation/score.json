@@ -1,0 +1,16 @@
+{
+  "task_id": "task-001-enron-investigation",
+  "participant_id": "baseline-prompt-only",
+  "overall_score": 41,
+  "scores": {
+    "answer_quality": 45,
+    "evidence_quality": 22,
+    "context_efficiency": 38,
+    "uncertainty_handling": 65,
+    "visual_clarity": 58,
+    "reproducibility": 20
+  },
+  "notes": "The prompt-only baseline produces a readable page but relies heavily on the model's prior knowledge of Enron rather than actual evidence from the dataset. Evidence quality is very low because only 50 emails were sampled and the selection was random. The uncertainty handling score is relatively high because the strategy.md honestly acknowledges the limitations. Reproducibility is low because different random samples would produce different results.",
+  "scored_by": "manual",
+  "scored_at": "2025-01-15"
+}

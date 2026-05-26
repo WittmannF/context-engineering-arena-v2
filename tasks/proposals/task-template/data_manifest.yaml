@@ -1,0 +1,23 @@
+task_id: "task-XXX-your-task-id"
+sources:
+  - name: "Dataset Name"
+    url: "https://example.com/dataset"
+    license: "License name (e.g., CC BY 4.0, Public Domain, MIT)"
+    access_method: "direct_download | public_api | academic_dataset"
+    expected_size: "e.g., 500 MB | Variable | ~1 GB"
+    requires_token: false
+    token_env_var: ""  # e.g., "MY_API_TOKEN" — leave empty if no token needed
+    download_script: "scripts/download.py"
+    sample_available: false
+
+preparation_steps:
+  - "Step 1: describe first preparation step"
+  - "Step 2: describe normalization step"
+  - "Step 3: describe output format"
+
+ethics_notes:
+  - "Note any privacy considerations"
+  - "Note any legal considerations"
+  - "Note required attributions (CC BY 4.0, etc.)"
+
+sample_mode_description: "Describe what sample mode does and how it differs from full mode."

@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://context-engineering-arena.dev/schemas/data_manifest.schema.json",
+  "title": "DataManifest",
+  "type": "object",
+  "required": ["task_id", "sources"],
+  "properties": {
+    "task_id": { "type": "string" },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "url"],
+        "properties": {
+          "name": { "type": "string" },
+          "url": { "type": "string" },
+          "license": { "type": "string" },
+          "access_method": { "type": "string" },
+          "expected_size": { "type": "string" },
+          "requires_token": { "type": "boolean" },
+          "token_env_var": { "type": "string" },
+          "download_script": { "type": "string" },
+          "sample_available": { "type": "boolean" }
+        }
+      }
+    },
+    "preparation_steps": { "type": "array", "items": { "type": "string" } },
+    "ethics_notes": { "type": "array", "items": { "type": "string" } },
+    "sample_mode_description": { "type": "string" }
+  }
+}

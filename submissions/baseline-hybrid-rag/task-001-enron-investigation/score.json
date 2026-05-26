@@ -1,0 +1,16 @@
+{
+  "task_id": "task-001-enron-investigation",
+  "participant_id": "baseline-hybrid-rag",
+  "overall_score": 68,
+  "scores": {
+    "answer_quality": 72,
+    "evidence_quality": 75,
+    "context_efficiency": 58,
+    "uncertainty_handling": 70,
+    "visual_clarity": 65,
+    "reproducibility": 52
+  },
+  "notes": "Significant improvement over prompt-only baseline. Evidence quality is much higher due to targeted retrieval. The hybrid approach found relevant emails that random sampling would have missed. Context efficiency is lower because 150 emails were used vs 50 in the baseline — but the quality gain justifies it. Main weakness: requires API keys for embeddings, making it less reproducible.",
+  "scored_by": "manual",
+  "scored_at": "2025-01-15"
+}

@@ -1,0 +1,96 @@
+id: task-002-brazil-public-money-trail
+title: "Brazil Public Money Trail"
+short_description: "Trace a Brazilian public policy theme from legislative activity to federal spending using open government data."
+long_description: |
+  This civic accountability task connects fragmented public information across Brazilian government data sources: the Câmara dos Deputados Dados Abertos API (legislative activity), the Portal da Transparência (federal spending), and optionally TCU data (oversight signals).
+
+  Participants must join heterogeneous datasets, resolve entity references, trace thematic connections, and build an evidence-backed page that clearly distinguishes verified facts from plausible inferences.
+
+  This task strongly penalizes implying causation without evidence and rewards transparent uncertainty, clean source attribution, and identification of gaps in public data.
+
+benchmark_question: "Trace one Brazilian public policy theme from legislative activity to federal public spending. What can be verified, which actors and agencies appear, what changed over time, and what questions remain open?"
+
+domain: public-accountability
+difficulty: expert
+tags:
+  - civic-data
+  - government
+  - multi-source
+  - entity-resolution
+  - portuguese
+  - brazil
+  - transparency
+
+dataset:
+  name: "Câmara dos Deputados Dados Abertos + Portal da Transparência"
+  source_url: "https://dadosabertos.camara.leg.br/"
+  license: "Open Government Data (Lei de Acesso à Informação)"
+  access_method: public_api
+  expected_size: "Variable; depends on theme, year range, and sources used"
+  sample_available: true
+
+outputs:
+  required_sections:
+    - executive-summary
+    - policy-theme-and-scope
+    - legislative-activity-timeline
+    - public-spending-timeline
+    - actor-and-institution-map
+    - money-flow-overview
+    - evidence-backed-claims
+    - direct-links-vs-hypotheses
+    - red-flags-and-accountability-questions
+    - what-could-not-be-verified
+    - recommended-next-investigations
+    - context-engineering-strategy
+    - data-and-ethics-limitations
+  required_visualizations:
+    - policy-to-money-timeline
+    - actor-institution-spending-graph-placeholder
+    - spending-breakdown-cards
+    - claim-evidence-table
+    - direct-vs-hypothetical-link-badges
+    - uncertainty-panel
+    - fact-vs-inference-section
+    - context-xray-panel
+  required_claim_types:
+    - fact
+    - interpretation
+    - uncertainty
+
+scoring:
+  dimensions:
+    - quality_of_data_joining
+    - correctness_of_legislative_timeline
+    - correctness_of_public_spending_summary
+    - evidence_quality
+    - distinction_between_fact_and_inference
+    - uncertainty_handling
+    - civic_usefulness
+    - visual_clarity
+    - hallucination_avoidance
+    - context_efficiency
+    - reproducibility
+  automatic_metrics:
+    - evidence_id_coverage_rate
+    - claim_type_distribution
+    - source_attribution_completeness
+  human_metrics:
+    - factual_accuracy
+    - civic_insight_quality
+    - link_classification_quality
+
+safety:
+  privacy_risks:
+    - "Public spending data includes names of legal entities and their public officials."
+    - "Legislative data includes public officials acting in their official capacity."
+    - "Only display data that is already publicly available and relevant to the analysis."
+  legal_risks:
+    - "Do not assert corruption, illegal conduct, or improper influence without direct evidence."
+    - "Correlation between actors, themes, agencies, and spending is NOT causation."
+    - "Treat all links as thematic or analytical unless documented directly."
+  recommended_mitigations:
+    - "Always classify links: direct_documented_link, same_theme_link, same_actor_link, etc."
+    - "Include a prominent disclaimer that this page organizes public data and does not allege wrongdoing."
+    - "Explain bureaucratic processes to contextualize apparent patterns."
+    - "Include a data coverage and limitations section."

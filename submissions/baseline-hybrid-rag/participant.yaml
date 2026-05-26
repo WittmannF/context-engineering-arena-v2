@@ -1,0 +1,7 @@
+id: baseline-hybrid-rag
+display_name: "Baseline — Hybrid RAG"
+type: baseline
+website: ""
+github: ""
+description: "A stronger baseline that uses BM25 keyword search combined with dense embedding retrieval to select relevant emails before generation. Demonstrates significant improvement over prompt-only even without advanced context engineering."
+contact: ""

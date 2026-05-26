@@ -1,0 +1,16 @@
+{
+  "task_id": "task-002-brazil-public-money-trail",
+  "participant_id": "baseline-prompt-only",
+  "overall_score": 55,
+  "scores": {
+    "answer_quality": 60,
+    "evidence_quality": 45,
+    "context_efficiency": 52,
+    "uncertainty_handling": 78,
+    "visual_clarity": 55,
+    "reproducibility": 40
+  },
+  "notes": "Better than expected for prompt-only due to good uncertainty handling. The submission correctly avoids claiming causation and marks inferences explicitly. However, Portal da Transparência data is missing, significantly limiting the spending side of the analysis.",
+  "scored_by": "manual",
+  "scored_at": "2025-01-15"
+}

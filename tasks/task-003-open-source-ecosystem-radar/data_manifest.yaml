@@ -1,0 +1,30 @@
+task_id: task-003-open-source-ecosystem-radar
+sources:
+  - name: "GH Archive"
+    url: "https://data.gharchive.org/{YYYY-MM-DD-H}.json.gz"
+    license: "CC BY 4.0"
+    access_method: direct_download
+    expected_size: "~50-150 MB per hour"
+    requires_token: false
+    download_script: "scripts/download.py"
+    sample_available: true
+
+preparation_steps:
+  - "Download hourly .json.gz files from GH Archive"
+  - "Parse each file as newline-delimited JSON"
+  - "Extract: type, repo.name, actor.login, org.login, created_at, payload fields"
+  - "Aggregate by repo, event_type, day/hour"
+  - "Compute top repos by stars, forks, PRs, issues, pushes, releases"
+  - "Detect anomalies: repos with unusual event spikes"
+  - "Write aggregated CSV/JSON files"
+
+ethics_notes:
+  - "GitHub event data is public. Usernames are public."
+  - "Focus on repository trends, not individual developer tracking."
+  - "CC BY 4.0 requires attribution to GH Archive."
+
+sample_mode_description: "Sample mode downloads only 2-4 hours of data for local testing."
+
+attribution:
+  required: true
+  text: "Data source: GH Archive (https://www.gharchive.org/) — CC BY 4.0"

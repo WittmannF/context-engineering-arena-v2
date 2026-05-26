@@ -1,0 +1,2491 @@
+[
+  {
+    "task_id": "task-001-enron-investigation",
+    "participant_id": "baseline-hybrid-rag",
+    "participant": {
+      "id": "baseline-hybrid-rag",
+      "display_name": "Baseline — Hybrid RAG",
+      "type": "baseline"
+    },
+    "participant_display_name": "Baseline — Hybrid RAG",
+    "participant_type": "baseline",
+    "methods": {
+      "prompt_only": false,
+      "long_context": false,
+      "rag": true,
+      "hybrid_retrieval": true,
+      "bm25": true,
+      "dense_embeddings": true,
+      "reranking": true,
+      "contextual_retrieval": false,
+      "memory": false,
+      "llm_generated_wiki": false,
+      "multi_agent": false,
+      "summarization": true,
+      "compression": false,
+      "graph_extraction": false,
+      "human_in_the_loop": false
+    },
+    "overall_score": null,
+    "rank": null,
+    "submitted_at": "2025-01-15T16:45:00Z",
+    "context_stats": {
+      "documents_available": 517401,
+      "documents_opened": 10000,
+      "documents_retrieved": 850,
+      "documents_used_in_final": 150,
+      "chunks_created": 10000,
+      "chunks_retrieved": 850,
+      "chunks_used_in_final": 150,
+      "input_tokens_estimated": 95000,
+      "output_tokens_estimated": 5800,
+      "total_tokens_estimated": 100800,
+      "estimated_cost_usd": 0.31,
+      "latency_seconds": 145
+    },
+    "answer": {
+      "task_id": "task-001-enron-investigation",
+      "participant_id": "baseline-hybrid-rag",
+      "title": "Enron Investigation Brief — Hybrid RAG Baseline [SAMPLE]",
+      "submitted_at": "2025-01-15T16:45:00Z",
+      "context_strategy": "Hybrid BM25 + dense embedding retrieval. BM25 index over 10,000 emails (sample). 8 targeted investigation queries. Dense embeddings via text-embedding-3-small for semantic retrieval. Combined results reranked by relevance. Top 150 emails used for synthesis. Model: claude-3-sonnet-20240229.",
+      "executive_summary": "This Hybrid RAG analysis of the Enron email corpus provides substantially stronger evidence coverage than the prompt-only baseline by using targeted retrieval. Across 8 investigation queries covering LJM partnerships, Raptor vehicles, mark-to-market accounting, executive communications, and the California energy crisis, 850 relevant emails were retrieved from a 10,000-email BM25 index. The top 150 were selected for final synthesis.\n\nThe most significant finding from targeted retrieval is the clear operational integration between Andy Fastow's Enron CFO role and his management of the LJM partnerships. Several retrieved emails show Fastow coordinating from his Enron email address on LJM transaction schedules, communicating with the same Enron treasury staff who managed the Raptor vehicle accounting, and using Enron resources to conduct LJM business. This is consistent with the SEC's finding that Fastow's dual role created undisclosed conflicts of interest on at least 28 LJM-Enron transactions totaling over $1 billion.\n\nThe Raptor vehicle communications retrieved are particularly significant. Multiple emails between Fastow, Ben Glisan (Treasurer), Richard Causey (CAO), and Richard Buy (CRO) show that by mid-2001, internal Enron risk management was aware that the Raptor vehicles had 'negative credit capacity' — meaning Enron would have to infuse more of its own stock into the vehicles to maintain their hedging function. This circular structure (Enron stock hedging Enron assets) was the fundamental accounting fiction at the heart of the fraud.\n\nThe Sherron Watkins correspondence retrieved in this analysis confirms the public record: her August 2001 memo to Ken Lay was explicit about the accounting risks. What the emails reveal additionally is that the response from Lay's office was to commission a review by the law firm Vinson & Elkins — the same firm that had provided opinions on several of the LJM structures. Watkins herself expressed concern in a subsequent email that Vinson & Elkins was 'too conflicted' to provide an objective review.\n\nImportant limitation: This analysis is based on 10,000 of 517,401 emails (1.9% of the corpus). Important communications outside this sample may contradict or qualify these findings. All interpretive claims are labeled accordingly.",
+      "sections": [
+        {
+          "id": "executive-summary",
+          "title": "Executive Summary",
+          "content": "Hybrid RAG analysis using 850 targeted emails from 10K sample. Key findings: (1) Fastow's operational integration of Enron and LJM roles documented in retrieved emails; (2) Raptor vehicles recognized internally as having 'negative credit capacity' by mid-2001; (3) Watkins memo response showed conflicted legal review. All interpretive claims labeled. 10K sample represents 1.9% of corpus."
+        },
+        {
+          "id": "investigative-timeline",
+          "title": "Investigative Timeline",
+          "content": "All corpus-derived events are from retrieved emails in the 10,000-email sample.\n\n[CORPUS] 1998 Q4: JEDI partnership restructured through Chewco. Internal emails show Enron treasury involved in structuring Chewco to avoid consolidation on Enron's balance sheet. Fastow emails reference 'maintaining accounting treatment.'\n\n[EXTERNAL-CONTEXT] 1999 Q1: LJM Cayman LP established. Board approves Fastow dual role.\n\n[CORPUS] 1999 Q3-Q4: Early Raptor structure development. Retrieved emails from CFO office reference 'the hedging program' using Enron equity. Finance staff coordinate documentation for Arthur Andersen review.\n\n[CORPUS] 2000 Q1-Q2: Raptor I and II established. Emails between Fastow, Glisan, and the LJM deal team coordinate closing mechanics. Valuation support prepared.\n\n[CORPUS] 2000 Q3-Q4: Enron stock peaks near $90. Emails from business units (EES, Broadband) report aggressive projections. Multiple executive communications cite analyst expectations as drivers for quarterly results.\n\n[CORPUS] 2001 Q1: First signs of Raptor stress. Retrieved risk review emails note that the Raptor vehicles' hedging capacity is declining as Enron's merchant portfolio values fall.\n\n[CORPUS] 2001 March-April: Raptor restructuring. Fastow and Glisan emails coordinate a restructuring of Raptor I and II to address declining credit capacity. Arthur Andersen asked to confirm revised accounting.\n\n[EXTERNAL-CONTEXT] 2001 Aug 14: Skilling resigns. Lay resumes CEO.\n\n[CORPUS] 2001 Aug 15-20: Sherron Watkins emails Ken Lay warning of imminent accounting scandal. Forwarded fragments of this communication chain appear in the Lay mailbox sample.\n\n[CORPUS] 2001 Sep: Lay commissions Vinson & Elkins review of LJM accounting. Watkins expresses concern in follow-up email that V&E is conflicted.\n\n[CORPUS] 2001 Oct 16: Raptor write-down announced. Internal emails from this date show information management around analyst communications. Koenig directive issued.\n\n[EXTERNAL-CONTEXT] 2001 Oct 22: SEC inquiry begins.\n\n[EXTERNAL-CONTEXT] 2001 Dec 2: Enron files Chapter 11 bankruptcy."
+        },
+        {
+          "id": "key-people-and-communication-patterns",
+          "title": "Key People and Communication Patterns",
+          "content": "Based on retrieved emails, the following communication patterns are documented:\n\n1. FASTOW-GLISAN CHANNEL: The most frequent high-relevance communication pair in the retrieval results. Fastow and Glisan coordinated LJM transaction mechanics, Raptor vehicle structuring, and CFO office responses to audit inquiries. This communication channel is the operational backbone of the SPE fraud.\n\n2. FASTOW-LJM DEAL TEAM COORDINATION: Multiple emails show Fastow using his Enron email to coordinate with LJM outside managers on transaction terms that would be presented to Enron's board and auditors.\n\n3. CAUSEY-ARTHUR ANDERSEN CHANNEL: Causey (CAO) regularly coordinated accounting treatment for SPE transactions with Arthur Andersen partners. Retrieved emails show both routine sign-offs and, later, specific requests for guidance on the Raptor negative credit capacity issue.\n\n4. KOENIG-INVESTOR RELATIONS: Communications from Koenig's team show systematic management of analyst and press inquiries around sensitive financial topics.\n\n5. LAY-BOARD COMMUNICATIONS: Lay's board communications maintain a consistent reassurance narrative. Retrieved emails from October 2001 show Lay writing about 'fundamental strength' while other parts of the company were managing the unwind of the SPE structures.\n\n6. WATKINS COMMUNICATION: Watkins' retrieved emails are direct and explicit. Her August 2001 memo fragment contains language remarkably close to what has been published in the public record, suggesting the retrieved emails are genuine."
+        },
+        {
+          "id": "main-themes-and-topic-clusters",
+          "title": "Main Themes and Topic Clusters",
+          "content": "Retrieval query analysis reveals the following topic clusters:\n\n1. LJM PARTNERSHIP OPERATIONS (BM25 query: 'LJM SPE partnership'): 187 retrieved emails. Heavy concentration in CFO office and treasury. Timeline 1999-2001. Key theme: operational management of LJM from Enron premises.\n\n2. RAPTOR VEHICLE MECHANICS (BM25 query: 'Raptor hedge vehicle accounting'): 203 retrieved emails. Peak in 2001 Q1-Q3. Key theme: deteriorating credit quality of Raptor vehicles and accounting implications.\n\n3. MARK-TO-MARKET ACCOUNTING (Dense query: 'revenue recognition merchant portfolio'): 142 retrieved emails. Distributed across business units. Key theme: aggressive MTM application to long-term contracts.\n\n4. CALIFORNIA ENERGY CRISIS (BM25 query: 'California power crisis manipulation'): 98 retrieved emails. Period: 2000-2001. Key theme: internal awareness of price manipulation strategies (Ricochet, Death Star, Fat Boy).\n\n5. EXECUTIVE COMMUNICATIONS AND COVER (Hybrid query: 'investor message stock price concern'): 134 retrieved emails. Key theme: disconnect between internal awareness and public communications.\n\n6. WATKINS AND WHISTLEBLOWING (BM25 query: 'Watkins memo accounting concern'): 86 retrieved emails. Key theme: the whistleblower channel and corporate response."
+        },
+        {
+          "id": "evidence-backed-claims",
+          "title": "Evidence-Backed Claims",
+          "content": "All claims below cite specific retrieved emails. This section summarizes the 12 most significant claims. See the claims array for structured format.\n\nThe strongest claims concern the operational integration of Fastow's dual roles, the Raptor negative credit capacity issue, and the information management around the October 2001 write-down. These are supported by multiple independent email chains.\n\nThe weakest claim in this brief is the California energy crisis manipulation connection — while retrieved emails reference internal strategies, the specific legal interpretation requires external context beyond the email corpus."
+        },
+        {
+          "id": "contradictions-and-weak-signals",
+          "title": "Contradictions and Weak Signals",
+          "content": "Several retrieved emails complicate the simple fraud narrative:\n\n1. Multiple Arthur Andersen emails from 1999-2000 appear to genuinely engage with the accounting questions, suggesting the auditors were not simply rubber-stamping. Whether their analysis was adequate is a legal/accounting question this corpus cannot resolve.\n\n2. Some board approval emails for LJM transactions contain questions from board members about conflicts of interest — suggesting not all board members were passive. Whether these questions were adequately answered is unclear.\n\n3. Mark-to-market accounting was used across the energy trading industry, not only at Enron. Several retrieved emails reference industry practice comparisons. Whether Enron's application was materially more aggressive than competitors requires external analysis.\n\n4. Some retrieved Fastow emails suggest he believed the LJM structures were legitimate under accounting rules as he understood them. Whether this represents honest belief or willful blindness cannot be determined from the emails alone."
+        },
+        {
+          "id": "documents-that-mattered-most",
+          "title": "Documents That Mattered Most",
+          "content": "From the 150 emails used in final synthesis, the most significant:\n\n1. ev-rag-003: Fastow email to Glisan describing the Raptor 'negative credit capacity' problem (March 2001). This is the clearest internal acknowledgment that the hedging structure was circular and fragile.\n\n2. ev-rag-007: Watkins memo fragment in Lay's inbox (August 2001). Direct whistleblower communication preserved in the corpus.\n\n3. ev-rag-011: Causey email to Arthur Andersen requesting guidance on Raptor restructuring accounting treatment (April 2001). Shows the auditor was asked to validate a structure that was later found to be improper.\n\n4. ev-rag-015: California energy strategy email from trading desk referencing 'the load shift strategies' (late 2000). The most direct trading desk reference to market manipulation strategies in the retrieved sample.\n\n5. ev-rag-020: Koenig investor relations hold directive (October 2001). Strongest evidence of deliberate information management."
+        },
+        {
+          "id": "what-was-ignored-and-why",
+          "title": "What Was Ignored and Why",
+          "content": "507,401 emails were not indexed or retrieved for this analysis (10,000-email sample, 1.9% of corpus). Specific known gaps:\n\n1. Skilling's email archive: The 10K sample captures some Skilling communications but not a complete picture of his knowledge of the SPE structures.\n\n2. Board member communications: Several Enron board members had email accounts in the dataset. Board-level communications about LJM approval decisions were not systematically retrieved.\n\n3. Arthur Andersen partners: Some AA partner emails are in the dataset (using external email addresses). These were not included in the BM25 index due to the 10K sample limitation.\n\n4. Pre-1999 communications: The BM25 index was built from a 10K sample that was not temporally stratified. Coverage of 1997-1998 (JEDI/Chewco formation period) may be thin.\n\n5. Non-English content: A small number of emails in the corpus appear to be in other languages or use specialized financial jargon that may not have been captured by the keyword queries."
+        },
+        {
+          "id": "context-engineering-strategy",
+          "title": "Context Engineering Strategy",
+          "content": "STRATEGY: Hybrid BM25 + Dense Retrieval\n\nStep 1 — BM25 Index: Built BM25 index (rank_bm25 library) over 10,000 emails randomly selected from the full 517,401. Index build time: ~45 seconds.\n\nStep 2 — Dense Index: Generated embeddings for all 10,000 emails using OpenAI text-embedding-3-small (1536 dimensions). Stored in FAISS flat index. Embedding time: ~12 minutes. Cost: ~$0.08.\n\nStep 3 — Queries: Ran 8 targeted investigation queries against both indices. Combined results using Reciprocal Rank Fusion (RRF). Retrieved top-50 results per query.\n\nStep 4 — Deduplication and Reranking: Deduplicated across queries (850 unique emails). Reranked by maximum relevance score across queries. Selected top 150 for synthesis.\n\nStep 5 — Synthesis: Fed top 150 emails to claude-3-sonnet-20240229 with investigation prompt. Input: ~95,000 tokens. Output: ~5,800 tokens. Cost: ~$0.22.\n\nTotal cost: ~$0.31. Total latency: ~145 seconds."
+        },
+        {
+          "id": "ethical-and-evidentiary-limitations",
+          "title": "Ethical and Evidentiary Limitations",
+          "content": "This analysis has important evidentiary limitations:\n\n1. SAMPLE COVERAGE: 10,000 of 517,401 emails (1.9%). Important evidence may be in the 98.1% not indexed.\n\n2. QUERY BIAS: BM25 retrieval finds what you search for. The 8 queries were designed based on known public facts about Enron. Communications about topics we did not know to search for would not be retrieved.\n\n3. LLM PRIOR KNOWLEDGE: Even with targeted retrieval, claude-3-sonnet has substantial training knowledge about Enron. Claims may blend corpus evidence with prior knowledge.\n\n4. INDIVIDUAL RIGHTS: Several individuals in this dataset were not convicted of any crime. The analysis focuses on organizational patterns, not individual culpability.\n\n5. LEGAL CONCLUSION LIMIT: This brief cannot make legal conclusions about fraud. Those require criminal proceedings with full discovery, not email analysis."
+        }
+      ],
+      "claims": [
+        {
+          "id": "claim-001",
+          "type": "fact",
+          "claim": "Andy Fastow used his Enron CFO email account to coordinate LJM transaction closing schedules with Enron treasury staff on at least 8 occasions in the retrieved sample.",
+          "confidence": 0.88,
+          "evidence_ids": [
+            "ev-rag-001",
+            "ev-rag-002",
+            "ev-rag-003"
+          ],
+          "topic": "fastow-dual-role"
+        },
+        {
+          "id": "claim-002",
+          "type": "fact",
+          "claim": "By March 2001, internal Enron documents acknowledged that Raptor I had 'negative credit capacity,' meaning its ability to hedge Enron's merchant portfolio was dependent on Enron infusing additional equity into the vehicle.",
+          "confidence": 0.83,
+          "evidence_ids": [
+            "ev-rag-003",
+            "ev-rag-004"
+          ],
+          "topic": "raptor-accounting"
+        },
+        {
+          "id": "claim-003",
+          "type": "fact",
+          "claim": "Arthur Andersen was asked in April 2001 to confirm accounting treatment for the Raptor I/II restructuring, after internal documents showed the vehicles' credit capacity had declined.",
+          "confidence": 0.79,
+          "evidence_ids": [
+            "ev-rag-011"
+          ],
+          "topic": "arthur-andersen"
+        },
+        {
+          "id": "claim-004",
+          "type": "fact",
+          "claim": "Sherron Watkins' August 2001 communication to Ken Lay explicitly named the Raptor and LJM structures as potential sources of an 'accounting scandal' that could 'implode the company.'",
+          "confidence": 0.86,
+          "evidence_ids": [
+            "ev-rag-007"
+          ],
+          "topic": "watkins-whistleblowing"
+        },
+        {
+          "id": "claim-005",
+          "type": "fact",
+          "claim": "Ken Lay's response to the Watkins memo was to commission a review by Vinson & Elkins, the law firm that had provided earlier opinions on several LJM transactions.",
+          "confidence": 0.81,
+          "evidence_ids": [
+            "ev-rag-008",
+            "ev-rag-009"
+          ],
+          "topic": "watkins-whistleblowing"
+        },
+        {
+          "id": "claim-006",
+          "type": "interpretation",
+          "claim": "Vinson & Elkins' review of the Watkins concerns was structurally compromised by its prior involvement in LJM opinion work, consistent with a pattern where oversight was directed toward parties with conflicts of interest.",
+          "confidence": 0.58,
+          "evidence_ids": [
+            "ev-rag-009"
+          ],
+          "topic": "governance-failure"
+        },
+        {
+          "id": "claim-007",
+          "type": "interpretation",
+          "claim": "The California energy trading strategies referenced in retrieved emails ('load shift,' 'megawatt laundering') suggest awareness among trading desk participants that certain strategies were designed to exploit market rules in ways that regulators would later classify as manipulation.",
+          "confidence": 0.62,
+          "evidence_ids": [
+            "ev-rag-015"
+          ],
+          "topic": "california-energy-crisis"
+        },
+        {
+          "id": "claim-008",
+          "type": "interpretation",
+          "claim": "The pattern of investors relations 'hold' directives around sensitive topics (Raptor, LJM, earnings restatements) suggests a systematic practice of managing information flow to analysts and investors beyond routine communications caution.",
+          "confidence": 0.68,
+          "evidence_ids": [
+            "ev-rag-020",
+            "ev-rag-021"
+          ],
+          "topic": "investor-communications"
+        },
+        {
+          "id": "claim-009",
+          "type": "uncertainty",
+          "claim": "Whether Jeff Skilling had detailed knowledge of the Raptor negative credit capacity problem before his August 2001 resignation cannot be determined from the retrieved emails — his communications in the sample are from earlier periods.",
+          "confidence": 0.0,
+          "evidence_ids": [],
+          "topic": "skilling-knowledge"
+        },
+        {
+          "id": "claim-010",
+          "type": "uncertainty",
+          "claim": "Whether the Enron board members who approved LJM transactions understood the full scope of the conflicts of interest cannot be determined from the email corpus — board approval documentation is limited in the sample.",
+          "confidence": 0.0,
+          "evidence_ids": [],
+          "topic": "board-governance"
+        },
+        {
+          "id": "claim-011",
+          "type": "fact",
+          "claim": "Lou Pai sold substantial Enron stock holdings in the months preceding the collapse. Retrieved emails from May–June 2001 include stock option exercise confirmations from Pai's account.",
+          "confidence": 0.75,
+          "evidence_ids": [
+            "ev-rag-025"
+          ],
+          "topic": "insider-transactions"
+        },
+        {
+          "id": "claim-012",
+          "type": "interpretation",
+          "claim": "The frequency of 'coordination before external communication' directives in retrieved emails (at least 12 instances across investor relations, press, and analyst contexts) suggests this was an organizational pattern rather than individual discretion.",
+          "confidence": 0.61,
+          "evidence_ids": [
+            "ev-rag-020",
+            "ev-rag-021"
+          ],
+          "topic": "investor-communications"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "ev-rag-001",
+          "email_from": "andrew.fastow@enron.com",
+          "email_to": [
+            "ben.glisan@enron.com"
+          ],
+          "date": "2001-03-12",
+          "subject": "LJM2 — Raptor IV timeline",
+          "excerpt": "Ben — need to finalize the Raptor IV closing before end of Q1. Have the deal team send you the term sheet by Wednesday. We need the board sub-committee sign-off on the valuations. Andy",
+          "relevance": "Shows Fastow coordinating from Enron email on LJM Raptor IV closing with Enron's Treasurer, confirming operational integration of roles",
+          "file_path": "enron_mail_20150507/glisan-b/inbox/rag-001.",
+          "retrieval_query": "LJM SPE partnership Fastow",
+          "retrieval_rank": 3
+        },
+        {
+          "id": "ev-rag-002",
+          "email_from": "andrew.fastow@enron.com",
+          "email_to": [
+            "ljm-dealteam@enron.com",
+            "ben.glisan@enron.com"
+          ],
+          "date": "2001-01-19",
+          "subject": "LJM — Q4 close package",
+          "excerpt": "Team — LJM Q4 close requires the following from Enron treasury: final valuation sign-off, confirmation of hedging capacity calculation, and updated credit agreement. Ben to coordinate on treasury side. AF",
+          "relevance": "Fastow directing Enron treasury staff on LJM Q4 close requirements from his Enron email account — clear dual-role coordination",
+          "file_path": "enron_mail_20150507/fastow-a/sent/rag-002.",
+          "retrieval_query": "LJM SPE partnership Fastow",
+          "retrieval_rank": 7
+        },
+        {
+          "id": "ev-rag-003",
+          "email_from": "ben.glisan@enron.com",
+          "email_to": [
+            "andrew.fastow@enron.com",
+            "richard.buy@enron.com"
+          ],
+          "date": "2001-03-28",
+          "subject": "Re: Raptor I — credit capacity review",
+          "excerpt": "Andy, Rick — the Raptor I review shows negative credit capacity as of Q1 close. The vehicle has insufficient equity cushion to absorb the merchant portfolio losses at current stock price. We need to either (a) infuse additional Enron equity into Raptor or (b) unwind the hedges. Option (a) creates further circular exposure. Option (b) would require recognizing the hedge loss directly. Recommend we loop in Richard [Causey] and discuss before Q2 planning.",
+          "relevance": "Glisan explicitly identifying the circular nature of the Raptor structure ('further circular exposure') and recognizing the binary: more stock inflation or direct loss recognition. This is the clearest internal articulation of the accounting fiction.",
+          "file_path": "enron_mail_20150507/glisan-b/sent/rag-003.",
+          "retrieval_query": "Raptor hedge vehicle accounting credit capacity",
+          "retrieval_rank": 1
+        },
+        {
+          "id": "ev-rag-004",
+          "email_from": "richard.buy@enron.com",
+          "email_to": [
+            "ben.glisan@enron.com",
+            "andrew.fastow@enron.com"
+          ],
+          "date": "2001-03-29",
+          "subject": "Re: Re: Raptor I — credit capacity review",
+          "excerpt": "Ben — agreed on the circular exposure issue. This was always the structural risk with equity-capitalized hedges. We've been managing it with stock top-ups. At current price levels, the top-up requirement is becoming material. Rick",
+          "relevance": "Chief Risk Officer acknowledging the stock top-up pattern and noting it was becoming 'material' — explicit awareness at CRO level",
+          "file_path": "enron_mail_20150507/buy-r/inbox/rag-004.",
+          "retrieval_query": "Raptor hedge vehicle accounting credit capacity",
+          "retrieval_rank": 4
+        },
+        {
+          "id": "ev-rag-007",
+          "email_from": "sherron.watkins@enron.com",
+          "email_to": [
+            "kenneth.lay@enron.com"
+          ],
+          "date": "2001-08-15",
+          "subject": "Skilling's Resignation — concern",
+          "excerpt": "Dear Mr. Lay — I am incredibly nervous that we will implode in a wave of accounting scandals. My concern is that [Enron] has been engaged in some rather aggressive accounting practices, primarily in its use of special purpose entities and mark-to-market accounting... The LJM and Raptor transactions concern me greatly because of the conflicts of interest they present...",
+          "relevance": "Watkins' core whistleblower communication to Lay. The fragment matches the publicly known memo. Confirms the memo was received in Lay's mailbox.",
+          "file_path": "enron_mail_20150507/lay-k/inbox/rag-007.",
+          "retrieval_query": "Watkins memo accounting concern whistleblower",
+          "retrieval_rank": 1
+        },
+        {
+          "id": "ev-rag-008",
+          "email_from": "paula.rieker@enron.com",
+          "email_to": [
+            "sherron.watkins@enron.com"
+          ],
+          "date": "2001-08-20",
+          "subject": "Re: Your letter",
+          "excerpt": "Sherron — Mr. Lay has asked me to let you know he is taking your concerns seriously. He is commissioning an independent review by outside counsel. The review will be conducted by Vinson & Elkins. They will reach out to you directly.",
+          "relevance": "Lay's office response to Watkins indicating Vinson & Elkins review — the same firm implicated in prior LJM opinion work",
+          "file_path": "enron_mail_20150507/watkins-s/inbox/rag-008.",
+          "retrieval_query": "Watkins memo accounting concern whistleblower",
+          "retrieval_rank": 3
+        },
+        {
+          "id": "ev-rag-009",
+          "email_from": "sherron.watkins@enron.com",
+          "email_to": "[redacted personal contact]",
+          "date": "2001-08-21",
+          "subject": "Re: What did he say?",
+          "excerpt": "They're sending V&E. V&E wrote the opinion letters for at least two of the LJM deals. They're too conflicted to do this review objectively. I'm worried they'll just whitewash it.",
+          "relevance": "Watkins immediately recognizing the conflict of interest in the Vinson & Elkins assignment",
+          "file_path": "enron_mail_20150507/watkins-s/inbox/rag-009.",
+          "retrieval_query": "Watkins memo accounting concern whistleblower",
+          "retrieval_rank": 8
+        },
+        {
+          "id": "ev-rag-011",
+          "email_from": "richard.causey@enron.com",
+          "email_to": [
+            "david.duncan@arthurандersen.com"
+          ],
+          "date": "2001-04-03",
+          "subject": "Raptor I/II restructuring — accounting confirmation needed",
+          "excerpt": "David — we are restructuring Raptor I and II to address Q1 credit capacity issues. I need AA to confirm that the revised structure continues to satisfy the 3% equity at-risk requirement for off-balance-sheet treatment. The restructuring involves [details redacted in corpus]. Please confirm your availability for a review call this week. RC",
+          "relevance": "Causey seeking Arthur Andersen sign-off on Raptor restructuring immediately after internal emails identified the negative credit capacity problem. Shows the external audit was responsive to internal accounting needs rather than independent.",
+          "file_path": "enron_mail_20150507/causey-r/sent/rag-011.",
+          "retrieval_query": "Arthur Andersen audit Raptor accounting treatment",
+          "retrieval_rank": 2
+        },
+        {
+          "id": "ev-rag-015",
+          "email_from": "[enron-trading@enron.com]",
+          "email_to": [
+            "[trading-team]"
+          ],
+          "date": "2000-12-08",
+          "subject": "CA load strategies — memo",
+          "excerpt": "As discussed — the load shift strategy continues to be executable under FERC rules as written. The Ricochet strategy moves power out of state and back to capture differential pricing. Fat Boy takes advantage of congestion pricing differentials. These are within the letter of the tariff. Whether FERC will revise the tariff when they understand what we're doing is a different question.",
+          "relevance": "Trading desk memo explicitly referencing strategies that exploit regulatory rules and acknowledging that regulators may revise rules once they understand the strategy — showing awareness that the strategies were gaming the rules.",
+          "file_path": "enron_mail_20150507/[trading-user]/inbox/rag-015.",
+          "retrieval_query": "California power crisis manipulation trading",
+          "retrieval_rank": 5
+        },
+        {
+          "id": "ev-rag-020",
+          "email_from": "mark.koenig@enron.com",
+          "email_to": [
+            "investor-relations@enron.com"
+          ],
+          "date": "2001-10-17",
+          "subject": "HOLD — all Raptor/LJM inquiries",
+          "excerpt": "Effective immediately: no response to any analyst, investor, or media inquiry about Raptor, LJM, or the Q3 write-down. Route all such inquiries to me directly and copy the exec team. We need to get our message aligned before we respond to anyone outside. This applies to Bloomberg, Reuters, WSJ, and all buyside analysts. MK",
+          "relevance": "Comprehensive information hold extending beyond previous directives to include all financial media — issued the day after the write-down announcement",
+          "file_path": "enron_mail_20150507/koenig-m/sent/rag-020.",
+          "retrieval_query": "investor message stock price concern earnings",
+          "retrieval_rank": 1
+        },
+        {
+          "id": "ev-rag-021",
+          "email_from": "mark.koenig@enron.com",
+          "email_to": [
+            "ken.lay@enron.com",
+            "exec-team@enron.com"
+          ],
+          "date": "2001-10-17",
+          "subject": "Message alignment — Q3 write-down",
+          "excerpt": "Ken and team — recommend the following talking points for any direct analyst calls. Emphasis should be on: (1) strong underlying cash flow from core trading operations, (2) the write-downs are non-cash and do not affect operational performance, (3) we are addressing the SPE issues proactively. Avoid any discussion of the LJM relationship or Raptor vehicle structure. The trading book is performing. MK",
+          "relevance": "Proposed Q3 talking points explicitly directing executives to 'avoid any discussion of the LJM relationship or Raptor vehicle structure' — active concealment of the most material information for investors",
+          "file_path": "enron_mail_20150507/koenig-m/sent/rag-021.",
+          "retrieval_query": "investor message stock price concern earnings",
+          "retrieval_rank": 2
+        },
+        {
+          "id": "ev-rag-025",
+          "email_from": "lou.pai@enron.com",
+          "email_to": [
+            "hr-benefits@enron.com"
+          ],
+          "date": "2001-05-15",
+          "subject": "Stock option exercise",
+          "excerpt": "Please process the exercise of [redacted] stock options at market price and confirm transfer to broker account [redacted]. Process immediately per prior instructions.",
+          "relevance": "Lou Pai exercising stock options in May 2001 months before the collapse. Public records confirm Pai sold approximately $270M in Enron stock before the company failed.",
+          "file_path": "enron_mail_20150507/pai-l/inbox/rag-025.",
+          "retrieval_query": "executive stock options sell insider trading",
+          "retrieval_rank": 3
+        }
+      ],
+      "timeline": [
+        {
+          "date": "1998-Q4",
+          "event": "JEDI partnership restructured through Chewco. Internal treasury emails reference maintaining off-balance-sheet accounting treatment.",
+          "source": "corpus_email",
+          "evidence_ids": []
+        },
+        {
+          "date": "1999-Q1",
+          "event": "LJM Cayman LP established. Board approves Fastow dual role.",
+          "source": "external_context",
+          "evidence_ids": []
+        },
+        {
+          "date": "2000-Q1",
+          "event": "Raptor I and II established. CFO office coordinates documentation and closing mechanics with LJM deal team.",
+          "source": "corpus_email",
+          "evidence_ids": [
+            "ev-rag-001",
+            "ev-rag-002"
+          ]
+        },
+        {
+          "date": "2001-01-19",
+          "event": "Fastow emails LJM deal team and Glisan with Q4 LJM close requirements, using Enron email account.",
+          "source": "corpus_email",
+          "evidence_ids": [
+            "ev-rag-002"
+          ]
+        },
+        {
+          "date": "2001-03-28",
+          "event": "Glisan identifies Raptor I negative credit capacity in internal memo to Fastow and Buy. Notes 'circular exposure' from further equity top-ups.",
+          "source": "corpus_email",
+          "evidence_ids": [
+            "ev-rag-003"
+          ]
+        },
+        {
+          "date": "2001-04-03",
+          "event": "Causey requests Arthur Andersen confirmation of Raptor I/II restructuring accounting treatment.",
+          "source": "corpus_email",
+          "evidence_ids": [
+            "ev-rag-011"
+          ]
+        },
+        {
+          "date": "2001-05-15",
+          "event": "Lou Pai exercises stock options, processes large stock sale.",
+          "source": "corpus_email",
+          "evidence_ids": [
+            "ev-rag-025"
+          ]
+        },
+        {
+          "date": "2001-08-14",
+          "event": "Skilling resigns. Lay resumes CEO.",
+          "source": "external_context",
+          "evidence_ids": []
+        },
+        {
+          "date": "2001-08-15",
+          "event": "Watkins sends memo to Lay warning of accounting scandal implication from LJM and Raptor structures.",
+          "source": "corpus_email",
+          "evidence_ids": [
+            "ev-rag-007"
+          ]
+        },
+        {
+          "date": "2001-08-20",
+          "event": "Lay's office commissions Vinson & Elkins review of Watkins' concerns.",
+          "source": "corpus_email",
+          "evidence_ids": [
+            "ev-rag-008"
+          ]
+        },
+        {
+          "date": "2001-10-17",
+          "event": "Koenig issues comprehensive information hold on Raptor/LJM analyst inquiries; proposes talking points directing executives to avoid discussion of SPE structures.",
+          "source": "corpus_email",
+          "evidence_ids": [
+            "ev-rag-020",
+            "ev-rag-021"
+          ]
+        },
+        {
+          "date": "2001-10-22",
+          "event": "SEC begins formal inquiry.",
+          "source": "external_context",
+          "evidence_ids": []
+        }
+      ],
+      "entities": [
+        {
+          "name": "Kenneth Lay",
+          "type": "person",
+          "role": "Chairman and CEO",
+          "email_addresses": [
+            "kenneth.lay@enron.com"
+          ],
+          "significance": "Received Watkins memo (confirmed in retrieved emails). Directed Vinson & Elkins review. Maintained public reassurance narrative through October 2001. Convicted in 2006; died before sentencing."
+        },
+        {
+          "name": "Andrew Fastow",
+          "type": "person",
+          "role": "CFO; simultaneously General Partner of LJM Cayman and LJM2",
+          "email_addresses": [
+            "andrew.fastow@enron.com"
+          ],
+          "significance": "Central figure. Retrieved emails show operational integration of CFO and LJM roles. Coordinated SPE mechanics from Enron email account. Pleaded guilty and cooperated with prosecutors."
+        },
+        {
+          "name": "Ben Glisan",
+          "type": "person",
+          "role": "Treasurer",
+          "email_addresses": [
+            "ben.glisan@enron.com"
+          ],
+          "significance": "ev-rag-003 (authored by Glisan) is the most significant retrieved document — explicitly identifies Raptor circular structure. Pleaded guilty."
+        },
+        {
+          "name": "Sherron Watkins",
+          "type": "person",
+          "role": "VP Corporate Development; whistleblower",
+          "email_addresses": [
+            "sherron.watkins@enron.com"
+          ],
+          "significance": "Whistleblower memo confirmed in Lay's inbox. Follow-up emails show she identified the V&E conflict immediately. Not charged; testified for prosecution."
+        },
+        {
+          "name": "Richard Causey",
+          "type": "person",
+          "role": "Chief Accounting Officer",
+          "email_addresses": [
+            "richard.causey@enron.com"
+          ],
+          "significance": "Coordinated Raptor accounting treatment with Arthur Andersen. ev-rag-011 shows AA engagement on restructuring. Pleaded guilty."
+        },
+        {
+          "name": "Richard Buy",
+          "type": "person",
+          "role": "Chief Risk Officer",
+          "email_addresses": [
+            "richard.buy@enron.com"
+          ],
+          "significance": "ev-rag-004 shows Buy acknowledging the circular equity top-up issue. CRO-level awareness of the structural fragility is significant."
+        },
+        {
+          "name": "Mark Koenig",
+          "type": "person",
+          "role": "Head of Investor Relations",
+          "email_addresses": [
+            "mark.koenig@enron.com"
+          ],
+          "significance": "ev-rag-020 and ev-rag-021 are the strongest information management evidence. Directed executives to avoid discussing SPE structures with analysts. Cooperated with prosecutors."
+        },
+        {
+          "name": "LJM Cayman LP / LJM2 Co-Investment LP",
+          "type": "partnership",
+          "role": "Off-balance-sheet partnerships managed by Fastow",
+          "significance": "Central vehicle for the fraud. Retrieved emails show operational integration with Enron's own treasury and accounting functions."
+        },
+        {
+          "name": "Raptor I, II, III, IV",
+          "type": "vehicle",
+          "role": "SPEs capitalized with Enron stock to hedge merchant investments",
+          "significance": "Circular structure explicitly identified in ev-rag-003. Negative credit capacity problem documented in early 2001, six months before the collapse."
+        },
+        {
+          "name": "Arthur Andersen",
+          "type": "organization",
+          "role": "External auditor",
+          "significance": "ev-rag-011 shows Causey requesting AA confirmation of Raptor restructuring. Auditor engagement with the structures is documented in retrieved emails."
+        },
+        {
+          "name": "Vinson & Elkins",
+          "type": "organization",
+          "role": "Outside counsel; conducted internal review commissioned by Lay",
+          "significance": "Retrieved emails confirm they were given the Watkins review assignment despite prior LJM opinion work. Conflict of interest identified by Watkins herself."
+        }
+      ],
+      "risks": [
+        {
+          "description": "Circular hedge structure: Raptor vehicles were capitalized with Enron stock and hedged Enron assets — effectively Enron hedging against itself",
+          "severity": "critical",
+          "evidence_ids": [
+            "ev-rag-003",
+            "ev-rag-004"
+          ]
+        },
+        {
+          "description": "Information management: Systematic suppression of SPE-related information to analysts and investors in October 2001",
+          "severity": "high",
+          "evidence_ids": [
+            "ev-rag-020",
+            "ev-rag-021"
+          ]
+        },
+        {
+          "description": "Compromised internal review: Watkins concerns referred to law firm with LJM conflicts of interest",
+          "severity": "high",
+          "evidence_ids": [
+            "ev-rag-008",
+            "ev-rag-009"
+          ]
+        },
+        {
+          "description": "Auditor capture: Arthur Andersen's accounting confirmations followed requests from management, suggesting limited independence",
+          "severity": "high",
+          "evidence_ids": [
+            "ev-rag-011"
+          ]
+        }
+      ],
+      "uncertainties": [
+        {
+          "question": "What did Jeff Skilling know about the Raptor negative credit capacity before his August 2001 resignation?",
+          "reason": "Skilling's emails in the 10K sample do not cover the March-April 2001 period when Raptor issues were being internally discussed.",
+          "what_would_resolve_it": "Targeted BM25 search of Skilling's mailbox for emails from February-August 2001 mentioning Raptor, LJM, or credit capacity."
+        },
+        {
+          "question": "Did Arthur Andersen's partners understand the circular nature of the Raptor structure?",
+          "reason": "ev-rag-011 shows the mechanics were described to Andersen, but whether the firm's partners truly understood the economic substance is unclear from emails alone.",
+          "what_would_resolve_it": "PCAOB review of Andersen's work papers — not available in the email dataset."
+        },
+        {
+          "question": "Were the California energy trading strategies (Ricochet, Fat Boy, etc.) centrally directed or trader-level initiatives?",
+          "reason": "ev-rag-015 is from a trading-desk communication. Whether senior executives approved or were aware of these specific strategies is not established in the retrieval sample.",
+          "what_would_resolve_it": "Search for communications between trading desk leadership and Skilling/Lay mentioning California strategy names."
+        }
+      ],
+      "recommendations": [
+        {
+          "recommendation": "Index the full 517,401 emails, not just the 10K sample. BM25 indexing of the full corpus takes ~10 minutes on commodity hardware.",
+          "rationale": "Important communications (board approval emails, Arthur Andersen partner exchanges) may not appear in a 10K random sample."
+        },
+        {
+          "recommendation": "Implement temporal-stratified retrieval: ensure that each quarter from 1998-2001 is represented in the retrieval pool.",
+          "rationale": "Random sampling may underrepresent early periods (1998-1999 JEDI/Chewco formation) that are foundational to understanding the SPE scheme's origin."
+        },
+        {
+          "recommendation": "Add entity-centric queries targeting the communication networks between key figures (Fastow-Glisan, Causey-Andersen, Lay-Board) rather than only topical queries.",
+          "rationale": "The most significant evidence in this analysis (ev-rag-003, ev-rag-007) was found through topical queries; entity network analysis would surface coordination patterns that topical search misses."
+        }
+      ],
+      "limitations": [
+        {
+          "description": "10,000 of 517,401 emails indexed — 1.9% of corpus",
+          "impact": "Important communications outside this sample may exist"
+        },
+        {
+          "description": "8 retrieval queries designed based on known Enron facts — query bias",
+          "impact": "Topics not searched for would not be retrieved"
+        },
+        {
+          "description": "LLM prior knowledge may supplement corpus evidence in synthesis",
+          "impact": "Some claims may blend retrieved evidence with training knowledge"
+        },
+        {
+          "description": "BM25 and dense retrieval may miss indirect references ('the arrangement' without naming LJM)",
+          "impact": "Oblique communications may be underrepresented despite contextual_retrieval being false"
+        }
+      ]
+    },
+    "context_trace": {
+      "task_id": "task-001-enron-investigation",
+      "participant_id": "baseline-hybrid-rag",
+      "strategy_name": "Hybrid BM25 + Dense Retrieval",
+      "strategy_summary": "Indexed all processed emails with BM25. Created dense embeddings for a 10K email sample. Used 15 targeted queries to retrieve relevant emails. Combined results, deduplicated, reranked by relevance. Fed top 150 emails to LLM for synthesis.",
+      "methods": {
+        "prompt_only": false,
+        "long_context": false,
+        "rag": true,
+        "hybrid_retrieval": true,
+        "bm25": true,
+        "dense_embeddings": true,
+        "reranking": true,
+        "contextual_retrieval": false,
+        "memory": false,
+        "llm_generated_wiki": false,
+        "multi_agent": false,
+        "summarization": true,
+        "compression": false,
+        "graph_extraction": false,
+        "human_in_the_loop": false
+      },
+      "models": [
+        {
+          "provider": "anthropic",
+          "model": "claude-3-sonnet-20240229",
+          "purpose": "generation"
+        },
+        {
+          "provider": "openai",
+          "model": "text-embedding-3-small",
+          "purpose": "embedding"
+        }
+      ],
+      "context_stats": {
+        "documents_available": 517401,
+        "documents_opened": 10000,
+        "documents_retrieved": 850,
+        "documents_used_in_final": 150,
+        "chunks_created": 10000,
+        "chunks_retrieved": 850,
+        "chunks_used_in_final": 150,
+        "input_tokens_estimated": 95000,
+        "output_tokens_estimated": 5800,
+        "total_tokens_estimated": 100800,
+        "estimated_cost_usd": 0.31,
+        "latency_seconds": 145
+      },
+      "retrieval_trace": [
+        {
+          "step": 1,
+          "query": "financial irregularities accounting fraud",
+          "method": "hybrid",
+          "top_k": 50,
+          "selected_evidence_ids": []
+        },
+        {
+          "step": 2,
+          "query": "special purpose entities SPE LJM Raptor",
+          "method": "hybrid",
+          "top_k": 50,
+          "selected_evidence_ids": []
+        },
+        {
+          "step": 3,
+          "query": "mark to market accounting energy trading",
+          "method": "hybrid",
+          "top_k": 50,
+          "selected_evidence_ids": []
+        },
+        {
+          "step": 4,
+          "query": "executive warning concerned exit resign",
+          "method": "bm25",
+          "top_k": 50,
+          "selected_evidence_ids": []
+        },
+        {
+          "step": 5,
+          "query": "stock options sold insider trading",
+          "method": "hybrid",
+          "top_k": 50,
+          "selected_evidence_ids": []
+        },
+        {
+          "step": 6,
+          "query": "California energy crisis manipulation",
+          "method": "hybrid",
+          "top_k": 50,
+          "selected_evidence_ids": []
+        },
+        {
+          "step": 7,
+          "query": "whistleblower Sherron Watkins memo",
+          "method": "bm25",
+          "top_k": 30,
+          "selected_evidence_ids": []
+        },
+        {
+          "step": 8,
+          "query": "Andy Fastow LJM partnership off balance sheet",
+          "method": "hybrid",
+          "top_k": 50,
+          "selected_evidence_ids": []
+        }
+      ],
+      "compression_trace": [],
+      "what_was_ignored": [
+        {
+          "description": "507,401 emails not indexed (only 10K sample used for embeddings)",
+          "reason": "Embedding cost and latency constraints"
+        },
+        {
+          "description": "Calendar and meeting invites",
+          "reason": "Low information density"
+        },
+        {
+          "description": "Automated system notifications",
+          "reason": "Not relevant to investigation"
+        }
+      ],
+      "known_failure_modes": [
+        "10K email sample may miss important documents",
+        "BM25 queries require pre-knowledge of relevant terms",
+        "Dense embeddings may cluster too narrowly around query terms",
+        "No temporal-aware retrieval — recent emails before collapse may be underrepresented",
+        "Entity disambiguation not implemented — 'Jeff' may match multiple people"
+      ]
+    },
+    "score": {
+      "task_id": "task-001-enron-investigation",
+      "participant_id": "baseline-hybrid-rag",
+      "overall_score": 68,
+      "scores": {
+        "answer_quality": 72,
+        "evidence_quality": 75,
+        "context_efficiency": 58,
+        "uncertainty_handling": 70,
+        "visual_clarity": 65,
+        "reproducibility": 52
+      },
+      "notes": "Significant improvement over prompt-only baseline. Evidence quality is much higher due to targeted retrieval. The hybrid approach found relevant emails that random sampling would have missed. Context efficiency is lower because 150 emails were used vs 50 in the baseline — but the quality gain justifies it. Main weakness: requires API keys for embeddings, making it less reproducible.",
+      "scored_by": "manual",
+      "scored_at": "2025-01-15"
+    }
+  },
+  {
+    "task_id": "task-001-enron-investigation",
+    "participant_id": "baseline-prompt-only",
+    "participant": {
+      "id": "baseline-prompt-only",
+      "display_name": "Baseline — Prompt Only",
+      "type": "baseline"
+    },
+    "participant_display_name": "Baseline — Prompt Only",
+    "participant_type": "baseline",
+    "methods": {
+      "prompt_only": true,
+      "long_context": false,
+      "rag": false,
+      "hybrid_retrieval": false,
+      "bm25": false,
+      "dense_embeddings": false,
+      "reranking": false,
+      "contextual_retrieval": false,
+      "memory": false,
+      "llm_generated_wiki": false,
+      "multi_agent": false,
+      "summarization": false,
+      "compression": false,
+      "graph_extraction": false,
+      "human_in_the_loop": false
+    },
+    "overall_score": null,
+    "rank": null,
+    "submitted_at": "2025-01-15T14:32:00Z",
+    "context_stats": {
+      "documents_available": 517401,
+      "documents_opened": 50,
+      "documents_retrieved": 50,
+      "documents_used_in_final": 50,
+      "chunks_created": 0,
+      "chunks_retrieved": 0,
+      "chunks_used_in_final": 0,
+      "input_tokens_estimated": 18500,
+      "output_tokens_estimated": 3200,
+      "total_tokens_estimated": 21700,
+      "estimated_cost_usd": 0.004,
+      "latency_seconds": 12
+    },
+    "answer": {
+      "task_id": "task-001-enron-investigation",
+      "participant_id": "baseline-prompt-only",
+      "title": "Enron Investigation Brief — Baseline Prompt-Only Analysis [SAMPLE]",
+      "submitted_at": "2025-01-15T14:32:00Z",
+      "context_strategy": "Random sample of 50 emails from the processed dataset. No retrieval, no indexing. Single LLM call with all 50 emails in the prompt context. Model: claude-3-haiku-20240307.",
+      "executive_summary": "The 50-email random sample reviewed for this baseline analysis captures a narrow slice of Enron's internal communication in the months before the company's December 2001 bankruptcy filing. From this limited window, several patterns are visible: a marked increase in emails concerning financial reporting and analyst communications in October–November 2001, references to off-balance-sheet structures using oblique language ('the vehicles,' 'the arrangements'), and a pronounced shift in the tone of executive communications from confident to circumspect over the final quarter.\n\nThe most striking finding from the sampled emails is the apparent compartmentalization of knowledge about the special purpose entities. Mid-level finance staff appear to have had limited visibility into the full scope of the LJM and Raptor structures, while senior treasury and CFO office staff communicated in terms that assumed a shared but unstated understanding of the arrangements. This compartmentalization, while not definitive evidence of deliberate concealment, is consistent with the post-collapse findings of the Powers Report and SEC investigation.\n\nCommunication patterns around the Q3 2001 earnings announcement suggest that investor relations and communications staff were receiving guidance to 'hold' on analyst inquiries and coordinate messaging before releasing information about the Raptor write-downs. Several sampled emails reference 'coordination with the executive team' before press responses could be issued, which is unusual for routine quarterly communications.\n\nCRITICAL LIMITATION: This analysis is based on only 50 of 517,401 emails in the Enron corpus. The probability that any specific key email — the Sherron Watkins memo, the Fastow-Glisan Raptor coordination emails, the Skilling-Lay communications about the stock decline — appeared in this random sample is very low (below 0.01%). The claims in this brief are weakly evidenced and should be treated as preliminary hypotheses rather than conclusions. The context trace attached to this submission shows the exact 50 emails that were read.",
+      "sections": [
+        {
+          "id": "executive-summary",
+          "title": "Executive Summary",
+          "content": "This investigation brief analyzes a 50-email sample from the Enron Email Dataset (CMU/FERC release, 517,401 total emails) for early warning signs of the corporate collapse that culminated in Enron's December 2001 bankruptcy. The sample is limited and non-representative; findings should be treated as preliminary. The most notable patterns: (1) oblique language about financial structures in emails between treasury and finance staff, (2) messaging coordination directives around earnings announcements, and (3) concern expressed by mid-level employees about stock price declines and 'accounting questions from analysts.' None of these patterns, individually, constitute proof of fraud. Together, they are consistent with the broader picture established by the Powers Report and SEC investigation. See the Ethical and Evidentiary Limitations section for important caveats."
+        },
+        {
+          "id": "investigative-timeline",
+          "title": "Investigative Timeline",
+          "content": "The following timeline is constructed from (a) emails in the 50-email sample where dates could be parsed and (b) external context events labeled as such. Corpus-derived events are marked [CORPUS]; external context events are marked [EXTERNAL-CONTEXT].\n\n1998 Q4 [EXTERNAL-CONTEXT]: Chewco and JEDI partnerships restructured. Andy Fastow begins managing outside partnerships simultaneously with his CFO role.\n\n1999 Q1 [EXTERNAL-CONTEXT]: LJM Cayman LP established. Fastow discloses to board that he will manage it; board approves with conditions.\n\n2000 Q1–Q2 [CORPUS, weak signal]: Sampled emails from early 2000 show high confidence in Enron's trading business. References to 'EES growth targets' and 'broadband pipeline forecasts.' Tone is expansive.\n\n2001 Q2 [EXTERNAL-CONTEXT]: Cliff Baxter resigns as Vice Chairman. Internal emails (not in sample) later revealed concerns about aggressive accounting.\n\n2001 Aug 14 [EXTERNAL-CONTEXT]: Jeff Skilling resigns as CEO after 6 months, citing personal reasons. Ken Lay resumes CEO role.\n\n2001 Aug–Sep [CORPUS, weak signal]: Sampled emails from this period show references to 'analyst questions about the trading book' and requests for messaging alignment before earnings calls.\n\n2001 Oct 16 [CORPUS, moderate signal]: Emails reference a '$544 million' charge and 'Raptor vehicle write-down.' One sampled email from investor relations mentions 'holding all responses on Raptor questions.'\n\n2001 Oct 22 [EXTERNAL-CONTEXT]: SEC begins inquiry into Enron's accounting practices.\n\n2001 Nov 8 [EXTERNAL-CONTEXT]: Enron restates five years of financial results, wiping out $586 million in profits.\n\n2001 Dec 2 [EXTERNAL-CONTEXT]: Enron files for Chapter 11 bankruptcy, then the largest in US history."
+        },
+        {
+          "id": "key-people-and-communication-patterns",
+          "title": "Key People and Communication Patterns",
+          "content": "From the 50-email sample, the following individuals appear with meaningful frequency:\n\n1. Ken Lay (kenneth.lay@enron.com) — Chairman and CEO (post-August 2001). Appears in 3 sampled emails. Tone is reassuring and outward-facing. References to 'fundamental strength of the business.'\n\n2. Jeff Skilling (jeffrey.skilling@enron.com) — CEO (resigned August 2001). Appears in 2 pre-resignation emails. Brief, directive communications.\n\n3. Andy Fastow (andrew.fastow@enron.com) — CFO. Appears in 4 sampled emails. References to 'LJM schedule' and 'vehicle closing docs.' Emails suggest coordination with outside counsel on transaction structures.\n\n4. Mark Koenig (mark.koenig@enron.com) — Head of Investor Relations. Appears in 3 sampled emails. Directs that analyst inquiries be held pending executive alignment.\n\n5. Sherron Watkins (sherron.watkins@enron.com) — VP Corporate Development. Does NOT appear in this sample, but is mentioned once in a forwarded email chain. The famous August 2001 memo to Lay is not in this sample.\n\nCommunication pattern note: The most frequent communication pattern in the sample is finance-to-investor-relations chains where deal-specific language is present in the finance emails but is abstracted or omitted in the investor relations messaging. This is consistent with deliberate information sanitization, though it could also reflect normal investor communications practice."
+        },
+        {
+          "id": "main-themes-and-topic-clusters",
+          "title": "Main Themes and Topic Clusters",
+          "content": "Analysis of the 50-email sample reveals five topic clusters:\n\n1. TRADING OPERATIONS (18 emails): Routine energy trading communications. Low investigative relevance. Shows Enron's trading desk was active and processing large volumes.\n\n2. EARNINGS AND ANALYST COMMUNICATIONS (12 emails): Higher relevance. Several show messaging coordination and 'hold' directives around analyst questions. References to Raptor write-down.\n\n3. FINANCIAL STRUCTURES AND VEHICLES (7 emails): Highest relevance. References to LJM, Raptor, and 'the vehicles' using oblique language. Coordination between CFO office and treasury.\n\n4. HR AND ADMINISTRATIVE (9 emails): Low relevance. Standard employee communications, benefits notices, travel.\n\n5. LEGAL AND REGULATORY (4 emails): Moderate relevance. References to outside counsel involvement in 'vehicle closings' and one email mentioning an SEC inquiry in October 2001."
+        },
+        {
+          "id": "evidence-backed-claims",
+          "title": "Evidence-Backed Claims",
+          "content": "The following claims are supported by evidence from the 50-email sample. Each is labeled by type. Note that all evidence is from a small, non-representative sample.\n\nCLAIM 1 (fact): Fastow's email address (andrew.fastow@enron.com) was used to communicate about LJM transaction closing schedules with Enron treasury staff.\nEvidence: ev-003 (see evidence section)\nConfidence: 0.75 (email attribution is reliable; content is partially redacted in sample)\n\nCLAIM 2 (fact): Mark Koenig, Head of Investor Relations, directed staff to hold all responses to analyst inquiries about 'Raptor questions' until executive team coordination was complete.\nEvidence: ev-007\nConfidence: 0.82\n\nCLAIM 3 (interpretation): The use of oblique terminology ('the vehicles,' 'the arrangement,' 'the structure') in finance-to-treasury emails, without spelling out what the vehicles were, suggests that participants assumed shared knowledge that was not intended to be documented explicitly.\nEvidence: ev-003, ev-006, ev-009\nConfidence: 0.52\n\nCLAIM 4 (uncertainty): Sherron Watkins may have sent additional internal communications beyond the famous August 2001 memo, but none appeared in this 50-email sample.\nEvidence: None in sample\nConfidence: 0.20 (plausible based on general knowledge, not supported by this dataset)\n\nCLAIM 5 (uncertainty): The full scope of executive knowledge of the accounting irregularities cannot be determined from 50 random emails.\nEvidence: Absence of evidence\nConfidence: N/A — uncertainty claim"
+        },
+        {
+          "id": "contradictions-and-weak-signals",
+          "title": "Contradictions and Weak Signals",
+          "content": "Several patterns in the sample are ambiguous or potentially contradictory:\n\n1. Ken Lay's communications in October 2001 are reassuring about the company's fundamental business, even as other emails in the sample reference write-downs and accounting questions. This could reflect genuine belief in Enron's resilience, compartmentalized knowledge, or deliberate messaging — the sample cannot determine which.\n\n2. A legal email references 'standard board disclosure procedures' for the LJM transactions, suggesting there was some formal process. Whether this process was adequate is disputed in the public record and cannot be assessed from this sample.\n\n3. Two sampled emails from trading operations staff show no awareness of the financial structure issues, suggesting the problems were not widely known below the CFO level in this period."
+        },
+        {
+          "id": "documents-that-mattered-most",
+          "title": "Documents That Mattered Most",
+          "content": "From the 50-email sample, the most significant emails for the investigation are:\n\n1. ev-007: Mark Koenig directive to hold all Raptor analyst inquiries (October 2001). Suggests active information management around the write-down announcement.\n\n2. ev-003: Fastow email to treasury about LJM closing docs and 'aligning on valuations before outside counsel.' Suggests CFO was involved in both transaction structure and audit documentation.\n\n3. ev-009: Finance email with forwarded chain using exclusively oblique references to 'the structure' without naming LJM or the Raptor vehicles. Unusual for internal business communications.\n\nNote: The most important documents in the Enron corpus (Watkins memo, board approval emails, Raptor valuation support emails) almost certainly did NOT appear in this 50-email sample due to random sampling from 517,401 total emails."
+        },
+        {
+          "id": "what-was-ignored-and-why",
+          "title": "What Was Ignored and Why",
+          "content": "517,351 emails (99.99% of the corpus) were NOT read for this baseline analysis. The reasons:\n\n1. Context window constraints: feeding 517,000 emails to an LLM is not feasible. Each email is ~200-500 tokens; the full corpus is ~150 billion tokens.\n\n2. No retrieval strategy: this baseline selected 50 emails at random, which means important emails about LJM, Raptor, board approvals, and internal whistleblowing are almost certainly not in the sample.\n\n3. Specifically NOT examined: emails from Jeff Skilling's final months as CEO (high expected relevance), the Fastow-Glisan communication logs around Raptor IV formation, any emails from Arthur Andersen or other external parties, and all emails from 1999-2000 when the structures were being built.\n\nA better strategy would use BM25 or dense retrieval to target emails mentioning LJM, Raptor, mark-to-market, Andy Fastow, and related terms."
+        },
+        {
+          "id": "context-engineering-strategy",
+          "title": "Context Engineering Strategy",
+          "content": "STRATEGY: Random sampling — the weakest possible approach.\n\nProcess: (1) Loaded processed emails.jsonl. (2) Took the first 50 records. (3) Formatted each email as text. (4) Appended all 50 to a single prompt. (5) Called claude-3-haiku-20240307 once. (6) Parsed JSON response.\n\nWhy this is weak: Selection is not guided by any knowledge of which emails are relevant. The 50 emails are overwhelmingly from routine operations (trading, HR, travel) rather than from the finance and executive communication patterns most relevant to the investigation.\n\nToken budget: ~18,500 input tokens, ~3,200 output tokens. Total: ~21,700 tokens. Estimated cost: $0.004.\n\nFor a meaningful investigation, one would need to retrieve 500-2,000 emails using targeted queries, requiring ~400,000-1,000,000 input tokens and a much more sophisticated retrieval strategy."
+        },
+        {
+          "id": "ethical-and-evidentiary-limitations",
+          "title": "Ethical and Evidentiary Limitations",
+          "content": "This analysis has severe evidentiary limitations that must be stated clearly:\n\n1. SAMPLE SIZE: 50 emails out of 517,401 is 0.0097% of the corpus. No investigative journalist or court would accept conclusions from this sample.\n\n2. LLM PRIOR KNOWLEDGE: This analysis may conflate findings from the 50 actual emails with the LLM's training data about Enron. The LLM knows about the Enron scandal from news articles, books, and court records. Claims in this brief may reflect prior knowledge rather than actual corpus evidence. This is the most serious limitation.\n\n3. INDIVIDUAL RIGHTS: Several individuals in the Enron dataset were investigated but not convicted, or were acquitted, or were peripheral employees. This analysis focuses on documented organizational patterns, not individual culpability.\n\n4. HEARSAY: Emails are by their nature one-sided communications. An email saying 'we need to coordinate on X' does not establish that X was wrongful.\n\n5. LEGAL LIMITATION: This brief is not legal analysis. It does not identify crimes. Enron's fraud was established through criminal proceedings, not email analysis.\n\n6. DO NOT REPRODUCE: The evidence excerpts in this brief are paraphrased or short quotes. Full email reproduction is not appropriate given that some emails contain personal communications unrelated to the fraud."
+        }
+      ],
+      "claims": [
+        {
+          "id": "claim-001",
+          "type": "fact",
+          "claim": "Andy Fastow's Enron email address was used to communicate with Enron treasury staff about LJM transaction closing timelines.",
+          "confidence": 0.75,
+          "evidence_ids": [
+            "ev-003"
+          ],
+          "topic": "financial-structures"
+        },
+        {
+          "id": "claim-002",
+          "type": "fact",
+          "claim": "Enron's Head of Investor Relations directed staff to hold all responses to analyst questions about Raptor vehicles pending executive alignment, in October 2001.",
+          "confidence": 0.82,
+          "evidence_ids": [
+            "ev-007"
+          ],
+          "topic": "earnings-communications"
+        },
+        {
+          "id": "claim-003",
+          "type": "interpretation",
+          "claim": "Internal emails about the Raptor and LJM structures used oblique terminology ('the vehicles,' 'the arrangement') rather than explicit names, suggesting participants assumed shared unstated knowledge.",
+          "confidence": 0.52,
+          "evidence_ids": [
+            "ev-003",
+            "ev-006",
+            "ev-009"
+          ],
+          "topic": "financial-structures"
+        },
+        {
+          "id": "claim-004",
+          "type": "interpretation",
+          "claim": "The compartmentalization visible in the email sample — where finance staff used technical structure language while investor relations used sanitized language — is consistent with deliberate information management, though also consistent with normal corporate communications discipline.",
+          "confidence": 0.45,
+          "evidence_ids": [
+            "ev-007",
+            "ev-009"
+          ],
+          "topic": "earnings-communications"
+        },
+        {
+          "id": "claim-005",
+          "type": "fact",
+          "claim": "Ken Lay's sampled emails from October 2001 contain reassuring language about Enron's 'fundamental business strength,' concurrent with other sampled emails referencing Raptor write-downs.",
+          "confidence": 0.78,
+          "evidence_ids": [
+            "ev-002",
+            "ev-007"
+          ],
+          "topic": "executive-communications"
+        },
+        {
+          "id": "claim-006",
+          "type": "uncertainty",
+          "claim": "Whether Ken Lay was aware of the full scope of the accounting irregularities at the time he sent reassuring communications to employees and investors cannot be determined from this 50-email sample.",
+          "confidence": 0.0,
+          "evidence_ids": [],
+          "topic": "executive-communications"
+        },
+        {
+          "id": "claim-007",
+          "type": "uncertainty",
+          "claim": "Whether the Sherron Watkins whistleblower memo and its follow-up communications prompted any internal corrective action before the SEC inquiry cannot be determined from this sample.",
+          "confidence": 0.0,
+          "evidence_ids": [],
+          "topic": "whistleblowing"
+        },
+        {
+          "id": "claim-008",
+          "type": "interpretation",
+          "claim": "The presence of outside counsel involvement in LJM vehicle closing documentation, referenced in sampled CFO office emails, suggests the structures were being reviewed for legal compliance — though whether the reviews were genuine or perfunctory cannot be determined.",
+          "confidence": 0.4,
+          "evidence_ids": [
+            "ev-003",
+            "ev-010"
+          ],
+          "topic": "financial-structures"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "ev-001",
+          "email_from": "kenneth.lay@enron.com",
+          "email_to": [
+            "all-enron@enron.com"
+          ],
+          "date": "2001-10-23",
+          "subject": "Re: Our financial strength",
+          "excerpt": "Enron's underlying business remains strong and our assets are solid. We are taking steps to strengthen our balance sheet and restore confidence with the investment community.",
+          "relevance": "Executive reassurance messaging to employees after initial write-down announcement and SEC inquiry",
+          "file_path": "enron_mail_20150507/lay-k/inbox/sample-001."
+        },
+        {
+          "id": "ev-002",
+          "email_from": "kenneth.lay@enron.com",
+          "email_to": [
+            "board@enron.com"
+          ],
+          "date": "2001-10-19",
+          "subject": "Q3 earnings — board update",
+          "excerpt": "We are moving forward with transparency on the Raptor write-downs. The core business generates strong cash flow and the trading book is performing well.",
+          "relevance": "Board communication concurrent with investor relations messaging shows consistent reassurance tone",
+          "file_path": "enron_mail_20150507/lay-k/inbox/sample-002."
+        },
+        {
+          "id": "ev-003",
+          "email_from": "andrew.fastow@enron.com",
+          "email_to": [
+            "ben.glisan@enron.com"
+          ],
+          "date": "2001-06-14",
+          "subject": "LJM — vehicle closing schedule",
+          "excerpt": "Ben — need to coordinate closing docs for the vehicle by Thursday. Let's align on the support package before we loop in outside counsel. Andy",
+          "relevance": "Shows CFO coordinating from Enron email address on LJM transaction details with Enron treasurer, suggesting dual-role coordination",
+          "file_path": "enron_mail_20150507/glisan-b/inbox/sample-003."
+        },
+        {
+          "id": "ev-004",
+          "email_from": "richard.causey@enron.com",
+          "email_to": [
+            "arthur.andersen@aa.com"
+          ],
+          "date": "2001-09-28",
+          "subject": "Raptor valuation — Q3 review",
+          "excerpt": "Per our discussion, the valuation methodology for the Raptor vehicles is consistent with prior quarters. Please confirm Arthur Andersen's sign-off timeline for Q3 audit close.",
+          "relevance": "Shows Chief Accounting Officer coordinating with auditor Arthur Andersen on Raptor valuations shortly before the write-down was announced",
+          "file_path": "enron_mail_20150507/causey-r/sent/sample-004."
+        },
+        {
+          "id": "ev-005",
+          "email_from": "jeff.mcmahon@enron.com",
+          "email_to": [
+            "treasurer-group@enron.com"
+          ],
+          "date": "2001-07-20",
+          "subject": "Fwd: Whitewing — status update",
+          "excerpt": "Team — the Whitewing vehicle is on track for Q3 close. Note: all external communication about Whitewing goes through the CFO office only.",
+          "relevance": "Communication restriction on external discussion of Whitewing vehicle, consistent with information compartmentalization pattern",
+          "file_path": "enron_mail_20150507/mcmahon-j/sent/sample-005."
+        },
+        {
+          "id": "ev-006",
+          "email_from": "ben.glisan@enron.com",
+          "email_to": [
+            "andrew.fastow@enron.com"
+          ],
+          "date": "2001-06-15",
+          "subject": "Re: vehicle closing schedule",
+          "excerpt": "Andy — confirmed. I'll have the support package to you by Wednesday. Should we loop in Richard [Causey] or keep this bilateral for now?",
+          "relevance": "Response to ev-003, showing Glisan using same oblique 'vehicle' terminology and suggesting selective information sharing even within Enron finance",
+          "file_path": "enron_mail_20150507/glisan-b/sent/sample-006."
+        },
+        {
+          "id": "ev-007",
+          "email_from": "mark.koenig@enron.com",
+          "email_to": [
+            "investor-relations@enron.com"
+          ],
+          "date": "2001-10-17",
+          "subject": "HOLD — all analyst questions re Raptor",
+          "excerpt": "Effective immediately: do not respond to any analyst or press inquiry about Raptor, the write-down, or related accounting questions. Route all such inquiries to me and cc the executive team. We need alignment before we respond. MK",
+          "relevance": "Direct evidence of information hold on Raptor-related investor questions at the exact moment the write-down was becoming public",
+          "file_path": "enron_mail_20150507/koenig-m/sent/sample-007."
+        },
+        {
+          "id": "ev-008",
+          "email_from": "lou.pai@enron.com",
+          "email_to": [
+            "hr-benefits@enron.com"
+          ],
+          "date": "2001-05-31",
+          "subject": "Re: Stock option exercise confirmation",
+          "excerpt": "Please confirm the exercise of [number redacted] stock options per my prior request. Process immediately.",
+          "relevance": "Lou Pai (CEO of Enron Energy Services) exercised stock options in May 2001 before resigning; this email confirms activity. Public records show Pai sold $270M in Enron stock before collapse.",
+          "file_path": "enron_mail_20150507/pai-l/inbox/sample-008."
+        },
+        {
+          "id": "ev-009",
+          "email_from": "richard.buy@enron.com",
+          "email_to": [
+            "finance-risk@enron.com"
+          ],
+          "date": "2001-09-05",
+          "subject": "Re: Fwd: Q3 risk review",
+          "excerpt": "The structures are performing within parameters. The arrangement with LJM continues to hedge against the downside scenarios we modeled in Q2. This should not be raised externally.",
+          "relevance": "Chief Risk Officer using oblique 'arrangement' language about LJM and directing that it not be raised externally, suggesting awareness that external disclosure would be problematic",
+          "file_path": "enron_mail_20150507/buy-r/inbox/sample-009."
+        },
+        {
+          "id": "ev-010",
+          "email_from": "outside-counsel@skadden.com",
+          "email_to": [
+            "andrew.fastow@enron.com"
+          ],
+          "date": "2001-06-10",
+          "subject": "LJM2 — board disclosure compliance",
+          "excerpt": "Andy — we have reviewed the disclosure procedures and believe the current process satisfies board approval requirements under the partnership agreement. Please confirm Enron CFO sign-off for our files.",
+          "relevance": "Outside counsel confirming board disclosure compliance for LJM2 — shows the transaction was reviewed legally, though the adequacy of that review is disputed",
+          "file_path": "enron_mail_20150507/fastow-a/inbox/sample-010."
+        }
+      ],
+      "timeline": [
+        {
+          "date": "1999-01",
+          "event": "LJM Cayman LP established by Andy Fastow. Enron board approves Fastow's dual role as Enron CFO and LJM general partner.",
+          "source": "external_context",
+          "evidence_ids": []
+        },
+        {
+          "date": "1999-12",
+          "event": "Raptor I SPE established, using Enron stock to provide hedge against falling asset values in Enron's merchant investment portfolio.",
+          "source": "external_context",
+          "evidence_ids": []
+        },
+        {
+          "date": "2000-Q1-Q2",
+          "event": "Enron stock reaches historic highs above $80. Broadband and EES divisions forecast aggressive growth. Email tone from this period (sampled) is highly optimistic.",
+          "source": "corpus_cluster",
+          "evidence_ids": []
+        },
+        {
+          "date": "2001-05-31",
+          "event": "Lou Pai exercises stock options and confirms sale of large Enron position.",
+          "source": "corpus_email",
+          "evidence_ids": [
+            "ev-008"
+          ]
+        },
+        {
+          "date": "2001-06-10",
+          "event": "Outside counsel completes LJM2 board disclosure compliance review for CFO office.",
+          "source": "corpus_email",
+          "evidence_ids": [
+            "ev-010"
+          ]
+        },
+        {
+          "date": "2001-06-14",
+          "event": "Andy Fastow emails Ben Glisan about LJM vehicle closing schedule and valuation alignment before outside counsel involvement.",
+          "source": "corpus_email",
+          "evidence_ids": [
+            "ev-003",
+            "ev-006"
+          ]
+        },
+        {
+          "date": "2001-08-14",
+          "event": "Jeff Skilling resigns as CEO after 6 months. Ken Lay resumes CEO role. Public reason given: personal.",
+          "source": "external_context",
+          "evidence_ids": []
+        },
+        {
+          "date": "2001-09-05",
+          "event": "Chief Risk Officer Rick Buy notes LJM 'arrangement' is performing per parameters and directs that it not be raised externally.",
+          "source": "corpus_email",
+          "evidence_ids": [
+            "ev-009"
+          ]
+        },
+        {
+          "date": "2001-09-28",
+          "event": "Chief Accounting Officer Causey coordinates with Arthur Andersen on Raptor valuation methodology for Q3 audit.",
+          "source": "corpus_email",
+          "evidence_ids": [
+            "ev-004"
+          ]
+        },
+        {
+          "date": "2001-10-17",
+          "event": "Mark Koenig issues information hold: all analyst questions about Raptor and the write-down must be routed through him pending executive alignment.",
+          "source": "corpus_email",
+          "evidence_ids": [
+            "ev-007"
+          ]
+        },
+        {
+          "date": "2001-10-19",
+          "event": "Ken Lay emails Enron board with reassuring update about core business strength concurrent with Raptor write-down announcement.",
+          "source": "corpus_email",
+          "evidence_ids": [
+            "ev-002"
+          ]
+        },
+        {
+          "date": "2001-10-22",
+          "event": "SEC begins formal inquiry into Enron's accounting practices and off-balance-sheet structures.",
+          "source": "external_context",
+          "evidence_ids": []
+        }
+      ],
+      "entities": [
+        {
+          "name": "Kenneth Lay",
+          "type": "person",
+          "role": "Chairman and CEO of Enron Corporation",
+          "email_addresses": [
+            "kenneth.lay@enron.com"
+          ],
+          "significance": "Top executive; communications from his account are significant for understanding what the CEO communicated internally vs. externally during the crisis period."
+        },
+        {
+          "name": "Jeffrey Skilling",
+          "type": "person",
+          "role": "President and CEO of Enron (resigned August 2001)",
+          "email_addresses": [
+            "jeffrey.skilling@enron.com"
+          ],
+          "significance": "His resignation in August 2001 is a key event. Post-collapse investigation revealed he was aware of accounting irregularities. Convicted in 2006."
+        },
+        {
+          "name": "Andrew Fastow",
+          "type": "person",
+          "role": "Chief Financial Officer; simultaneously General Partner of LJM Cayman LP and LJM2 Co-Investment LP",
+          "email_addresses": [
+            "andrew.fastow@enron.com"
+          ],
+          "significance": "Architect of the SPE structures that hid Enron's debts off-balance-sheet. Convicted and cooperated with prosecutors. His dual role is the central conflict of interest in the case."
+        },
+        {
+          "name": "Sherron Watkins",
+          "type": "person",
+          "role": "Vice President of Corporate Development; internal whistleblower",
+          "email_addresses": [
+            "sherron.watkins@enron.com"
+          ],
+          "significance": "Wrote the famous August 2001 memo to Ken Lay warning that Enron might 'implode in a wave of accounting scandals.' Her memo is a key document in the public record but did not appear in this sample."
+        },
+        {
+          "name": "Ben Glisan",
+          "type": "person",
+          "role": "Treasurer of Enron",
+          "email_addresses": [
+            "ben.glisan@enron.com"
+          ],
+          "significance": "Coordinated with Fastow on LJM vehicle transactions from his Enron treasury role. Pleaded guilty to conspiracy charges."
+        },
+        {
+          "name": "Mark Koenig",
+          "type": "person",
+          "role": "Head of Investor Relations",
+          "email_addresses": [
+            "mark.koenig@enron.com"
+          ],
+          "significance": "In ev-007, directed information hold on Raptor-related analyst questions. Cooperated with prosecutors."
+        },
+        {
+          "name": "LJM Cayman LP / LJM2 Co-Investment LP",
+          "type": "partnership",
+          "role": "Off-balance-sheet investment partnerships managed by Fastow",
+          "email_addresses": [],
+          "significance": "The primary vehicle through which Enron moved debt and inflated earnings. LJM conducted over $1.2 billion in transactions with Enron at terms later found to be unfavorable to Enron."
+        },
+        {
+          "name": "Raptor I, II, III, IV",
+          "type": "vehicle",
+          "role": "Special Purpose Entities used to hedge Enron's merchant investment portfolio",
+          "email_addresses": [],
+          "significance": "The Raptor vehicles were capitalized with Enron stock and had liabilities guaranteed by Enron itself, making them economically useless as hedges. Their $544M write-down in October 2001 triggered the collapse of investor confidence."
+        },
+        {
+          "name": "Arthur Andersen",
+          "type": "organization",
+          "role": "Enron's external auditor",
+          "email_addresses": [],
+          "significance": "Signed off on Enron's financial statements including the Raptor valuations. Subsequently convicted of obstruction of justice for shredding Enron documents (conviction later overturned on appeal). Firm collapsed as a result."
+        }
+      ],
+      "risks": [
+        {
+          "description": "Off-balance-sheet structure risk: LJM and Raptor vehicles created contingent liabilities and inflated reported earnings in ways not visible to outside investors",
+          "severity": "critical",
+          "evidence_ids": [
+            "ev-003",
+            "ev-009",
+            "ev-010"
+          ]
+        },
+        {
+          "description": "Audit independence risk: Arthur Andersen served as both auditor and consultant to Enron while signing off on complex SPE accounting",
+          "severity": "high",
+          "evidence_ids": [
+            "ev-004"
+          ]
+        },
+        {
+          "description": "Information management risk: Evidence of deliberate restriction on Raptor-related information reaching analysts and investors",
+          "severity": "high",
+          "evidence_ids": [
+            "ev-007"
+          ]
+        }
+      ],
+      "uncertainties": [
+        {
+          "question": "What did Ken Lay know about the full scope of the accounting irregularities, and when did he know it?",
+          "reason": "Lay maintained he was misled by Fastow and others. The 50-email sample does not resolve this question. His reassuring communications are consistent with both genuine belief and deliberate concealment.",
+          "what_would_resolve_it": "A systematic review of all Lay-to-Fastow and Lay-to-Causey communications, not available in this sample."
+        },
+        {
+          "question": "Did the Sherron Watkins memo prompt any internal corrective action before the SEC inquiry?",
+          "reason": "The memo and follow-up communications are not in this sample. The public record shows Lay consulted outside counsel, but whether any substantive accounting review occurred is contested.",
+          "what_would_resolve_it": "Review of Lay's inbox and the Office of the Chairman communications from August–September 2001."
+        },
+        {
+          "question": "Were the Raptor valuations supported by Arthur Andersen's standard procedures, or were special accommodations made?",
+          "reason": "ev-004 shows routine coordination language, but the specific valuation methodology is not described. The Powers Report found the valuations were improper.",
+          "what_would_resolve_it": "Review of the Causey-Andersen full email thread and the valuation support packages referenced."
+        },
+        {
+          "question": "At what point did mid-level finance employees become aware that the SPE structures would not survive regulatory scrutiny?",
+          "reason": "This sample contains hints of compartmentalization but not enough to determine when awareness began spreading below the CFO level.",
+          "what_would_resolve_it": "Analysis of all emails from finance-analyst-level employees (not directors) from Q2-Q4 2001."
+        }
+      ],
+      "recommendations": [
+        {
+          "recommendation": "Prioritize a targeted BM25 search for emails mentioning 'LJM,' 'Raptor,' 'mark to market,' 'restatement,' and 'SEC inquiry' from 2001 Q2-Q4.",
+          "rationale": "These keywords would retrieve the most investigatively significant emails. This sample suggests the relevant emails exist in the corpus but were not captured by random sampling."
+        },
+        {
+          "recommendation": "Build a communication graph of emails between Fastow, Glisan, Causey, Koenig, and Lay, and analyze the density and content of these connections over time.",
+          "rationale": "The key events in the Enron collapse involved a small number of senior executives. Mapping their communication network over 1999-2001 would reveal coordination patterns that random sampling cannot surface."
+        },
+        {
+          "recommendation": "Separately analyze emails from the 'deleted items' and 'trash' folders of key executives, which were captured in the dataset.",
+          "rationale": "The Enron dataset preserves deleted emails. Documents that were deleted may have higher investigative significance than those retained."
+        }
+      ],
+      "limitations": [
+        {
+          "description": "Only 50 of 517,401 emails were read — 0.0097% of the corpus.",
+          "impact": "Any claim about patterns in the full corpus is statistically indefensible from this sample size."
+        },
+        {
+          "description": "The LLM (claude-3-haiku-20240307) has extensive training knowledge about the Enron scandal from news articles, books, court records, and SEC filings. Claims in this brief may reflect that prior knowledge rather than evidence from the corpus.",
+          "impact": "Evidence citations that sound specific may be the LLM's reconstruction of what plausible Enron emails would have looked like, not actual emails from the dataset."
+        },
+        {
+          "description": "Random sampling severely underrepresents the most important communicators. With 517,401 emails and ~150 users, each user's emails make up roughly 0.7% of the corpus. A random sample of 50 has only a 30% chance of including even a single email from any given user.",
+          "impact": "Key figures like Skilling, Watkins, and the Arthur Andersen audit team may not appear at all in this sample."
+        },
+        {
+          "description": "No temporal stratification was applied. Important events (Skilling resignation, Watkins memo, SEC inquiry) occurred at specific times. Random sampling cannot guarantee coverage of these critical periods.",
+          "impact": "The timeline in this brief is primarily constructed from external context rather than corpus evidence."
+        },
+        {
+          "description": "No cross-document analysis was performed. Patterns visible only across multiple related emails (e.g., an escalating thread about Raptor valuations) cannot be detected by reading 50 disconnected emails.",
+          "impact": "Communication chains and escalation patterns are invisible to this baseline."
+        }
+      ]
+    },
+    "context_trace": {
+      "task_id": "task-001-enron-investigation",
+      "participant_id": "baseline-prompt-only",
+      "strategy_name": "Simple Random Sample + Single LLM Prompt",
+      "strategy_summary": "Selected 50 random emails from the dataset, concatenated them into a single prompt, and asked an LLM to produce the structured answer. No retrieval, no indexing, no iterative refinement.",
+      "methods": {
+        "prompt_only": true,
+        "long_context": false,
+        "rag": false,
+        "hybrid_retrieval": false,
+        "bm25": false,
+        "dense_embeddings": false,
+        "reranking": false,
+        "contextual_retrieval": false,
+        "memory": false,
+        "llm_generated_wiki": false,
+        "multi_agent": false,
+        "summarization": false,
+        "compression": false,
+        "graph_extraction": false,
+        "human_in_the_loop": false
+      },
+      "models": [
+        {
+          "provider": "anthropic",
+          "model": "claude-3-haiku-20240307",
+          "purpose": "generation"
+        }
+      ],
+      "context_stats": {
+        "documents_available": 517401,
+        "documents_opened": 50,
+        "documents_retrieved": 50,
+        "documents_used_in_final": 50,
+        "chunks_created": 0,
+        "chunks_retrieved": 0,
+        "chunks_used_in_final": 0,
+        "input_tokens_estimated": 18500,
+        "output_tokens_estimated": 3200,
+        "total_tokens_estimated": 21700,
+        "estimated_cost_usd": 0.004,
+        "latency_seconds": 12
+      },
+      "retrieval_trace": [
+        {
+          "step": 1,
+          "query": "random sample",
+          "method": "manual",
+          "top_k": 50,
+          "selected_evidence_ids": []
+        }
+      ],
+      "compression_trace": [],
+      "what_was_ignored": [
+        {
+          "description": "517,351 of 517,401 emails were not read",
+          "reason": "Context window constraints combined with no retrieval strategy"
+        },
+        {
+          "description": "Financial documents, SEC filings, analyst reports",
+          "reason": "Not included in the email dataset sample"
+        }
+      ],
+      "known_failure_modes": [
+        "Random sampling heavily biases the analysis toward whichever employees happened to be sampled",
+        "No systematic search for key events or people",
+        "Evidence is not meaningfully selected — 50 random emails cannot represent 517K",
+        "Claims may reflect the LLM's prior knowledge about Enron rather than the actual dataset",
+        "No cross-referencing between documents",
+        "Timeline is based on LLM prior knowledge, not parsed email dates"
+      ]
+    },
+    "score": {
+      "task_id": "task-001-enron-investigation",
+      "participant_id": "baseline-prompt-only",
+      "overall_score": 41,
+      "scores": {
+        "answer_quality": 45,
+        "evidence_quality": 22,
+        "context_efficiency": 38,
+        "uncertainty_handling": 65,
+        "visual_clarity": 58,
+        "reproducibility": 20
+      },
+      "notes": "The prompt-only baseline produces a readable page but relies heavily on the model's prior knowledge of Enron rather than actual evidence from the dataset. Evidence quality is very low because only 50 emails were sampled and the selection was random. The uncertainty handling score is relatively high because the strategy.md honestly acknowledges the limitations. Reproducibility is low because different random samples would produce different results.",
+      "scored_by": "manual",
+      "scored_at": "2025-01-15"
+    }
+  },
+  {
+    "task_id": "task-002-brazil-public-money-trail",
+    "participant_id": "baseline-prompt-only",
+    "participant": {
+      "id": "baseline-prompt-only",
+      "display_name": "Baseline — Prompt Only",
+      "type": "baseline"
+    },
+    "participant_display_name": "Baseline — Prompt Only",
+    "participant_type": "baseline",
+    "methods": {
+      "prompt_only": true,
+      "long_context": false,
+      "rag": false,
+      "hybrid_retrieval": false,
+      "bm25": false,
+      "dense_embeddings": false,
+      "reranking": false,
+      "contextual_retrieval": false,
+      "memory": false,
+      "llm_generated_wiki": false,
+      "multi_agent": false,
+      "summarization": false,
+      "compression": false,
+      "graph_extraction": false,
+      "entity_resolution": false,
+      "emenda_matching": false,
+      "human_in_the_loop": false
+    },
+    "overall_score": null,
+    "rank": null,
+    "submitted_at": "2025-01-15T14:32:00Z",
+    "context_stats": {
+      "camara_propositions_available": "Unknown (full dataset)",
+      "camara_propositions_retrieved": 200,
+      "camara_propositions_used_in_prompt": 200,
+      "transparencia_records_available": "Unknown",
+      "transparencia_records_retrieved": 0,
+      "transparencia_records_used": 0,
+      "input_tokens_estimated": 14200,
+      "output_tokens_estimated": 4100,
+      "total_tokens_estimated": 18300,
+      "estimated_cost_usd": 0.003,
+      "latency_seconds": 18
+    },
+    "answer": {
+      "task_id": "task-002-brazil-public-money-trail",
+      "participant_id": "baseline-prompt-only",
+      "title": "Brazil Public Money Trail — Health Policy Analysis [BASELINE, SAMPLE MODE]",
+      "policy_theme": "saude",
+      "year_range": {
+        "start": 2022,
+        "end": 2024
+      },
+      "submitted_at": "2025-01-15T14:32:00Z",
+      "disclaimer": "DISCLAIMER: This page organizes publicly available Brazilian government data from the Câmara dos Deputados Dados Abertos API and Portal da Transparência. It does not allege wrongdoing, corruption, or illegal conduct by any individual or institution. Connections between legislative activity and public spending are classified by link type and do NOT imply causation. Correlation is not causation. Portal da Transparência spending data was not available in this submission (API token not set); all spending figures are marked as UNAVAILABLE or SYNTHETIC.",
+      "context_strategy": "Sample mode: Câmara dos Deputados API only (2 pages of health propositions, 2022-2024). Portal da Transparência skipped (no API token). Single LLM call with all retrieved propositions formatted as prompt context. Model: claude-3-haiku-20240307.",
+      "data_sources_used": [
+        "camara",
+        "transparencia_synthetic"
+      ],
+      "executive_summary": "This baseline analysis traces the Brazilian health policy theme ('saúde') through the 57th Legislature (2022–2024), using data from the Câmara dos Deputados Dados Abertos API. The analysis is limited to legislative activity; federal spending data from the Portal da Transparência was not available in this submission due to the absence of an API token. This is a significant limitation that affects the data joining score.\n\nFrom the Câmara API sample, 47 health-related propositions were retrieved for the 2022–2024 period. The most prominent legislative themes within health policy include: regulation of the private health insurance sector (ANS-related propositions), public health spending mandates (Emenda Constitucional 95 waivers and adjustments), maternal and child health programs, and vaccination policy. The SUS (Sistema Único de Saúde) appears as the dominant institutional anchor across propositions.\n\nBecause Portal da Transparência data is unavailable, NO spending figures can be verified. All connections between legislative activity and federal spending must be classified as at best same_theme_link — there is no documentary basis for stronger classifications in this submission. This limitation is prominently flagged throughout.\n\nWARNING: This submission uses only Câmara API data. The spending side of the analysis is absent. Judges should score the data joining dimension at near-zero for this submission, as only one source was successfully used.",
+      "sections": [
+        {
+          "id": "executive-summary",
+          "title": "Executive Summary",
+          "content": "This baseline analysis of Brazilian health policy uses Câmara dos Deputados legislative data for 2022–2024. Key finding: 47 health propositions retrieved, dominated by SUS funding, private health regulation, and maternal health. Portal da Transparência data unavailable; all spending analysis is absent from this submission. See disclaimer."
+        },
+        {
+          "id": "policy-theme-and-scope",
+          "title": "Policy Theme and Scope",
+          "content": "Theme: Saúde (Health)\nScope: 57th Legislature, January 2022 to December 2024\nData source: Câmara dos Deputados Dados Abertos API, endpoint /api/v2/proposicoes with keyword 'saude'\nData source status: AVAILABLE\nPortal da Transparência: UNAVAILABLE (API token not set)\n\nThe health policy domain in Brazil is governed primarily through the SUS (Sistema Único de Saúde, established by the 1988 Constitution), the ANS (Agência Nacional de Saúde Suplementar, regulating private health insurance), and ANVISA (Agência Nacional de Vigilância Sanitária, regulating pharmaceutical and food safety). Federal health spending is executed through the Ministério da Saúde (Ministry of Health) and the Fundo Nacional de Saúde (National Health Fund).\n\nThe 57th Legislature (2023–2026, with 2022 as the election year transition) operated under a political context of change in federal executive power (Lula administration took office January 2023 following Bolsonaro) which affected health policy priorities, particularly vaccination policy and SUS funding commitments."
+        },
+        {
+          "id": "legislative-activity-timeline",
+          "title": "Legislative Activity Timeline",
+          "content": "The following events are derived from the Câmara API sample. All events are labeled [CORPUS] (from API data) or [EXTERNAL-CONTEXT] (known background).\n\n[EXTERNAL-CONTEXT] January 2023: New federal administration takes office. Significant policy shift: vaccination campaigns revived after COVID-era controversies, SUS funding commitments reinstated.\n\n[CORPUS] Q1 2022: PL 1234/2022 submitted — amends Lei 8.080/1990 to increase minimum health spending mandate from 15% to 17% of União net revenues. 38 co-signatories. Situação: Em tramitação.\n\n[CORPUS] Q2 2022: PL 2789/2022 submitted — regulates telehealth services within SUS framework. 12 co-signatories from PT, PSDB, and MDB. Situação: Em tramitação.\n\n[CORPUS] Q3 2022: PEC 18/2022 proposed — Constitutional amendment to ring-fence minimum SUS funding against Emenda Constitucional 95 spending freeze. High-profile proposal with 54 signatories.\n\n[CORPUS] Q1 2023: PL 456/2023 submitted — creates Programa Nacional de Fortalecimento da Atenção Primária (primary care strengthening program). 23 co-signatories. Situação: Aprovado na Comissão de Saúde.\n\n[CORPUS] Q2 2023: PL 2045/2023 submitted — mandates universal ophthalmological screening for children under 7 in SUS. 8 co-signatories. Situação: Em tramitação.\n\n[CORPUS] Q4 2023: PL 3890/2023 submitted — regulates pharmaceutical patent extensions and compulsory licensing for essential medicines. Controversial; 31 co-signatories pro, 18 amendments filed against. Situação: Em tramitação.\n\n[CORPUS] Q1 2024: MP 1234/2024 (Medida Provisória) issued by executive — reopens Programa Farmácia Popular enrollment and expands covered medications list. Converted to lei by Câmara in Q2 2024.\n\n[EXTERNAL-CONTEXT] 2024: WHO Global Health Assembly commitments renewed; Brazil reaffirms SUS funding targets and commits to expanded vaccination schedule."
+        },
+        {
+          "id": "public-spending-timeline",
+          "title": "Public Spending Timeline",
+          "content": "SPENDING DATA NOT AVAILABLE\n\nPortal da Transparência API token was not set for this submission. No federal spending data was retrieved or verified.\n\nAll spending figures in this section would be SYNTHETIC ESTIMATES and are therefore OMITTED entirely from this submission. Presenting synthetic spending figures as facts would violate the task's hallucination avoidance requirement.\n\nFor reference (from public records, NOT from API data): The Ministério da Saúde budget in 2023 was approximately R$187 billion, of which roughly R$168 billion was paid out. This figure is from public news reporting and the ministry's own published summaries, not from a Portal da Transparência API call. It cannot serve as verified evidence for this submission.\n\nTo generate real spending data: set TRANSPARENCIA_API_TOKEN and re-run the download script."
+        },
+        {
+          "id": "actor-and-institution-map",
+          "title": "Actors and Institutions",
+          "content": "From the Câmara API sample, the following actors appear with at least 2 propositions in the health domain:\n\nCAMARÂ ACTORS:\n- Partido dos Trabalhadores (PT): Highest authorship of health propositions in sample (14 propositions). Focus on SUS strengthening, Farmácia Popular expansion, and anti-private-health-insurance deregulation.\n- MDB: 8 propositions. Mix of SUS and private health topics.\n- PSD: 6 propositions. Focus on pharmaceutical regulation and telehealth.\n- PSDB: 5 propositions. Majority concerning private health insurance regulation.\n\nKEY INSTITUTIONS (from legislative context, NOT from spending data):\n- Ministério da Saúde: Primary federal health spending executor\n- Fundo Nacional de Saúde (FNS): Transfers funds to states and municipalities for SUS\n- ANVISA: Pharmaceutical and food safety regulator\n- ANS: Private health insurance regulator\n- Comissão de Saúde (Câmara): Health committee; voted on PL 456/2023\n\nNOTE: No individual deputies are named as institutional targets in this analysis. Deputy names are used only to identify authorship of specific propositions."
+        },
+        {
+          "id": "money-flow-overview",
+          "title": "Money Flow Overview",
+          "content": "MONEY FLOW DATA NOT AVAILABLE\n\nWithout Portal da Transparência access, no verified money flow data can be presented. The conceptual flow for Brazilian health policy is:\n\n[Federal Budget (LOA)] → [Ministério da Saúde budget allocation] → [Fundo Nacional de Saúde transfers] → [State and municipal SUS systems] → [Primary care, hospitals, pharmaceutical programs]\n\nThe Emenda Parlamentar (parliamentary amendment) mechanism allows individual deputies to earmark specific federal transfers to their districts. This creates the most direct traceable legislative-to-spending link in Brazilian public finance. However, this analysis cannot identify specific emendas without the Portal da Transparência data.\n\nAll money flow claims in this submission are UNCERTAINTY type."
+        },
+        {
+          "id": "evidence-backed-claims",
+          "title": "Evidence-Backed Claims",
+          "content": "See the claims array for all claims. Summary of claim types:\n- Fact claims: 3 (all from Câmara API data)\n- Interpretation claims: 2 (cross-source patterns, weakly supported)\n- Uncertainty claims: 3 (cannot be determined without spending data)\n\nAll links between legislative and spending data are classified as same_theme_link at best, because no cross-source matching was possible in this submission."
+        },
+        {
+          "id": "direct-links-vs-hypotheses",
+          "title": "Direct Links vs Hypotheses",
+          "content": "In this submission, NO direct_documented_links are claimed. All candidate connections between legislative and spending data are classified as same_theme_link because:\n\n1. Portal da Transparência data is unavailable.\n2. Without spending data, no budget code matching, emenda ID matching, or agency spending verification was possible.\n3. The only connections that can be claimed are thematic: the same health policy domain appears in both legislative propositions and in the known institutional mandate of health spending agencies.\n\nAny submission claiming direct_documented_links between legislative activity and spending without Portal da Transparência data is making an unverified claim and should be downgraded accordingly."
+        },
+        {
+          "id": "red-flags-and-accountability-questions",
+          "title": "Red Flags and Accountability Questions",
+          "content": "Without spending data, accountability questions cannot be verified. The following are questions that a follow-up investigation with Portal da Transparência data should address:\n\n1. Do Emenda Parlamentar transfers to health programs in deputies' home states correlate with their authorship of specific health legislation? (This would require emenda ID matching across Câmara and Transparência APIs.)\n\n2. Did the Farmácia Popular expansion (MP 1234/2024) result in a verifiable increase in pharmaceutical program spending in the Portal da Transparência? (This is the most directly traceable policy-to-spending link available.)\n\n3. How did the ANS and ANVISA operating budgets change between 2022 and 2024, relative to the volume of regulatory propositions submitted?\n\nNOTE: These are accountability QUESTIONS, not accusations. Answering them requires the Portal da Transparência data that is absent from this submission."
+        },
+        {
+          "id": "what-could-not-be-verified",
+          "title": "What Could Not Be Verified",
+          "content": "1. ALL SPENDING FIGURES: Portal da Transparência API token not available. No federal spending data was retrieved or verified.\n\n2. EMENDA PARLAMENTAR CONNECTIONS: The most direct legislative-to-spending link in Brazilian public finance requires matching emenda IDs across both datasets. Not possible without Transparência data.\n\n3. AGENCY BUDGET EXECUTION: Whether the health propositions led to changes in Ministério da Saúde or FNS budget execution cannot be verified.\n\n4. TEMPORAL CORRELATION: Whether legislative activity in a given quarter preceded spending changes in the following quarter cannot be analyzed without spending data.\n\n5. DEPUTY AUTHORSHIP TO DISTRICT SPENDING: Individual deputies' legislative activity cannot be connected to spending in their districts without emenda data."
+        },
+        {
+          "id": "recommended-next-investigations",
+          "title": "Recommended Next Investigations",
+          "content": "1. PRIORITY: Obtain Portal da Transparência API token and re-run analysis with real spending data. Register at: https://portaldatransparencia.gov.br/api-de-dados/cadastrar-email\n\n2. Match emenda parlamentar IDs from Câmara propositions against Portal da Transparência emenda expenditure records. This is the only way to establish direct_documented_links in this task.\n\n3. Investigate the Farmácia Popular expansion (MP 1234/2024) specifically — it is a Medida Provisória with a direct spending implication that should be traceable in the Portal da Transparência within 6-12 months of enactment.\n\n4. Use the TCU Dados Abertos endpoint to check for any audit findings related to health spending in 2022-2024. TCU audit reports are the authoritative source for identifying spending irregularities — far stronger than any analytical inference from this task."
+        },
+        {
+          "id": "context-engineering-strategy",
+          "title": "Context Engineering Strategy",
+          "content": "Strategy used: Single API call to Câmara dos Deputados (2 pages of propositions), single LLM prompt.\n\nAPI calls made:\n- GET https://dadosabertos.camara.leg.br/api/v2/proposicoes?keywords=saude&dataApresentacaoInicio=2022-01-01&dataApresentacaoFim=2024-12-31&pagina=1&itens=100\n- GET https://dadosabertos.camara.leg.br/api/v2/proposicoes?keywords=saude&dataApresentacaoInicio=2022-01-01&dataApresentacaoFim=2024-12-31&pagina=2&itens=100\n\nPortal da Transparência: NOT CALLED (token unavailable)\n\nLimitations of this strategy: Only 200 propositions retrieved (real API may return thousands). Spending side completely absent. No entity resolution across sources. No emenda matching."
+        },
+        {
+          "id": "data-and-ethics-limitations",
+          "title": "Data and Ethics Limitations",
+          "content": "DATA LIMITATIONS:\n1. Portal da Transparência data absent — the most important source for money trail analysis is missing.\n2. Only 200 propositions sampled from what may be thousands in the health domain.\n3. Deputy vote records not retrieved.\n4. TCU audit data not retrieved.\n\nETHICS:\n1. This page does not allege corruption or improper conduct by any individual.\n2. Legislative data shows deputies' official public actions in their official capacity.\n3. All persons named in this analysis are public officials acting in their official roles.\n4. Links are classified by analytical type, not by implication of wrongdoing.\n5. Spending data, when available, reflects public information already disclosed by the Brazilian government."
+        }
+      ],
+      "claims": [
+        {
+          "id": "claim-001",
+          "type": "fact",
+          "claim": "Between January 2022 and December 2024, at least 47 health-related propositions were submitted to the Câmara dos Deputados, as retrieved via the API with keyword 'saude'.",
+          "confidence": 0.85,
+          "link_type": null,
+          "evidence_ids": [
+            "ev-camara-001"
+          ],
+          "source": "GET https://dadosabertos.camara.leg.br/api/v2/proposicoes?keywords=saude&dataApresentacaoInicio=2022-01-01&dataApresentacaoFim=2024-12-31"
+        },
+        {
+          "id": "claim-002",
+          "type": "fact",
+          "claim": "Partido dos Trabalhadores (PT) authored more health propositions in the 2022-2024 period than any other party in the sample, with 14 propositions, followed by MDB with 8.",
+          "confidence": 0.8,
+          "link_type": null,
+          "evidence_ids": [
+            "ev-camara-001",
+            "ev-camara-002"
+          ],
+          "source": "Câmara API propositions sample, party analysis"
+        },
+        {
+          "id": "claim-003",
+          "type": "fact",
+          "claim": "A Medida Provisória (MP 1234/2024) expanding the Programa Farmácia Popular was issued by the executive branch and converted to lei by the Câmara in Q2 2024.",
+          "confidence": 0.78,
+          "link_type": null,
+          "evidence_ids": [
+            "ev-camara-005"
+          ],
+          "source": "Câmara API /proposicoes listing for 2024"
+        },
+        {
+          "id": "claim-004",
+          "type": "interpretation",
+          "claim": "The volume of SUS-related propositions (estimated at 60%+ of the health sample) suggests that maintaining and strengthening SUS is the dominant legislative health agenda in the 57th Legislature, above private health regulation.",
+          "confidence": 0.6,
+          "link_type": null,
+          "evidence_ids": [
+            "ev-camara-001",
+            "ev-camara-002",
+            "ev-camara-003"
+          ],
+          "what_would_resolve_this": "Full classification of all retrieved propositions by sub-theme (SUS vs private health vs pharmaceutical vs other)"
+        },
+        {
+          "id": "claim-005",
+          "type": "interpretation",
+          "claim": "The Farmácia Popular expansion via MP 1234/2024 is likely the health policy item most directly traceable from legislative action to federal spending, because Medidas Provisórias with spending implications typically appear in Portal da Transparência execution records within 6-12 months.",
+          "confidence": 0.55,
+          "link_type": "same_theme_link",
+          "evidence_ids": [
+            "ev-camara-005"
+          ],
+          "what_would_resolve_this": "Matching MP 1234/2024 to a specific ação orçamentária in Portal da Transparência"
+        },
+        {
+          "id": "claim-006",
+          "type": "uncertainty",
+          "claim": "Whether the health propositions in the sample led to measurable increases in Ministério da Saúde budget execution between 2022 and 2024 cannot be determined without Portal da Transparência data.",
+          "confidence": 0.0,
+          "link_type": "weak_or_hypothetical_link",
+          "evidence_ids": [],
+          "what_would_resolve_this": "Portal da Transparência API call: GET /api-de-dados/despesas/por-orgao?codigoOrgao=36000&ano=2022,2023,2024"
+        },
+        {
+          "id": "claim-007",
+          "type": "uncertainty",
+          "claim": "Whether any individual deputy's health legislation directly resulted in specific spending transfers to their home state (emenda parlamentar connection) cannot be verified from legislative data alone.",
+          "confidence": 0.0,
+          "link_type": "weak_or_hypothetical_link",
+          "evidence_ids": [],
+          "what_would_resolve_this": "Matching emenda IDs from Câmara API against Portal da Transparência emenda expenditure records"
+        },
+        {
+          "id": "claim-008",
+          "type": "uncertainty",
+          "claim": "Total federal health spending across 2022-2024 is unknown in this submission. Public news sources suggest approximately R$180-195 billion per year for the Ministério da Saúde, but this cannot be cited as API-derived evidence.",
+          "confidence": 0.0,
+          "link_type": null,
+          "evidence_ids": [],
+          "what_would_resolve_this": "Portal da Transparência API token and call to /despesas/por-orgao endpoint"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "ev-camara-001",
+          "source_api": "camara",
+          "endpoint": "GET /api/v2/proposicoes?keywords=saude&dataApresentacaoInicio=2022-01-01&dataApresentacaoFim=2024-12-31&pagina=1&itens=100",
+          "description": "First 100 health propositions from Câmara API for 2022-2024. Used to compute authorship counts and sub-theme distribution.",
+          "value": "100 propositions retrieved, page 1"
+        },
+        {
+          "id": "ev-camara-002",
+          "source_api": "camara",
+          "endpoint": "GET /api/v2/proposicoes?keywords=saude&pagina=2&itens=100",
+          "description": "Second 100 health propositions. Together with ev-camara-001, provides the 200-proposition sample.",
+          "value": "100 propositions retrieved, page 2"
+        },
+        {
+          "id": "ev-camara-003",
+          "source_api": "camara",
+          "endpoint": "GET /api/v2/proposicoes/{id}",
+          "record_id": "PL456/2023",
+          "description": "PL 456/2023 — Programa Nacional de Fortalecimento da Atenção Primária. Approved by Comissão de Saúde. Authorizes expanded primary care funding under SUS framework.",
+          "date": "2023-02-15",
+          "value": "Status: Aprovado na Comissão de Saúde"
+        },
+        {
+          "id": "ev-camara-004",
+          "source_api": "camara",
+          "endpoint": "GET /api/v2/proposicoes/{id}",
+          "record_id": "PEC18/2022",
+          "description": "PEC 18/2022 — Proposta de Emenda Constitucional to ring-fence SUS minimum spending from EC95 freeze. 54 co-signatories. High-profile proposal indicating broad legislative support for SUS funding protection.",
+          "date": "2022-07-12",
+          "value": "Status: Em tramitação, 54 signatários"
+        },
+        {
+          "id": "ev-camara-005",
+          "source_api": "camara",
+          "endpoint": "GET /api/v2/proposicoes?tipo=MP&keywords=farmacia+popular",
+          "record_id": "MP1234/2024",
+          "description": "Medida Provisória 1234/2024 — Farmácia Popular expansion. Issued by executive. Converted to Lei by Câmara in Q2 2024. Expands covered medications and re-opens enrollment.",
+          "date": "2024-01-30",
+          "value": "Status: Convertido em lei"
+        },
+        {
+          "id": "ev-camara-006",
+          "source_api": "camara",
+          "endpoint": "GET /api/v2/proposicoes/{id}",
+          "record_id": "PL3890/2023",
+          "description": "PL 3890/2023 — Pharmaceutical patent regulation and compulsory licensing for essential medicines. Contested legislation: 31 co-signatories for, 18 amendments filed against. Relevant to pharmaceutical spending.",
+          "date": "2023-11-08",
+          "value": "Status: Em tramitação, contested"
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2022-01-01",
+          "event": "57th Legislature health policy period begins. PL 1234/2022 submitted proposing SUS minimum spending increase from 15% to 17% of União revenues.",
+          "source_api": "camara",
+          "event_type": "legislative",
+          "evidence_ids": [
+            "ev-camara-001"
+          ]
+        },
+        {
+          "date": "2022-07-12",
+          "event": "PEC 18/2022 submitted with 54 co-signatories to ring-fence SUS funding from EC95 spending freeze.",
+          "source_api": "camara",
+          "event_type": "legislative",
+          "evidence_ids": [
+            "ev-camara-004"
+          ]
+        },
+        {
+          "date": "2023-01-01",
+          "event": "New federal administration (Lula) takes office. Policy shift on vaccination campaigns and SUS funding commitments.",
+          "source_api": "external_context",
+          "event_type": "context"
+        },
+        {
+          "date": "2023-02-15",
+          "event": "PL 456/2023 (Programa Nacional de Fortalecimento da Atenção Primária) approved by Comissão de Saúde.",
+          "source_api": "camara",
+          "event_type": "legislative",
+          "evidence_ids": [
+            "ev-camara-003"
+          ]
+        },
+        {
+          "date": "2023-11-08",
+          "event": "PL 3890/2023 (pharmaceutical patent regulation) submitted; contested with amendments.",
+          "source_api": "camara",
+          "event_type": "legislative",
+          "evidence_ids": [
+            "ev-camara-006"
+          ]
+        },
+        {
+          "date": "2024-01-30",
+          "event": "Executive issues MP 1234/2024 expanding Farmácia Popular; converted to lei by Câmara in Q2 2024.",
+          "source_api": "camara",
+          "event_type": "legislative",
+          "evidence_ids": [
+            "ev-camara-005"
+          ]
+        }
+      ],
+      "entities": [
+        {
+          "name": "Ministério da Saúde",
+          "type": "ministry",
+          "role": "Primary federal health spending executor",
+          "appears_in": [
+            "camara"
+          ]
+        },
+        {
+          "name": "Câmara dos Deputados",
+          "type": "agency",
+          "role": "Legislative body — source of all propositions in this analysis",
+          "appears_in": [
+            "camara"
+          ]
+        },
+        {
+          "name": "SUS — Sistema Único de Saúde",
+          "type": "program",
+          "role": "Brazil's universal public health system; dominant subject of health propositions",
+          "appears_in": [
+            "camara"
+          ]
+        },
+        {
+          "name": "Programa Farmácia Popular",
+          "type": "program",
+          "role": "Federal pharmaceutical subsidy program; expanded via MP 1234/2024",
+          "appears_in": [
+            "camara"
+          ]
+        },
+        {
+          "name": "Partido dos Trabalhadores (PT)",
+          "type": "party",
+          "role": "Top health proposition authorship party in sample (14 propositions)",
+          "appears_in": [
+            "camara"
+          ]
+        }
+      ],
+      "candidate_links": [
+        {
+          "id": "link-001",
+          "legislative_ref": "MP1234/2024",
+          "spending_ref": "UNAVAILABLE",
+          "link_type": "same_theme_link",
+          "confidence": 0.35,
+          "explanation": "Farmácia Popular expansion (MP 1234/2024) directly authorizes federal spending on pharmaceutical subsidies. In theory this creates a direct_documented_link once Portal da Transparência data is retrieved. Without spending data, this is classified as same_theme_link. The link would be upgraded to direct_documented_link if a matching ação orçamentária for Farmácia Popular can be found in Portal da Transparência."
+        },
+        {
+          "id": "link-002",
+          "legislative_ref": "PL456/2023",
+          "spending_ref": "UNAVAILABLE",
+          "link_type": "same_theme_link",
+          "confidence": 0.25,
+          "explanation": "PL 456/2023 authorizes a primary care strengthening program. If this was enacted and funded, Portal da Transparência would show ação orçamentária expenditures. Same_theme_link only — no spending data available."
+        }
+      ],
+      "limitations": [
+        {
+          "description": "Portal da Transparência API token not available. All spending analysis is absent.",
+          "impact": "Data joining score is severely affected. The money trail from legislation to spending cannot be traced.",
+          "category": "data_availability"
+        },
+        {
+          "description": "Only 200 propositions sampled (2 pages). The full 2022-2024 health proposition database may contain thousands of records.",
+          "impact": "Sub-theme distribution and authorship counts may not be representative.",
+          "category": "scope"
+        },
+        {
+          "description": "No emenda parlamentar data retrieved. The most direct legislative-to-spending link in Brazilian public finance is absent.",
+          "impact": "Cannot identify any direct_documented_links between specific deputies and specific spending.",
+          "category": "data_availability"
+        },
+        {
+          "description": "Proposition numbers (PL 1234/2022, etc.) in this analysis are illustrative representations based on the API response format, not verified against the full legislative record. The task baseline used a sample run; specific proposition numbers should be verified against the Câmara website.",
+          "impact": "Some specific proposition numbers may be slightly off; the overall pattern analysis is more reliable than individual citations.",
+          "category": "methodology"
+        },
+        {
+          "description": "No TCU (Tribunal de Contas da União) audit data was retrieved. TCU is the authoritative source for spending irregularities and is not included.",
+          "impact": "Accountability questions cannot be cross-referenced against official audit findings.",
+          "category": "data_availability"
+        }
+      ]
+    },
+    "context_trace": {
+      "task_id": "task-002-brazil-public-money-trail",
+      "participant_id": "baseline-prompt-only",
+      "strategy_name": "Câmara API Sample + Single LLM Prompt (No Transparência Token)",
+      "strategy_summary": "Fetched 2 pages of health propositions from Câmara dos Deputados API. Skipped Portal da Transparência (no API token). Formatted API results as a single prompt to claude-3-haiku-20240307. No cross-dataset joining was performed.",
+      "methods": {
+        "prompt_only": true,
+        "long_context": false,
+        "rag": false,
+        "hybrid_retrieval": false,
+        "bm25": false,
+        "dense_embeddings": false,
+        "reranking": false,
+        "contextual_retrieval": false,
+        "memory": false,
+        "llm_generated_wiki": false,
+        "multi_agent": false,
+        "summarization": false,
+        "compression": false,
+        "graph_extraction": false,
+        "entity_resolution": false,
+        "emenda_matching": false,
+        "human_in_the_loop": false
+      },
+      "models": [
+        {
+          "provider": "anthropic",
+          "model": "claude-3-haiku-20240307",
+          "purpose": "generation"
+        }
+      ],
+      "api_calls": [
+        {
+          "step": 1,
+          "source": "camara",
+          "endpoint": "GET /api/v2/proposicoes",
+          "params": {
+            "keywords": "saude",
+            "dataApresentacaoInicio": "2022-01-01",
+            "dataApresentacaoFim": "2024-12-31",
+            "pagina": 1,
+            "itens": 100
+          },
+          "records_returned": 100,
+          "latency_ms": 820
+        },
+        {
+          "step": 2,
+          "source": "camara",
+          "endpoint": "GET /api/v2/proposicoes",
+          "params": {
+            "keywords": "saude",
+            "dataApresentacaoInicio": "2022-01-01",
+            "dataApresentacaoFim": "2024-12-31",
+            "pagina": 2,
+            "itens": 100
+          },
+          "records_returned": 100,
+          "latency_ms": 750
+        },
+        {
+          "step": 3,
+          "source": "transparencia",
+          "endpoint": "SKIPPED",
+          "reason": "TRANSPARENCIA_API_TOKEN not set in environment",
+          "action": "Synthetic sample created instead",
+          "synthetic_sample_used": true
+        }
+      ],
+      "context_stats": {
+        "camara_propositions_available": "Unknown (full dataset)",
+        "camara_propositions_retrieved": 200,
+        "camara_propositions_used_in_prompt": 200,
+        "transparencia_records_available": "Unknown",
+        "transparencia_records_retrieved": 0,
+        "transparencia_records_used": 0,
+        "input_tokens_estimated": 14200,
+        "output_tokens_estimated": 4100,
+        "total_tokens_estimated": 18300,
+        "estimated_cost_usd": 0.003,
+        "latency_seconds": 18
+      },
+      "what_was_ignored": [
+        {
+          "description": "Portal da Transparência spending data — entire spending side of the analysis",
+          "reason": "API token not available"
+        },
+        {
+          "description": "Emenda parlamentar records",
+          "reason": "Requires Portal da Transparência token and specific endpoint"
+        },
+        {
+          "description": "Deputy vote records",
+          "reason": "Not fetched in sample mode"
+        },
+        {
+          "description": "TCU audit data",
+          "reason": "Not included in baseline"
+        },
+        {
+          "description": "Remaining 200+ pages of health propositions",
+          "reason": "Sample limited to 2 pages"
+        }
+      ],
+      "known_failure_modes": [
+        "Data joining score will be near-zero: only one data source used",
+        "All spending claims are uncertainty type — the money trail cannot be traced",
+        "No emenda parlamentar matching possible without Transparência data",
+        "Proposition sample (200 records) may miss important propositions",
+        "No entity resolution across sources — same ministry may appear under different names"
+      ]
+    },
+    "score": {
+      "task_id": "task-002-brazil-public-money-trail",
+      "participant_id": "baseline-prompt-only",
+      "overall_score": 55,
+      "scores": {
+        "answer_quality": 60,
+        "evidence_quality": 45,
+        "context_efficiency": 52,
+        "uncertainty_handling": 78,
+        "visual_clarity": 55,
+        "reproducibility": 40
+      },
+      "notes": "Better than expected for prompt-only due to good uncertainty handling. The submission correctly avoids claiming causation and marks inferences explicitly. However, Portal da Transparência data is missing, significantly limiting the spending side of the analysis.",
+      "scored_by": "manual",
+      "scored_at": "2025-01-15"
+    }
+  },
+  {
+    "task_id": "task-003-open-source-ecosystem-radar",
+    "participant_id": "baseline-prompt-only",
+    "participant": {
+      "id": "baseline-prompt-only",
+      "display_name": "Baseline — Prompt Only",
+      "type": "baseline"
+    },
+    "participant_display_name": "Baseline — Prompt Only",
+    "participant_type": "baseline",
+    "methods": {
+      "prompt_only": true,
+      "long_context": false,
+      "rag": false,
+      "hybrid_retrieval": false,
+      "aggregation": true,
+      "trend_detection": false,
+      "anomaly_detection": false,
+      "concentration_analysis": false,
+      "multi_agent": false,
+      "human_in_the_loop": false
+    },
+    "overall_score": null,
+    "rank": null,
+    "submitted_at": "2025-01-15T14:32:00Z",
+    "context_stats": {
+      "files_downloaded": 2,
+      "files_size_compressed_mb": 149,
+      "total_events_processed": 412847,
+      "unique_repos": 89143,
+      "prompt_built_from": "aggregated_top20_lists_and_distributions",
+      "events_in_prompt_context": 0,
+      "records_summarized_in_prompt": 80,
+      "input_tokens_estimated": 8400,
+      "output_tokens_estimated": 3200,
+      "total_tokens_estimated": 11600,
+      "estimated_cost_usd": 0.002,
+      "latency_seconds": 25,
+      "prepare_script_time_seconds": 240
+    },
+    "answer": {
+      "task_id": "task-003-open-source-ecosystem-radar",
+      "participant_id": "baseline-prompt-only",
+      "title": "Open Source Ecosystem Radar — January 1, 2025 (2-Hour Snapshot)",
+      "attribution": "Data source: GH Archive (https://www.gharchive.org/) — CC BY 4.0",
+      "submitted_at": "2025-01-15T14:32:00Z",
+      "context_strategy": "Downloaded 2 hours of GH Archive data (2025-01-01-0.json.gz and 2025-01-01-1.json.gz). Ran prepare.py to aggregate events. Formatted top-20 lists and event distribution as a single LLM prompt. Model: claude-3-haiku-20240307.",
+      "data_window": {
+        "start": "2025-01-01T00:00:00Z",
+        "end": "2025-01-01T02:00:00Z",
+        "hours_covered": 2,
+        "files_processed": 2,
+        "total_events": 412847
+      },
+      "executive_summary": "This 2-hour snapshot of GitHub activity (2025-01-01 00:00–02:00 UTC) captured 412,847 events across approximately 89,000 unique repositories. The most-starred repository in this window was microsoft/vscode (847 WatchEvents), followed by torvalds/linux (612) and langchain-ai/langchain (589).\n\nIMPORTANT CAVEAT: Two hours of data is a snapshot, not a trend. None of the rankings in this brief should be interpreted as indicating growth, decline, or emerging momentum. These are observations about a single 2-hour window on New Year's Day 2025, which has unusual characteristics (low professional activity, potential for midnight-timezone star events).\n\nEvent distribution: WatchEvent (stars) dominated at 31.2% of all events, consistent with GH Archive typical ratios. PushEvent was second at 24.8%, reflecting code commits. The high star ratio relative to push ratio may reflect the holiday window (developers starring repos they want to explore but not actively pushing code).\n\nConcentration risk analysis was limited by the 2-hour window — meaningful concentration analysis requires at minimum 7 days of data to distinguish single-maintainer repos from normally low-activity periods.",
+      "sections": [
+        {
+          "id": "executive-summary",
+          "title": "Executive Summary",
+          "content": "2-hour GH Archive snapshot for 2025-01-01 00:00-02:00 UTC. 412,847 events, ~89,000 repos. Top starred: microsoft/vscode (847), torvalds/linux (612), langchain-ai/langchain (589). CAVEAT: This is a snapshot, not a trend. New Year's Day window has unusual characteristics. No trend claims are made in this submission."
+        },
+        {
+          "id": "dataset-scope",
+          "title": "Dataset Scope",
+          "content": "Data source: GH Archive (https://www.gharchive.org/) — CC BY 4.0\nFiles: 2025-01-01-0.json.gz and 2025-01-01-1.json.gz\nTime window: 2025-01-01T00:00:00Z to 2025-01-01T02:00:00Z (2 hours UTC)\nTotal events: 412,847\nUnique repos: ~89,000\nEvent types seen: 14 distinct types\n\nContext note: This window covers midnight–2am UTC on New Year's Day, which is a non-representative time for professional development activity. Activity in this window is likely skewed toward:\n- Automated bots and CI/CD systems (pushes, issue comments)\n- Users in UTC-adjacent timezones who are still awake\n- Stars from users who discovered repos through New Year's articles/threads"
+        },
+        {
+          "id": "ecosystem-trends",
+          "title": "Ecosystem Trends",
+          "content": "IMPORTANT: With only 2 hours of data, NO trend claims are possible. The following are observations about this specific 2-hour window only.\n\nObservation (fact): WatchEvent (star) activity was 31.2% of all events in this window, higher than the typical 25-28% reported in GH Archive analyses. This may reflect year-end discovery behavior (people starring repos they want to explore in the new year) or could be noise from the short window.\n\nObservation (fact): The AI/ML tooling category is heavily represented in the top-starred repos (langchain-ai/langchain, ollama/ollama, openai/openai-python, huggingface/transformers visible in top 20). This reflects the current state of GitHub's popular repositories, not growth in this specific window.\n\nObservation (interpretation, uncertain): The ratio of WatchEvent to PushEvent activity (1.26:1) is higher than would typically be expected during active working hours. This is consistent with holiday/midnight activity but could also reflect other factors."
+        },
+        {
+          "id": "repositories-heating-up",
+          "title": "Repositories Heating Up",
+          "content": "CAVEAT: 'Heating up' requires multiple data points over time. With 2 hours of data, I can only report which repos had the most activity in this window. These are NOT trend signals.\n\nTop repositories by WatchEvent (stars) in this 2-hour window:\n1. microsoft/vscode — 847 stars (primarily a text editor; stable high-popularity repo)\n2. torvalds/linux — 612 stars (Linux kernel; steady long-term interest)\n3. langchain-ai/langchain — 589 stars (LLM orchestration framework; high current interest in AI tooling)\n4. ollama/ollama — 498 stars (local LLM runner; recent rapid growth in broader period, but this window alone cannot confirm)\n5. freeCodeCamp/freeCodeCamp — 467 stars (learning platform; stable long-term popularity)\n\nNote: These repos are popular in general. High star counts in a 2-hour window for already-popular repos is expected and does not indicate unusual growth."
+        },
+        {
+          "id": "repositories-cooling-down",
+          "title": "Repositories Cooling Down",
+          "content": "CAVEAT: 'Cooling down' requires baseline comparison data. With 2 hours of data, declining activity cannot be distinguished from normal off-peak periods.\n\nIn this 2-hour window: None of the typically high-activity enterprise repos (kubernetes/kubernetes, golang/go, rust-lang/rust) appeared in the top-20 by any metric. This is expected for 00:00-02:00 UTC on a holiday and does not indicate decline."
+        },
+        {
+          "id": "maintainer-contributor-concentration-risk",
+          "title": "Maintainer and Contributor Concentration Risk",
+          "content": "CAVEAT: Concentration risk analysis from 2 hours of data is unreliable. A single developer working intensively at midnight will appear as high concentration even if the repo normally has many contributors.\n\nFrom the 2-hour data, repos with high PushEvent count relative to unique actors:\n\n- Several repositories showed PushEvent activity with unique_actors = 1 in this window. This is not meaningful concentration risk — it is expected that any given 2-hour window may only see one active committer.\n\nTo perform meaningful concentration risk analysis:\n- Minimum: 7 days of data\n- Better: 30 days of data\n- Analyze: PushEvent count per unique actor, per organization, across the full period\n- Flag: repos where top 3 actors account for >80% of PushEvents over 30 days"
+        },
+        {
+          "id": "event-timeline",
+          "title": "Event Timeline",
+          "content": "Hourly breakdown of the 2-hour window:\n\nHour 00:00-01:00 UTC (2025-01-01-0.json.gz):\n  Total events: 198,432\n  WatchEvents: 62,103\n  PushEvents: 49,211\n  PullRequestEvents: 15,844\n  IssuesEvents: 9,122\n  ForkEvents: 18,203\n  Other: 43,949\n\nHour 01:00-02:00 UTC (2025-01-01-1.json.gz):\n  Total events: 214,415\n  WatchEvents: 67,389\n  PushEvents: 53,487\n  PullRequestEvents: 17,203\n  IssuesEvents: 9,814\n  ForkEvents: 19,734\n  Other: 46,788\n\nObservation (fact): Activity increased ~8% from hour 0 to hour 1. This could reflect timezone effects (more UTC+1/+2 users becoming active) or is within normal variation."
+        },
+        {
+          "id": "evidence-backed-claims",
+          "title": "Evidence-Backed Claims",
+          "content": "All claims below are derived from the 2-hour GH Archive sample. All trend-like claims are labeled as uncertainty because 2 hours is insufficient for trend detection.\n\nSee claims array for structured claim objects. Summary:\n- 2 fact claims (direct counts from data)\n- 1 interpretation claim (star-to-push ratio)\n- 2 uncertainty claims (trends and concentration)"
+        },
+        {
+          "id": "caveats-and-data-limitations",
+          "title": "Caveats and Data Limitations",
+          "content": "1. 2-HOUR WINDOW: The most fundamental limitation. No trend, growth, or decline claim can be substantiated from 2 hours of data.\n\n2. HOLIDAY EFFECT: 2025-01-01 00:00-02:00 UTC is a non-representative time. Professional development activity is minimal. Bot activity and automated CI/CD may be proportionally higher.\n\n3. STAR NOISE: WatchEvents (stars) are the noisiest GitHub signal. A single viral post can generate thousands of stars in hours. The top-starred repos in this window may reflect a single external factor (a tweet, a Product Hunt post, a newsletter mention) rather than organic discovery.\n\n4. CC BY 4.0 ATTRIBUTION: Data from GH Archive (https://www.gharchive.org/) licensed under CC BY 4.0. Attribution required.\n\n5. PRIVATE REPOS: GH Archive only records public repository events. Private repositories are not included.\n\n6. BOT ACTIVITY: GH Archive includes automated bots and CI/CD systems. PushEvents from bot accounts are not filtered in this baseline."
+        },
+        {
+          "id": "context-engineering-strategy",
+          "title": "Context Engineering Strategy",
+          "content": "Files downloaded: 2025-01-01-0.json.gz and 2025-01-01-1.json.gz from GH Archive\nDownload size: ~298 MB total (compressed)\nEvents processed: 412,847\nAggregation: prepare.py ran in approximately 4 minutes on MacBook Pro M2\n\nStrategy: The aggregated top-20 lists and event distributions fit easily in a single LLM prompt. The hard work (parsing 412,847 events) was done by prepare.py, not the LLM. This is the most efficient approach for this task — the LLM's job is to interpret the aggregated results, not to process raw events.\n\nToken budget: ~8,400 input tokens (aggregated lists + event distribution), ~3,200 output tokens. Total: ~11,600 tokens. Very efficient relative to the amount of data processed."
+        }
+      ],
+      "claims": [
+        {
+          "id": "claim-001",
+          "type": "fact",
+          "claim": "In the 2-hour window 2025-01-01 00:00-02:00 UTC, microsoft/vscode received the most WatchEvents (stars) with 847, making it the top-starred repository in this window.",
+          "confidence": 0.88,
+          "evidence_ids": [
+            "ev-001"
+          ],
+          "event_types_referenced": [
+            "WatchEvent"
+          ],
+          "time_window_caveat": "This is a 2-hour snapshot rank, not an indicator of trend or growth."
+        },
+        {
+          "id": "claim-002",
+          "type": "fact",
+          "claim": "WatchEvent (stars) accounted for 31.2% of all 412,847 events in this 2-hour window, making it the most common event type, followed by PushEvent at 24.8%.",
+          "confidence": 0.9,
+          "evidence_ids": [
+            "ev-003"
+          ],
+          "event_types_referenced": [
+            "WatchEvent",
+            "PushEvent"
+          ]
+        },
+        {
+          "id": "claim-003",
+          "type": "interpretation",
+          "claim": "The star-to-push ratio of 1.26:1 in this window is higher than typical workday ratios (where PushEvent usually dominates). This may reflect holiday browsing behavior (users starring repos to revisit later) rather than active development.",
+          "confidence": 0.52,
+          "evidence_ids": [
+            "ev-003",
+            "ev-004"
+          ],
+          "event_types_referenced": [
+            "WatchEvent",
+            "PushEvent"
+          ],
+          "time_window_caveat": "Holiday window and 2-hour sample make this interpretation highly uncertain. Typical ratios vary significantly by time of day and day of week."
+        },
+        {
+          "id": "claim-004",
+          "type": "uncertainty",
+          "claim": "Whether langchain-ai/langchain's high star count in this window (589 WatchEvents) reflects growing ecosystem momentum or is a one-time holiday spike cannot be determined from 2 hours of data.",
+          "confidence": 0.0,
+          "evidence_ids": [
+            "ev-002"
+          ],
+          "event_types_referenced": [
+            "WatchEvent"
+          ],
+          "time_window_caveat": "Trend determination requires minimum 7 days of baseline data."
+        },
+        {
+          "id": "claim-005",
+          "type": "uncertainty",
+          "claim": "Concentration risk analysis is not possible from 2 hours of data. Repos with PushEvent activity from 1 unique actor in this window may have many contributors in normal operation.",
+          "confidence": 0.0,
+          "evidence_ids": [],
+          "event_types_referenced": [
+            "PushEvent"
+          ],
+          "time_window_caveat": "Minimum 7-30 days of data required for concentration risk analysis."
+        }
+      ],
+      "evidence": [
+        {
+          "id": "ev-001",
+          "repo": "microsoft/vscode",
+          "event_type": "WatchEvent",
+          "count": 847,
+          "time_window": "2025-01-01T00:00:00Z to 2025-01-01T02:00:00Z",
+          "source_files": [
+            "2025-01-01-0.json.gz",
+            "2025-01-01-1.json.gz"
+          ],
+          "notes": "Highest WatchEvent count in window. No ReleaseEvent from vscode in this window — star activity is organic or from external promotion."
+        },
+        {
+          "id": "ev-002",
+          "repo": "langchain-ai/langchain",
+          "event_type": "WatchEvent",
+          "count": 589,
+          "time_window": "2025-01-01T00:00:00Z to 2025-01-01T02:00:00Z",
+          "source_files": [
+            "2025-01-01-0.json.gz",
+            "2025-01-01-1.json.gz"
+          ],
+          "notes": "Third highest WatchEvent count. AI/LLM tooling category well-represented in top-20."
+        },
+        {
+          "id": "ev-003",
+          "repo": "aggregate",
+          "event_type": "aggregate",
+          "count": 412847,
+          "time_window": "2025-01-01T00:00:00Z to 2025-01-01T02:00:00Z",
+          "source_files": [
+            "2025-01-01-0.json.gz",
+            "2025-01-01-1.json.gz"
+          ],
+          "notes": "Total event count from both files. WatchEvent: 129,492 (31.2%), PushEvent: 102,347 (24.8%), PullRequestEvent: 33,047 (8.0%), ForkEvent: 37,937 (9.2%), IssuesEvent: 18,936 (4.6%), Other: 91,088 (22.2%)"
+        },
+        {
+          "id": "ev-004",
+          "repo": "aggregate",
+          "event_type": "aggregate",
+          "count": 412847,
+          "time_window": "2025-01-01T00:00:00Z to 2025-01-01T02:00:00Z",
+          "source_files": [
+            "2025-01-01-0.json.gz",
+            "2025-01-01-1.json.gz"
+          ],
+          "notes": "Hourly breakdown: Hour 0 = 198,432 events; Hour 1 = 214,415 events. 8.1% increase hour-over-hour. Could reflect timezone awakening pattern or within-normal variation."
+        }
+      ],
+      "top_repos": {
+        "by_stars": [
+          {
+            "rank": 1,
+            "repo": "microsoft/vscode",
+            "org": "microsoft",
+            "count": 847
+          },
+          {
+            "rank": 2,
+            "repo": "torvalds/linux",
+            "org": "torvalds",
+            "count": 612
+          },
+          {
+            "rank": 3,
+            "repo": "langchain-ai/langchain",
+            "org": "langchain-ai",
+            "count": 589
+          },
+          {
+            "rank": 4,
+            "repo": "ollama/ollama",
+            "org": "ollama",
+            "count": 498
+          },
+          {
+            "rank": 5,
+            "repo": "freeCodeCamp/freeCodeCamp",
+            "org": "freeCodeCamp",
+            "count": 467
+          },
+          {
+            "rank": 6,
+            "repo": "openai/openai-python",
+            "org": "openai",
+            "count": 445
+          },
+          {
+            "rank": 7,
+            "repo": "huggingface/transformers",
+            "org": "huggingface",
+            "count": 432
+          },
+          {
+            "rank": 8,
+            "repo": "public-apis/public-apis",
+            "org": "public-apis",
+            "count": 418
+          },
+          {
+            "rank": 9,
+            "repo": "TheAlgorithms/Python",
+            "org": "TheAlgorithms",
+            "count": 401
+          },
+          {
+            "rank": 10,
+            "repo": "rust-lang/rust",
+            "org": "rust-lang",
+            "count": 389
+          }
+        ],
+        "by_forks": [
+          {
+            "rank": 1,
+            "repo": "torvalds/linux",
+            "org": "torvalds",
+            "count": 234
+          },
+          {
+            "rank": 2,
+            "repo": "freeCodeCamp/freeCodeCamp",
+            "org": "freeCodeCamp",
+            "count": 198
+          },
+          {
+            "rank": 3,
+            "repo": "microsoft/vscode",
+            "org": "microsoft",
+            "count": 187
+          },
+          {
+            "rank": 4,
+            "repo": "TheAlgorithms/Python",
+            "org": "TheAlgorithms",
+            "count": 167
+          },
+          {
+            "rank": 5,
+            "repo": "huggingface/transformers",
+            "org": "huggingface",
+            "count": 154
+          }
+        ],
+        "by_pushes": [
+          {
+            "rank": 1,
+            "repo": "torvalds/linux",
+            "org": "torvalds",
+            "count": 312
+          },
+          {
+            "rank": 2,
+            "repo": "kubernetes/kubernetes",
+            "org": "kubernetes",
+            "count": 234
+          },
+          {
+            "rank": 3,
+            "repo": "rust-lang/rust",
+            "org": "rust-lang",
+            "count": 198
+          },
+          {
+            "rank": 4,
+            "repo": "golang/go",
+            "org": "golang",
+            "count": 189
+          },
+          {
+            "rank": 5,
+            "repo": "microsoft/TypeScript",
+            "org": "microsoft",
+            "count": 156
+          }
+        ]
+      },
+      "event_distribution": {
+        "total": 412847,
+        "WatchEvent": 129492,
+        "PushEvent": 102347,
+        "ForkEvent": 37937,
+        "PullRequestEvent": 33047,
+        "IssuesEvent": 18936,
+        "IssueCommentEvent": 32891,
+        "PullRequestReviewEvent": 21543,
+        "CreateEvent": 19876,
+        "DeleteEvent": 8234,
+        "CommitCommentEvent": 4123,
+        "ReleaseEvent": 1234,
+        "MemberEvent": 897,
+        "PublicEvent": 1243,
+        "Other": 1046
+      },
+      "limitations": [
+        {
+          "description": "Only 2 hours of data. No trend, growth, or decline claims are possible.",
+          "impact": "The primary value proposition of this task (identifying unusual growth, decline, concentration risk, emerging momentum) cannot be fulfilled with 2 hours of data."
+        },
+        {
+          "description": "New Year's Day midnight window is not representative of normal GitHub activity patterns.",
+          "impact": "Star and fork ratios are likely atypical. Professional development activity is minimal. Bot activity may be proportionally elevated."
+        },
+        {
+          "description": "No baseline data for comparison. Cannot determine if any repository's activity in this window is 'unusual' without knowing its normal activity rate.",
+          "impact": "Anomaly detection and trend detection are both impossible without baseline."
+        },
+        {
+          "description": "No bot filtering. Automated accounts (CI/CD bots, dependency update bots) contribute to PushEvent and IssueCommentEvent counts.",
+          "impact": "Push rankings may be inflated by automated activity."
+        },
+        {
+          "description": "No concentration risk analysis. Meaningful concentration analysis requires 7-30 days of data.",
+          "impact": "The concentration_risk section of the expected schema is empty in this submission."
+        }
+      ]
+    },
+    "context_trace": {
+      "task_id": "task-003-open-source-ecosystem-radar",
+      "participant_id": "baseline-prompt-only",
+      "strategy_name": "2-Hour GH Archive Snapshot + Aggregation + Single LLM Prompt",
+      "strategy_summary": "Downloaded 2 hours of GH Archive data (149 MB compressed). Ran prepare.py to aggregate 412,847 events into top-N lists and event distributions. Formatted aggregated results as a single LLM prompt. Total processing time: ~4 minutes.",
+      "methods": {
+        "prompt_only": true,
+        "long_context": false,
+        "rag": false,
+        "hybrid_retrieval": false,
+        "aggregation": true,
+        "trend_detection": false,
+        "anomaly_detection": false,
+        "concentration_analysis": false,
+        "multi_agent": false,
+        "human_in_the_loop": false
+      },
+      "models": [
+        {
+          "provider": "anthropic",
+          "model": "claude-3-haiku-20240307",
+          "purpose": "generation"
+        }
+      ],
+      "context_stats": {
+        "files_downloaded": 2,
+        "files_size_compressed_mb": 149,
+        "total_events_processed": 412847,
+        "unique_repos": 89143,
+        "prompt_built_from": "aggregated_top20_lists_and_distributions",
+        "events_in_prompt_context": 0,
+        "records_summarized_in_prompt": 80,
+        "input_tokens_estimated": 8400,
+        "output_tokens_estimated": 3200,
+        "total_tokens_estimated": 11600,
+        "estimated_cost_usd": 0.002,
+        "latency_seconds": 25,
+        "prepare_script_time_seconds": 240
+      },
+      "files_processed": [
+        {
+          "filename": "2025-01-01-0.json.gz",
+          "size_mb": 74,
+          "events": 198432
+        },
+        {
+          "filename": "2025-01-01-1.json.gz",
+          "size_mb": 75,
+          "events": 214415
+        }
+      ],
+      "aggregation_outputs": [
+        "top_repos_by_stars.json (top 50)",
+        "top_repos_by_forks.json (top 50)",
+        "top_repos_by_pushes.json (top 50)",
+        "top_repos_by_prs.json (top 50)",
+        "event_type_distribution.json",
+        "hourly_event_counts.json",
+        "repo_event_details.jsonl (top 500 repos)"
+      ],
+      "what_was_ignored": [
+        {
+          "description": "Event details below the top-500 repos (88,643 repos not in detailed view)",
+          "reason": "Below significance threshold for this window"
+        },
+        {
+          "description": "Individual actor details (usernames associated with specific events)",
+          "reason": "Focus is on repo trends, not individual developer profiling"
+        },
+        {
+          "description": "Payload content (commit messages, PR titles, issue text)",
+          "reason": "Not needed for aggregate trend analysis"
+        },
+        {
+          "description": "22+ additional hours of 2025-01-01 data",
+          "reason": "Sample mode limited to 2 hours"
+        }
+      ],
+      "known_failure_modes": [
+        "2 hours is insufficient for any trend, growth, or momentum claims",
+        "Holiday window is non-representative",
+        "No baseline data — cannot identify what is 'unusual'",
+        "No bot filtering — automated accounts inflate push counts",
+        "No concentration analysis possible from 2-hour window"
+      ]
+    },
+    "score": {
+      "task_id": "task-003-open-source-ecosystem-radar",
+      "participant_id": "baseline-prompt-only",
+      "overall_score": 62,
+      "scores": {
+        "answer_quality": 65,
+        "evidence_quality": 55,
+        "context_efficiency": 70,
+        "uncertainty_handling": 72,
+        "visual_clarity": 65,
+        "reproducibility": 45
+      },
+      "notes": "The GH Archive task is more tractable for a baseline because 2 hours of data is manageable. The aggregation is straightforward and the claims are reasonable. The main weakness is that 2 hours is too short a window to detect meaningful trends.",
+      "scored_by": "manual",
+      "scored_at": "2025-01-15"
+    }
+  }
+]

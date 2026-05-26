@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://context-engineering-arena.dev/schemas/submission.schema.json",
+  "title": "Submission",
+  "type": "object",
+  "required": ["task_id", "participant_id"],
+  "properties": {
+    "task_id": { "type": "string" },
+    "participant_id": { "type": "string" },
+    "submitted_at": { "type": "string" },
+    "version": { "type": "string" }
+  }
+}

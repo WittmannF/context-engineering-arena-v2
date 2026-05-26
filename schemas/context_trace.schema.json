@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://context-engineering-arena.dev/schemas/context_trace.schema.json",
+  "title": "ContextTrace",
+  "type": "object",
+  "required": ["task_id", "participant_id", "strategy_name", "methods"],
+  "properties": {
+    "task_id": { "type": "string" },
+    "participant_id": { "type": "string" },
+    "strategy_name": { "type": "string" },
+    "strategy_summary": { "type": "string" },
+    "methods": {
+      "type": "object",
+      "properties": {
+        "prompt_only": { "type": "boolean" },
+        "long_context": { "type": "boolean" },
+        "rag": { "type": "boolean" },
+        "hybrid_retrieval": { "type": "boolean" },
+        "bm25": { "type": "boolean" },
+        "dense_embeddings": { "type": "boolean" },
+        "reranking": { "type": "boolean" },
+        "contextual_retrieval": { "type": "boolean" },
+        "memory": { "type": "boolean" },
+        "llm_generated_wiki": { "type": "boolean" },
+        "multi_agent": { "type": "boolean" },
+        "summarization": { "type": "boolean" },
+        "compression": { "type": "boolean" },
+        "graph_extraction": { "type": "boolean" },
+        "human_in_the_loop": { "type": "boolean" }
+      }
+    },
+    "models": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "provider": { "type": "string" },
+          "model": { "type": "string" },
+          "purpose": { "type": "string", "enum": ["generation", "embedding", "reranking", "judging", "extraction"] }
+        }
+      }
+    },
+    "context_stats": {
+      "type": "object",
+      "properties": {
+        "documents_available": { "type": "number" },
+        "documents_opened": { "type": "number" },
+        "documents_retrieved": { "type": "number" },
+        "documents_used_in_final": { "type": "number" },
+        "chunks_created": { "type": "number" },
+        "chunks_retrieved": { "type": "number" },
+        "chunks_used_in_final": { "type": "number" },
+        "input_tokens_estimated": { "type": "number" },
+        "output_tokens_estimated": { "type": "number" },
+        "total_tokens_estimated": { "type": "number" },
+        "estimated_cost_usd": { "type": "number" },
+        "latency_seconds": { "type": "number" }
+      }
+    },
+    "retrieval_trace": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "step": { "type": "integer" },
+          "query": { "type": "string" },
+          "method": { "type": "string" },
+          "top_k": { "type": "integer" },
+          "selected_evidence_ids": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "compression_trace": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "step": { "type": "integer" },
+          "input_description": { "type": "string" },
+          "output_description": { "type": "string" },
+          "compression_ratio_estimated": { "type": "number" }
+        }
+      }
+    },
+    "what_was_ignored": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "description": { "type": "string" },
+          "reason": { "type": "string", "enum": ["irrelevant", "duplicate", "low_confidence", "out_of_scope", "unsafe", "unknown"] }
+        }
+      }
+    },
+    "known_failure_modes": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

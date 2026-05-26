@@ -1,0 +1,26 @@
+task_id: task-001-enron-investigation
+sources:
+  - name: "Enron Email Dataset (CMU)"
+    url: "https://www.cs.cmu.edu/~enron/enron_mail_20150507.tar.gz"
+    license: "Public domain (FERC investigation release)"
+    access_method: direct_download
+    expected_size: "1.7 GB compressed"
+    requires_token: false
+    download_script: "scripts/download.py"
+    sample_available: true
+
+preparation_steps:
+  - "Extract tar.gz archive"
+  - "Parse emails using Python email.parser module"
+  - "Extract sender, recipients, cc, bcc, subject, date, body, file path, user folder"
+  - "Normalize timestamps to UTC where possible"
+  - "Write processed JSONL to data/processed/task-001-enron-investigation/emails.jsonl"
+  - "Generate dataset stats JSON"
+
+ethics_notes:
+  - "This dataset contains personal emails of real individuals."
+  - "Several individuals in this dataset were investigated, prosecuted, or acquitted."
+  - "Handle all content about individuals with journalistic care."
+  - "Do not reproduce email bodies verbatim beyond short evidentiary excerpts in submissions."
+
+sample_mode_description: "Sample mode downloads only 1000 emails from the dataset for local testing. Full mode processes the complete archive."

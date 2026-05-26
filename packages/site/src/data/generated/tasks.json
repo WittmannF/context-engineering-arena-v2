@@ -1,0 +1,287 @@
+[
+  {
+    "id": "task-001-enron-investigation",
+    "title": "The Enron Investigation Brief",
+    "short_description": "Given the Enron email archive, build an evidence-backed investigative page revealing warning signs, communication patterns, and internal tensions before the collapse.",
+    "long_description": "The Enron Email Dataset contains over 500,000 emails from ~150 Enron employees, made public during the FERC investigation. This task challenges participants to process this messy human communication corpus and build an investigative page that helps readers understand what was happening inside Enron before its collapse.\n\nThe task tests email parsing, entity extraction, temporal reasoning, topic clustering, evidence selection, graph thinking, and uncertainty handling. A good submission should distinguish directly supported facts from plausible interpretations, and explicitly flag speculation.\n",
+    "benchmark_question": "What warning signs, coordination patterns, or internal tensions were visible before the collapse, and what evidence supports those conclusions?",
+    "domain": "corporate-investigation",
+    "difficulty": "hard",
+    "tags": [
+      "email",
+      "investigation",
+      "nlp",
+      "temporal-reasoning",
+      "entity-extraction",
+      "graph",
+      "corporate"
+    ],
+    "dataset": {
+      "name": "Enron Email Dataset (CMU)",
+      "source_url": "https://www.cs.cmu.edu/~enron/",
+      "license": "Public domain (released by FERC for investigation purposes)",
+      "access_method": "direct_download",
+      "expected_size": "~1.7 GB compressed, 517,401 emails",
+      "sample_available": true
+    },
+    "outputs": {
+      "required_sections": [
+        "executive-summary",
+        "investigative-timeline",
+        "key-people-and-communication-patterns",
+        "main-themes-and-topic-clusters",
+        "evidence-backed-claims",
+        "contradictions-and-weak-signals",
+        "documents-that-mattered-most",
+        "what-was-ignored-and-why",
+        "context-engineering-strategy",
+        "ethical-and-evidentiary-limitations"
+      ],
+      "required_visualizations": [
+        "timeline",
+        "people-graph-or-placeholder",
+        "claim-evidence-table",
+        "communication-hub-cards",
+        "topic-cluster-cards",
+        "uncertainty-box"
+      ],
+      "required_claim_types": [
+        "fact",
+        "interpretation",
+        "uncertainty"
+      ]
+    },
+    "scoring": {
+      "dimensions": [
+        "evidence_quality",
+        "timeline_quality",
+        "entity_extraction_quality",
+        "uncertainty_handling",
+        "hallucination_avoidance",
+        "context_efficiency",
+        "usefulness_of_final_page"
+      ],
+      "automatic_metrics": [
+        "evidence_id_coverage_rate",
+        "claim_confidence_distribution",
+        "timeline_completeness"
+      ],
+      "human_metrics": [
+        "factual_accuracy",
+        "investigative_insight",
+        "visual_clarity",
+        "uncertainty_handling_quality"
+      ]
+    },
+    "safety": {
+      "privacy_risks": [
+        "Dataset contains personal emails of real individuals, some of whom faced prosecution.",
+        "Some individuals in the dataset were not senior executives and had peripheral involvement."
+      ],
+      "legal_risks": [
+        "This dataset was released under FERC subpoena; treat as public record.",
+        "Do not make defamatory claims against named individuals without strong evidence."
+      ],
+      "recommended_mitigations": [
+        "Focus on organizational patterns rather than individual blame.",
+        "Clearly distinguish evidence from interpretation.",
+        "Mark all inferences about intent as uncertain.",
+        "Do not reproduce email content verbatim beyond short evidentiary excerpts."
+      ]
+    },
+    "has_sample": true,
+    "num_submissions": 2,
+    "top_score": null
+  },
+  {
+    "id": "task-002-brazil-public-money-trail",
+    "title": "Brazil Public Money Trail",
+    "short_description": "Trace a Brazilian public policy theme from legislative activity to federal spending using open government data.",
+    "long_description": "This civic accountability task connects fragmented public information across Brazilian government data sources: the Câmara dos Deputados Dados Abertos API (legislative activity), the Portal da Transparência (federal spending), and optionally TCU data (oversight signals).\n\nParticipants must join heterogeneous datasets, resolve entity references, trace thematic connections, and build an evidence-backed page that clearly distinguishes verified facts from plausible inferences.\n\nThis task strongly penalizes implying causation without evidence and rewards transparent uncertainty, clean source attribution, and identification of gaps in public data.\n",
+    "benchmark_question": "Trace one Brazilian public policy theme from legislative activity to federal public spending. What can be verified, which actors and agencies appear, what changed over time, and what questions remain open?",
+    "domain": "public-accountability",
+    "difficulty": "expert",
+    "tags": [
+      "civic-data",
+      "government",
+      "multi-source",
+      "entity-resolution",
+      "portuguese",
+      "brazil",
+      "transparency"
+    ],
+    "dataset": {
+      "name": "Câmara dos Deputados Dados Abertos + Portal da Transparência",
+      "source_url": "https://dadosabertos.camara.leg.br/",
+      "license": "Open Government Data (Lei de Acesso à Informação)",
+      "access_method": "public_api",
+      "expected_size": "Variable; depends on theme, year range, and sources used",
+      "sample_available": true
+    },
+    "outputs": {
+      "required_sections": [
+        "executive-summary",
+        "policy-theme-and-scope",
+        "legislative-activity-timeline",
+        "public-spending-timeline",
+        "actor-and-institution-map",
+        "money-flow-overview",
+        "evidence-backed-claims",
+        "direct-links-vs-hypotheses",
+        "red-flags-and-accountability-questions",
+        "what-could-not-be-verified",
+        "recommended-next-investigations",
+        "context-engineering-strategy",
+        "data-and-ethics-limitations"
+      ],
+      "required_visualizations": [
+        "policy-to-money-timeline",
+        "actor-institution-spending-graph-placeholder",
+        "spending-breakdown-cards",
+        "claim-evidence-table",
+        "direct-vs-hypothetical-link-badges",
+        "uncertainty-panel",
+        "fact-vs-inference-section",
+        "context-xray-panel"
+      ],
+      "required_claim_types": [
+        "fact",
+        "interpretation",
+        "uncertainty"
+      ]
+    },
+    "scoring": {
+      "dimensions": [
+        "quality_of_data_joining",
+        "correctness_of_legislative_timeline",
+        "correctness_of_public_spending_summary",
+        "evidence_quality",
+        "distinction_between_fact_and_inference",
+        "uncertainty_handling",
+        "civic_usefulness",
+        "visual_clarity",
+        "hallucination_avoidance",
+        "context_efficiency",
+        "reproducibility"
+      ],
+      "automatic_metrics": [
+        "evidence_id_coverage_rate",
+        "claim_type_distribution",
+        "source_attribution_completeness"
+      ],
+      "human_metrics": [
+        "factual_accuracy",
+        "civic_insight_quality",
+        "link_classification_quality"
+      ]
+    },
+    "safety": {
+      "privacy_risks": [
+        "Public spending data includes names of legal entities and their public officials.",
+        "Legislative data includes public officials acting in their official capacity.",
+        "Only display data that is already publicly available and relevant to the analysis."
+      ],
+      "legal_risks": [
+        "Do not assert corruption, illegal conduct, or improper influence without direct evidence.",
+        "Correlation between actors, themes, agencies, and spending is NOT causation.",
+        "Treat all links as thematic or analytical unless documented directly."
+      ],
+      "recommended_mitigations": [
+        "Always classify links: direct_documented_link, same_theme_link, same_actor_link, etc.",
+        "Include a prominent disclaimer that this page organizes public data and does not allege wrongdoing.",
+        "Explain bureaucratic processes to contextualize apparent patterns.",
+        "Include a data coverage and limitations section."
+      ]
+    },
+    "has_sample": true,
+    "num_submissions": 1,
+    "top_score": null
+  },
+  {
+    "id": "task-003-open-source-ecosystem-radar",
+    "title": "Open Source Ecosystem Radar",
+    "short_description": "Using GH Archive public GitHub event data, identify which repositories or ecosystems show unusual growth, decline, or concentration risk.",
+    "long_description": "GH Archive records millions of GitHub events every hour: pushes, pull requests, issues, stars, forks, releases, and more. This task challenges participants to process this large event stream and build a developer-focused page that identifies trends, anomalies, and concentration risks in the open-source ecosystem.\n\nThe task tests large-scale event processing, filtering, aggregation, trend detection, signal vs noise discrimination, repository and entity extraction, temporal summarization, and visual storytelling for a technical audience.\n",
+    "benchmark_question": "Which open-source repositories or ecosystems show unusual growth, decline, concentration risk, or emerging momentum in the selected time window?",
+    "domain": "open-source",
+    "difficulty": "medium",
+    "tags": [
+      "github",
+      "event-data",
+      "trend-detection",
+      "aggregation",
+      "developer-tools",
+      "data-engineering"
+    ],
+    "dataset": {
+      "name": "GH Archive",
+      "source_url": "https://www.gharchive.org/",
+      "license": "CC BY 4.0",
+      "access_method": "direct_download",
+      "expected_size": "~100-500 MB per day depending on volume",
+      "sample_available": true
+    },
+    "outputs": {
+      "required_sections": [
+        "executive-summary",
+        "dataset-scope",
+        "ecosystem-trends",
+        "repositories-heating-up",
+        "repositories-cooling-down",
+        "maintainer-contributor-concentration-risk",
+        "event-timeline",
+        "evidence-backed-claims",
+        "caveats-and-data-limitations",
+        "context-engineering-strategy"
+      ],
+      "required_visualizations": [
+        "trend-cards",
+        "repository-leaderboard",
+        "event-type-distribution",
+        "anomaly-cards",
+        "claim-evidence-table",
+        "ecosystem-radar-chart-placeholder",
+        "why-this-matters-section"
+      ],
+      "required_claim_types": [
+        "fact",
+        "interpretation",
+        "uncertainty"
+      ]
+    },
+    "scoring": {
+      "dimensions": [
+        "correct_aggregation",
+        "ability_to_distinguish_noise_from_signal",
+        "useful_trend_explanations",
+        "evidence_quality",
+        "context_efficiency",
+        "clarity_for_developers"
+      ],
+      "automatic_metrics": [
+        "evidence_id_coverage_rate",
+        "claim_backed_percentage"
+      ],
+      "human_metrics": [
+        "trend_insight_quality",
+        "developer_usefulness"
+      ]
+    },
+    "safety": {
+      "privacy_risks": [
+        "GH Archive records public GitHub usernames — these are already public.",
+        "Do not expose private repo content, which should not appear in the dataset."
+      ],
+      "legal_risks": [
+        "CC BY 4.0 license — attribution required."
+      ],
+      "recommended_mitigations": [
+        "Focus on repository and ecosystem trends, not individual developer surveillance.",
+        "Aggregate data where possible rather than profiling individuals."
+      ]
+    },
+    "has_sample": true,
+    "num_submissions": 1,
+    "top_score": null
+  }
+]

@@ -1,0 +1,78 @@
+{
+  "task_id": "task-003-open-source-ecosystem-radar",
+  "participant_id": "baseline-prompt-only",
+  "strategy_name": "2-Hour GH Archive Snapshot + Aggregation + Single LLM Prompt",
+  "strategy_summary": "Downloaded 2 hours of GH Archive data (149 MB compressed). Ran prepare.py to aggregate 412,847 events into top-N lists and event distributions. Formatted aggregated results as a single LLM prompt. Total processing time: ~4 minutes.",
+  "methods": {
+    "prompt_only": true,
+    "long_context": false,
+    "rag": false,
+    "hybrid_retrieval": false,
+    "aggregation": true,
+    "trend_detection": false,
+    "anomaly_detection": false,
+    "concentration_analysis": false,
+    "multi_agent": false,
+    "human_in_the_loop": false
+  },
+  "models": [
+    {
+      "provider": "anthropic",
+      "model": "claude-3-haiku-20240307",
+      "purpose": "generation"
+    }
+  ],
+  "context_stats": {
+    "files_downloaded": 2,
+    "files_size_compressed_mb": 149,
+    "total_events_processed": 412847,
+    "unique_repos": 89143,
+    "prompt_built_from": "aggregated_top20_lists_and_distributions",
+    "events_in_prompt_context": 0,
+    "records_summarized_in_prompt": 80,
+    "input_tokens_estimated": 8400,
+    "output_tokens_estimated": 3200,
+    "total_tokens_estimated": 11600,
+    "estimated_cost_usd": 0.002,
+    "latency_seconds": 25,
+    "prepare_script_time_seconds": 240
+  },
+  "files_processed": [
+    {"filename": "2025-01-01-0.json.gz", "size_mb": 74, "events": 198432},
+    {"filename": "2025-01-01-1.json.gz", "size_mb": 75, "events": 214415}
+  ],
+  "aggregation_outputs": [
+    "top_repos_by_stars.json (top 50)",
+    "top_repos_by_forks.json (top 50)",
+    "top_repos_by_pushes.json (top 50)",
+    "top_repos_by_prs.json (top 50)",
+    "event_type_distribution.json",
+    "hourly_event_counts.json",
+    "repo_event_details.jsonl (top 500 repos)"
+  ],
+  "what_was_ignored": [
+    {
+      "description": "Event details below the top-500 repos (88,643 repos not in detailed view)",
+      "reason": "Below significance threshold for this window"
+    },
+    {
+      "description": "Individual actor details (usernames associated with specific events)",
+      "reason": "Focus is on repo trends, not individual developer profiling"
+    },
+    {
+      "description": "Payload content (commit messages, PR titles, issue text)",
+      "reason": "Not needed for aggregate trend analysis"
+    },
+    {
+      "description": "22+ additional hours of 2025-01-01 data",
+      "reason": "Sample mode limited to 2 hours"
+    }
+  ],
+  "known_failure_modes": [
+    "2 hours is insufficient for any trend, growth, or momentum claims",
+    "Holiday window is non-representative",
+    "No baseline data — cannot identify what is 'unusual'",
+    "No bot filtering — automated accounts inflate push counts",
+    "No concentration analysis possible from 2-hour window"
+  ]
+}

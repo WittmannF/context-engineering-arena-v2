@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://context-engineering-arena.dev/schemas/participant.schema.json",
+  "title": "Participant",
+  "type": "object",
+  "required": ["id", "display_name", "type"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "display_name": { "type": "string" },
+    "type": { "type": "string", "enum": ["baseline", "community", "team", "bot"] },
+    "website": { "type": "string" },
+    "github": { "type": "string" },
+    "description": { "type": "string" },
+    "contact": { "type": "string" }
+  }
+}

@@ -1,0 +1,7 @@
+id: baseline-prompt-only
+display_name: "Baseline — Prompt Only"
+type: baseline
+website: ""
+github: ""
+description: "A simple baseline that uses a small random sample of the corpus and a single LLM prompt. This baseline demonstrates why naive prompting is insufficient for this benchmark. Use it as a starting point, not a goal."
+contact: ""

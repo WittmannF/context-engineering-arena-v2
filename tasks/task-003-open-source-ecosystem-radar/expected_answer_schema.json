@@ -1,0 +1,213 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Task 003 Answer Schema",
+  "description": "JSON Schema for valid submissions to task-003-open-source-ecosystem-radar",
+  "type": "object",
+  "required": [
+    "task_id",
+    "participant_id",
+    "title",
+    "executive_summary",
+    "data_window",
+    "sections",
+    "claims",
+    "evidence",
+    "top_repos",
+    "limitations",
+    "attribution"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "const": "task-003-open-source-ecosystem-radar"
+    },
+    "participant_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 10
+    },
+    "executive_summary": {
+      "type": "string",
+      "minLength": 100
+    },
+    "attribution": {
+      "type": "string",
+      "description": "Required CC BY 4.0 attribution to GH Archive",
+      "minLength": 20
+    },
+    "data_window": {
+      "type": "object",
+      "required": ["start", "end", "hours_covered", "files_processed"],
+      "properties": {
+        "start": {"type": "string", "description": "ISO 8601 start datetime"},
+        "end": {"type": "string", "description": "ISO 8601 end datetime"},
+        "hours_covered": {"type": "integer", "minimum": 1},
+        "files_processed": {"type": "integer", "minimum": 1},
+        "total_events": {"type": "integer"}
+      }
+    },
+    "sections": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "content"],
+        "properties": {
+          "id": {"type": "string"},
+          "title": {"type": "string"},
+          "content": {"type": "string", "minLength": 50}
+        }
+      }
+    },
+    "claims": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "claim", "confidence"],
+        "properties": {
+          "id": {"type": "string"},
+          "type": {
+            "type": "string",
+            "enum": ["fact", "interpretation", "uncertainty"]
+          },
+          "claim": {"type": "string", "minLength": 20},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+          "evidence_ids": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "event_types_referenced": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "time_window_caveat": {
+            "type": "string",
+            "description": "Required caveat if data window is less than 7 days and claim is about trends"
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["id", "repo", "event_type", "count"],
+        "properties": {
+          "id": {"type": "string"},
+          "repo": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+$",
+            "description": "Repository in org/repo format"
+          },
+          "event_type": {
+            "type": "string",
+            "enum": [
+              "WatchEvent",
+              "PushEvent",
+              "PullRequestEvent",
+              "IssuesEvent",
+              "ForkEvent",
+              "ReleaseEvent",
+              "CreateEvent",
+              "MemberEvent",
+              "PublicEvent",
+              "CommitCommentEvent",
+              "IssueCommentEvent",
+              "PullRequestReviewEvent",
+              "DeleteEvent",
+              "GollumEvent",
+              "aggregate"
+            ]
+          },
+          "count": {"type": "integer", "minimum": 0},
+          "time_window": {"type": "string"},
+          "source_files": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "notes": {"type": "string"}
+        }
+      }
+    },
+    "top_repos": {
+      "type": "object",
+      "description": "Top repositories by different signals",
+      "properties": {
+        "by_stars": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["rank", "repo", "count"],
+            "properties": {
+              "rank": {"type": "integer"},
+              "repo": {"type": "string"},
+              "count": {"type": "integer"},
+              "org": {"type": "string"},
+              "language": {"type": "string"}
+            }
+          }
+        },
+        "by_forks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["rank", "repo", "count"],
+            "properties": {
+              "rank": {"type": "integer"},
+              "repo": {"type": "string"},
+              "count": {"type": "integer"}
+            }
+          }
+        },
+        "by_pushes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["rank", "repo", "count"],
+            "properties": {
+              "rank": {"type": "integer"},
+              "repo": {"type": "string"},
+              "count": {"type": "integer"}
+            }
+          }
+        }
+      }
+    },
+    "event_distribution": {
+      "type": "object",
+      "description": "Total events by type across the data window"
+    },
+    "concentration_risk": {
+      "type": "array",
+      "description": "Optional: repos or ecosystems with high concentration risk",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ecosystem": {"type": "string"},
+          "risk_type": {"type": "string"},
+          "description": {"type": "string"},
+          "evidence_id": {"type": "string"}
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["description"],
+        "properties": {
+          "description": {"type": "string"},
+          "impact": {"type": "string"}
+        }
+      }
+    },
+    "submitted_at": {"type": "string"},
+    "context_strategy": {"type": "string"}
+  }
+}

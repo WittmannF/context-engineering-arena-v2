@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://context-engineering-arena.dev/schemas/task.schema.json",
+  "title": "Task",
+  "type": "object",
+  "required": ["id", "title", "short_description", "benchmark_question", "domain", "difficulty"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^task-[0-9]{3}-[a-z0-9-]+$" },
+    "title": { "type": "string" },
+    "short_description": { "type": "string" },
+    "long_description": { "type": "string" },
+    "benchmark_question": { "type": "string" },
+    "domain": { "type": "string" },
+    "difficulty": { "type": "string", "enum": ["easy", "medium", "hard", "expert"] },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "dataset": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "source_url": { "type": "string" },
+        "license": { "type": "string" },
+        "access_method": { "type": "string" },
+        "expected_size": { "type": "string" },
+        "sample_available": { "type": "boolean" }
+      }
+    },
+    "outputs": {
+      "type": "object",
+      "properties": {
+        "required_sections": { "type": "array", "items": { "type": "string" } },
+        "required_visualizations": { "type": "array", "items": { "type": "string" } },
+        "required_claim_types": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "scoring": {
+      "type": "object",
+      "properties": {
+        "dimensions": { "type": "array", "items": { "type": "string" } },
+        "automatic_metrics": { "type": "array", "items": { "type": "string" } },
+        "human_metrics": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "safety": {
+      "type": "object",
+      "properties": {
+        "privacy_risks": { "type": "array", "items": { "type": "string" } },
+        "legal_risks": { "type": "array", "items": { "type": "string" } },
+        "recommended_mitigations": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

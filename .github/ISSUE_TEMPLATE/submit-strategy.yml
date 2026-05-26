@@ -1,0 +1,64 @@
+name: Submit a Strategy (Pre-PR Discussion)
+description: Discuss your strategy before opening a pull request
+title: "[Strategy] "
+labels: ["submission"]
+body:
+  - type: input
+    id: participant_name
+    attributes:
+      label: Participant / Team Name
+      placeholder: "e.g., my-team or acme-rag"
+    validations:
+      required: true
+
+  - type: input
+    id: task_id
+    attributes:
+      label: Task ID
+      placeholder: "e.g., task-001-enron-investigation"
+    validations:
+      required: true
+
+  - type: textarea
+    id: strategy_summary
+    attributes:
+      label: Strategy Summary
+      description: Briefly describe your context engineering approach.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: methods_used
+    attributes:
+      label: Methods Used
+      options:
+        - label: prompt_only
+        - label: rag
+        - label: hybrid_retrieval
+        - label: long_context
+        - label: multi_agent
+        - label: compression
+        - label: graph_extraction
+        - label: memory
+        - label: bm25
+        - label: dense_embeddings
+        - label: reranking
+        - label: summarization
+        - label: other
+
+  - type: dropdown
+    id: reproducibility
+    attributes:
+      label: Reproducibility Level
+      options:
+        - fully_reproducible
+        - partially_reproducible
+        - not_reproducible
+    validations:
+      required: true
+
+  - type: input
+    id: pr_link
+    attributes:
+      label: Pull Request Link (optional)
+      placeholder: "https://github.com/..."

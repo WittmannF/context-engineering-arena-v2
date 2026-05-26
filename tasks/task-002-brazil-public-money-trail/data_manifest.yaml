@@ -1,0 +1,47 @@
+task_id: task-002-brazil-public-money-trail
+sources:
+  - name: "Câmara dos Deputados Dados Abertos"
+    url: "https://dadosabertos.camara.leg.br/swagger/api.html"
+    license: "Open Government Data (Brazil)"
+    access_method: public_api
+    expected_size: "Variable; API-based"
+    requires_token: false
+    download_script: "scripts/download.py"
+    sample_available: true
+
+  - name: "Portal da Transparência API"
+    url: "https://api.portaldatransparencia.gov.br/"
+    license: "Open Government Data (Brazil)"
+    access_method: public_api
+    expected_size: "Variable; API-based"
+    requires_token: true
+    token_env_var: "TRANSPARENCIA_API_TOKEN"
+    download_script: "scripts/download.py"
+    sample_available: true
+
+  - name: "TCU Dados Abertos (optional)"
+    url: "https://sites.tcu.gov.br/dados-abertos/"
+    license: "Open Government Data (Brazil)"
+    access_method: public_api
+    expected_size: "Variable"
+    requires_token: false
+    download_script: "scripts/download.py"
+    sample_available: false
+
+preparation_steps:
+  - "Download legislative propositions from Câmara API by theme and year"
+  - "Download deputy records and voting data"
+  - "Download federal spending records from Portal da Transparência (requires token)"
+  - "Normalize entity names across sources"
+  - "Classify candidate links by type: direct_documented_link, same_theme_link, same_actor_link, same_agency_link, same_time_window_link, weak_or_hypothetical_link"
+  - "Write processed JSONL files per entity type"
+  - "Generate dataset_stats.json"
+
+ethics_notes:
+  - "This is a public accountability task, not an accusation engine."
+  - "Do not imply corruption without authoritative evidence."
+  - "Correlation is not causation — never present same-theme proximity as proof of influence."
+  - "CNPJ/CPF identifiers should only be shown when already public and relevant."
+  - "Prefer institutional explanations over personal allegations."
+
+sample_mode_description: "Sample mode uses only Câmara API (no token required) with a narrow theme and short date range. If Portal da Transparência token is unavailable, a clearly-marked synthetic mini-sample mimicking the schema is used instead."
